@@ -34,6 +34,7 @@ public class ClientOpCodes {
     public final static int REQUEST_MESSENGER_REMOVE_FRIEND = 41;
     public final static int REQUEST_MESSENGER_ADD_FRIEND = 42;
     public final static int REQUEST_MESSENGER_LOAD_FRIENDS = 42;
+    public final static int REQUEST_LAY = 43;
     
     private ClientOpCodes() {
 

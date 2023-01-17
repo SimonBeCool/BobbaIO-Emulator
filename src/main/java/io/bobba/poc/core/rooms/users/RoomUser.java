@@ -2,6 +2,7 @@ package io.bobba.poc.core.rooms.users;
 
 import io.bobba.poc.communication.outgoing.rooms.ChatComposer;
 import io.bobba.poc.communication.outgoing.rooms.WaveComposer;
+import io.bobba.poc.communication.outgoing.rooms.LayComposer;
 import io.bobba.poc.core.rooms.Room;
 import io.bobba.poc.core.rooms.gamemap.GameMap;
 import io.bobba.poc.core.rooms.gamemap.SqState;
@@ -213,6 +214,10 @@ public class RoomUser {
 
     public void wave() {
         room.sendMessage(new WaveComposer(virtualId));
+    }
+    
+    public void lay() {
+        room.sendMessage(new LayComposer(virtualId));
     }
     
     public void slideTo(int x, int y) {

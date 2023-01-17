@@ -40,9 +40,9 @@ public class SimpleChatCommandHandler {
                     } else {
                         currentUser.getRoom().getRoomUserManager().updateUserStatus(currentUser);
                     }
+                    return true;
                 }
-                return true;
-
+                
                 case "maps": {
                     currentUser.getRoom().getGameMap().generateMaps();
                     return true;
@@ -54,7 +54,7 @@ public class SimpleChatCommandHandler {
                 	for (Room room : rooms) {
                 		room_counter++;
                 	}
-                	currentUser.getUser().getClient().sendMessage(new HandleAlert(true, "<b>Bobba.io Emulator</b> <br><br> Derzeitige geladene Räume: <b>"+ room_counter + "</b><br><br> <b>Credits</b><br><br> Josedn - <a href='https://github.com/Josedn'>Github</a> <br> Meliodas - <a href='https://github.com/SimonBeCool'>Github</a><br>code-rain002 - <a href='https://github.com/code-rain002'>Github</a>"));
+                	currentUser.getUser().getClient().sendMessage(new HandleAlert(true, "<b>Bobba.io Emulator</b> <br><br> Derzeitige geladene Räume: <b>"+ room_counter + "</b><br><br> <b>Credits</b><br><br> Josedn - <a href='https://github.com/Josedn'>Github</a> <br>Meliodas - <a href='https://github.com/SimonBeCool'>Github</a><br>code-rain002 - <a href='https://github.com/code-rain002'>Github</a>"));
                 	return true;
                 }
                 
@@ -89,6 +89,24 @@ public class SimpleChatCommandHandler {
                 	return true;
                 }
                 
+                case "alert": {
+                	String Sentence = "";
+                	if(args.length > 1) {
+                		for(int lol = 0; lol < args.length; lol++) {
+                			String arg = args[lol] + " ";
+                		    Sentence = Sentence + arg;
+                		}
+                		
+                		List<Room> rooms = BobbaEnvironment.getGame().getRoomManager().getLoadedRooms();
+                		for (Room room : rooms) {
+                			List<RoomUser> currentUsers = BobbaEnvironment.getGame().getRoomManager().getLoadedRoom(room.getRoomData().getId()).getRoomUserManager().getUsers();
+                			for (RoomUser user : currentUsers) {
+    	                		user.getUser().getClient().sendMessage(new HandleAlert(true, Sentence.replaceAll("\\balert\\b", "")));
+    	                	}
+                		}
+                	}
+                	return true;
+                }
                 
                 case "pickall": {
                     currentUser.getRoom().getRoomItemManager().handlePickAll(currentUser);

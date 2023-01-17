@@ -152,5 +152,14 @@ public class RoomItem {
         if(getBaseItem().getInteractionType().toString() == "ROLLER") {
         	        
         }
+        
+        // IS WATER ?
+        if(getBaseItem().getInteractionType().toString() == "WATER1" || getBaseItem().getInteractionType().toString() == "WATER2" || getBaseItem().getInteractionType().toString() == "WATER3") {
+        	if (!user.hasStatus("swim"))
+                user.addStatus("swim", "0");
+                user.setNeedsUpdate(true);
+        } else {
+        	user.getRoom().getRoomUserManager().updateUserStatus(user);
+        }
     }
 }

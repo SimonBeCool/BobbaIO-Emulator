@@ -156,11 +156,13 @@ public class RoomUserManager {
 	}
 
 	public void updateUserStatus(RoomUser user) {
-		if (user.getStatus("lay") != null || user.getStatus("sit") != null) {
+		if (user.getStatus("lay") != null || user.getStatus("sit") != null || user.getStatus("swim") != null) {
 			user.removeStatus("lay");
 			user.removeStatus("sit");
+			user.removeStatus("swim");
 			user.setNeedsUpdate(true);
 		}
+		
 		List<RoomItem> itemsOnSquare = room.getGameMap()
 				.getCoordinatedHeighestItems(new Point(user.getX(), user.getY()));
 		for (RoomItem item : itemsOnSquare) {
