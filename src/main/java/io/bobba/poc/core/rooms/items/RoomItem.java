@@ -158,8 +158,6 @@ public class RoomItem {
         	if (!user.hasStatus("swim"))
                 user.addStatus("swim", "0");
                 user.setNeedsUpdate(true);
-        } else {
-        	user.getRoom().getRoomUserManager().updateUserStatus(user);
         }
     }
 }
