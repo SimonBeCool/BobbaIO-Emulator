@@ -30,4 +30,4 @@ Also, the first time you run the server, a **config.txt** file will be created. 
 ##
 ![Preview](https://i.imgur.com/u9RcF7y.png)
 ##
-Made with <3 by Relevance and advanced development by Meliodas aka SimonBeCool.
+Made with <3 by Relevance.
