@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.lang.Math;   
 
 import io.bobba.poc.BobbaEnvironment;
 import io.bobba.poc.communication.outgoing.rooms.FurniRemoveComposer;
@@ -21,6 +23,7 @@ import io.bobba.poc.core.items.ItemType;
 import io.bobba.poc.core.rooms.Room;
 import io.bobba.poc.core.rooms.users.RoomUser;
 import io.bobba.poc.core.users.inventory.UserItem;
+import io.bobba.poc.threading.runnables.RandomDiceNumber;
 
 public class RoomItemManager {
 	private Map<Integer, RoomItem> floorItems;
@@ -138,10 +141,13 @@ public class RoomItemManager {
 						removeItem(itemId);
 						user.chat("Du hast: "+ BobbaEnvironment.getGame().getCatalogue().findItem(item.getBaseItem().getItemName()).getCost()+ " Taler eingelöst.");
 					break;
+					case "DICE":
+						BobbaEnvironment.getThreading().run(new RandomDiceNumber(item, room, item.getBaseItem().getStates()), 1500);
+					break;
 				}
 			}
 		}
-	}
+}
 
 	public void onCycle() {
 	}

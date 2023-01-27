@@ -8,13 +8,14 @@ import io.bobba.poc.core.rooms.users.RoomUser;
 import io.bobba.poc.core.rooms.gamemap.GameMap;
 import io.bobba.poc.core.rooms.items.interactors.InteractorGenericSwitch;
 import io.bobba.poc.core.rooms.items.interactors.RoomItemInteractor;
+import io.bobba.poc.threading.runnables.*;
 import io.bobba.poc.misc.TextHandling;
 
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoomItem {
+public class RoomItem implements Runnable {
     private int id;
     private int x, y, rot;
     private double z;
@@ -160,4 +161,10 @@ public class RoomItem {
                 user.setNeedsUpdate(true);
         }
     }
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 }

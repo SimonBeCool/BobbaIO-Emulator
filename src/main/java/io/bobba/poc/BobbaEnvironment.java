@@ -6,11 +6,15 @@ import io.bobba.poc.core.Game;
 import io.bobba.poc.misc.configs.ConfigManager;
 import io.bobba.poc.misc.logging.LogLevel;
 import io.bobba.poc.misc.logging.Logging;
+import io.bobba.poc.threading.ThreadPooling;
 
 public class BobbaEnvironment {
 	private static final String VERSION = "1.0.1 alpha";
 	private static ConfigManager configManager;
 	private static Game game;
+	private static ThreadPooling threading;
+	
+	public static boolean isShuttingDown = false;
 
 	public static ConfigManager getConfigManager() {
 		return configManager;
@@ -19,6 +23,10 @@ public class BobbaEnvironment {
 	public static Game getGame() {
 		return game;
 	}
+	
+	public static ThreadPooling getThreading() {
+        return threading;
+    }
 	
 	private static void printSplash() {
 		System.out.println();
@@ -88,7 +96,7 @@ public class BobbaEnvironment {
 			game.initialize(Integer.parseInt(configManager.getPort()));
 			Logging.getInstance().writeLine("The environment has initialized successfully. Ready for connections.",
 					LogLevel.Verbose, BobbaEnvironment.class);
-			
+			BobbaEnvironment.threading = new ThreadPooling(configManager.threads());
 			startCommandLoop();
 		} catch (Exception e) {
 			Logging.getInstance().logError("Error initializing server", e, BobbaEnvironment.class);

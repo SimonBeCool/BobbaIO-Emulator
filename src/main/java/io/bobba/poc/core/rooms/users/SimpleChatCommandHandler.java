@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 import io.bobba.poc.BobbaEnvironment;
 import io.bobba.poc.communication.outgoing.catalogue.CataloguePageComposer;
 import io.bobba.poc.communication.outgoing.catalogue.CataloguePurchaseInformationComposer;
+import io.bobba.poc.communication.outgoing.navigator.NavigatorLeaveRoomComposer;
+import io.bobba.poc.communication.outgoing.rooms.PlayerRemoveComposer;
 import io.bobba.poc.communication.outgoing.alert.HandleAlert;
 import io.bobba.poc.core.catalogue.Catalogue;
 import io.bobba.poc.core.catalogue.CatalogueItem;
@@ -112,6 +114,12 @@ public class SimpleChatCommandHandler {
                     currentUser.getRoom().getRoomItemManager().handlePickAll(currentUser);
                     return true;
                 }
+                
+                case "teleport": {
+                	// TODO
+                	return true;
+                }
+                
                 case "coords": {
                     currentUser.chat("My coords: " + currentUser.getX() + ", " + currentUser.getY() + ", " + TextHandling.getFloatString(currentUser.getZ()) + ", Rot: " + currentUser.getRot());
                     return true;

@@ -77,7 +77,7 @@ public class RoomManager {
 	    				String roomModel = set.getString("modelId");
 	    				String roomLockType = set.getString("lockType");
 	    				int roomCapacity = set.getInt("capacity");
-	    				LockType lockStyle = LockType.Open;
+	    				LockType lockStyle = LockType.valueOf(roomLockType);
 	    							
 	    				if(roomLockType == "Locked")
 	    					lockStyle = LockType.Locked;

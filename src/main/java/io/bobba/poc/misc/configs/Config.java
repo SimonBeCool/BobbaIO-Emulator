@@ -2,6 +2,7 @@ package io.bobba.poc.misc.configs;
 
 public class Config {
     private String port, logLevel, sslEnabled, sslStoreFile, sslStoreType, sslStorePassword, sslKeyPassword, mysqlUser, mysqlPass, mysqlHost, mysqlPort, mysqlDatabase;
+	int threads;
 
     public Config() {
         port = "1232";
@@ -16,6 +17,7 @@ public class Config {
         mysqlHost = "localhost"; 
         mysqlPort = "3306";
         mysqlDatabase = "bobba";
+        threads = 1500;
     }
 
     public String getMysqlUser() {
@@ -36,6 +38,10 @@ public class Config {
 
 	public String getMysqlHost() {
 		return mysqlHost;
+	}
+	
+	public int threads() {
+		return threads;
 	}
 
 	public void setMysqlHost(String mysqlHost) {
