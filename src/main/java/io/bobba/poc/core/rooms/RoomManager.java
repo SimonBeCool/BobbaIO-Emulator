@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.bobba.poc.BobbaEnvironment;
 import io.bobba.poc.communication.outgoing.roomdata.HeightMapComposer;
 import io.bobba.poc.communication.outgoing.roomdata.RoomDataComposer;
@@ -17,8 +20,10 @@ import io.bobba.poc.core.rooms.gamemap.RoomModel;
 import io.bobba.poc.core.rooms.roomdata.LockType;
 import io.bobba.poc.core.rooms.roomdata.RoomData;
 import io.bobba.poc.core.users.User;
+import io.bobba.poc.threading.ThreadPooling;
 
 public class RoomManager {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ThreadPooling.class);
 	private static int roomId = 1;
 	private Map<Integer, Room> rooms;
 	private Map<String, RoomModel> models;
@@ -63,8 +68,6 @@ public class RoomManager {
 	}
 	
 	private void loadRoomsFromDb() throws SQLException {
-	    System.out.println("Ladet Räume...");
-		int loadedRooms = 0;
 	    try (Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection(); Statement statement = connection.createStatement()) {
 	        if (statement.execute("SELECT * FROM rooms")) {
 	            try (ResultSet set = statement.getResultSet()) {
@@ -90,7 +93,6 @@ public class RoomManager {
 	                	
 	                	if (room != null)
 							room.getRoomItemManager().loadRoomsFurnisFromDb();
-	                	loadedRooms++;
 	                	roomId++;
 	                }
 	            }
@@ -98,9 +100,8 @@ public class RoomManager {
 	    } catch (SQLException e) {
 	        throw e;
 	    }
-
-	    System.out.println("Es wurden "+loadedRooms+" geladen.");
-		}
+	    LOGGER.info("Rooms -> Loaded!");
+	}
 	
 	private void createDummyRoom() {
 		RoomData roomData = new RoomData(roomId++, "The deep forest", "Relevance", "a very cool room", 25, "", "model_h", LockType.Open);

@@ -94,9 +94,9 @@ public class BobbaEnvironment {
 		try {
 			game = new Game();
 			game.initialize(Integer.parseInt(configManager.getPort()));
+			BobbaEnvironment.threading = new ThreadPooling(configManager.threads());
 			Logging.getInstance().writeLine("The environment has initialized successfully. Ready for connections.",
 					LogLevel.Verbose, BobbaEnvironment.class);
-			BobbaEnvironment.threading = new ThreadPooling(configManager.threads());
 			startCommandLoop();
 		} catch (Exception e) {
 			Logging.getInstance().logError("Error initializing server", e, BobbaEnvironment.class);

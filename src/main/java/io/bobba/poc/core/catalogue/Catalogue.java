@@ -9,16 +9,20 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.bobba.poc.BobbaEnvironment;
 import io.bobba.poc.communication.outgoing.catalogue.CatalogueIndexComposer;
 import io.bobba.poc.communication.outgoing.catalogue.CataloguePageComposer;
 import io.bobba.poc.communication.outgoing.catalogue.CataloguePurchaseErrorComposer;
 import io.bobba.poc.communication.outgoing.catalogue.CataloguePurchaseInformationComposer;
-import io.bobba.poc.communication.outgoing.users.UpdateHabboClubComposer;
 import io.bobba.poc.core.items.BaseItem;
 import io.bobba.poc.core.users.User;
+import io.bobba.poc.threading.ThreadPooling;
 
 public class Catalogue {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ThreadPooling.class);
 	private Map<Integer, CataloguePage> pages;
 	private static int itemIdGenerator = 0;
 
@@ -31,7 +35,6 @@ public class Catalogue {
 				Statement statement = connection.createStatement()) {
 			if (statement.execute("SELECT * FROM catalog_pages")) {
 				try (ResultSet set = statement.getResultSet()) {
-					System.out.println("Katalog: wird geladen");
 					while (set.next()) {
 						int pageId = set.getInt("id");
 						int parentId = set.getInt("parent_id");
@@ -79,7 +82,7 @@ public class Catalogue {
 							iconImage, layout, headline, teaser, text1, text2, text3, text4, dummy));
 				}
 			}
-				System.out.println("Katalog: wurde geladen");
+				LOGGER.info("Catalog -> Loaded!");
 		}
 	}catch(SQLException e)
 		{
