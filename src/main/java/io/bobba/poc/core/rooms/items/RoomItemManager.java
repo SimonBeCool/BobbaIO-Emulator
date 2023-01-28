@@ -49,23 +49,23 @@ public class RoomItemManager {
                 try (ResultSet set = statement.getResultSet()) {
                     while (set.next()) {
                     	int id = set.getInt("id");
-			        				int itemId = set.getInt("item_id");
-						        	int posX = set.getInt("x");
-						        	int posY = set.getInt("y");
-						        	int rotation = set.getInt("rot");
+			        	int itemId = set.getInt("item_id");
+						int posX = set.getInt("x");
+						int posY = set.getInt("y");
+						int rotation = set.getInt("rot");
 
-						        	BaseItem baseItem = BobbaEnvironment.getGame().getItemManager().findItemByBaseId(itemId);
+						BaseItem baseItem = BobbaEnvironment.getGame().getItemManager().findItemByBaseId(itemId);
 
-						        	if(baseItem == null)
-						        		System.out.println("item is null");
+						if(baseItem == null)
+						  System.out.println("item is null");
 
-						        	if(baseItem.getType() == ItemType.WallItem) {
-						        		this.addWallItemToRoom(id, posX, posY, rotation, 0, baseItem);
-											} else {
-												double nextZ = room.getGameMap().sqAbsoluteHeight(new Point(posX, posY));
-												this.addFloorItemToRoom(id, posX, posY, nextZ, rotation, 0, baseItem);
-											}
-										}
+						if(baseItem.getType() == ItemType.WallItem) {
+							this.addWallItemToRoom(id, posX, posY, rotation, 0, baseItem);
+						} else {
+							double nextZ = room.getGameMap().sqAbsoluteHeight(new Point(posX, posY));
+							this.addFloorItemToRoom(id, posX, posY, nextZ, rotation, 0, baseItem);
+						}
+					}
                 }
             }
         } catch (SQLException e) {

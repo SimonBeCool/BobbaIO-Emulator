@@ -57,6 +57,10 @@ public class BaseItemManager {
 	public void initialize() throws SQLException {
 		loadFromDb();
 	}
+	
+	public void re_initialize() throws SQLException {
+		loadFromDb();
+	}
 
 	public BaseItem addRoomItem(int id, int baseId, int x, int y, double z, String itemName, int states,
 			boolean stackable, boolean walkable, boolean seat, List<Integer> directions, String interaction) {

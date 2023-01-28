@@ -14,6 +14,7 @@ import io.bobba.poc.communication.outgoing.catalogue.CatalogueIndexComposer;
 import io.bobba.poc.communication.outgoing.catalogue.CataloguePageComposer;
 import io.bobba.poc.communication.outgoing.catalogue.CataloguePurchaseErrorComposer;
 import io.bobba.poc.communication.outgoing.catalogue.CataloguePurchaseInformationComposer;
+import io.bobba.poc.communication.outgoing.users.UpdateHabboClubComposer;
 import io.bobba.poc.core.items.BaseItem;
 import io.bobba.poc.core.users.User;
 
@@ -115,13 +116,13 @@ public class Catalogue {
 		if (page != null && page.isEnabled() && page.isVisible() && page.getMinRank() <= user.getRank()) {
 			CatalogueItem item = page.getItem(itemId);
 			if (item != null) {
-				if (user.getCredits() < item.getCost()) {
-					user.getClient().sendMessage(new CataloguePurchaseErrorComposer());
-				} else {
-					user.getClient().sendMessage(new CataloguePurchaseInformationComposer(item));
-					user.setCredits(user.getCredits() - item.getCost());
-					deliverItem(user, item.getBaseItem(), item.getAmount());
-				}
+					if (user.getCredits() < item.getCost()) {
+						user.getClient().sendMessage(new CataloguePurchaseErrorComposer());
+					} else {
+						user.getClient().sendMessage(new CataloguePurchaseInformationComposer(item));
+						user.setCredits(user.getCredits() - item.getCost());
+						deliverItem(user, item.getBaseItem(), item.getAmount());
+					}
 			}
 		}
 	}

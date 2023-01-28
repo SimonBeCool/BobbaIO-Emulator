@@ -30,6 +30,7 @@ public class ServerOpCodes {
     public final static int MESSENGER_UPDATE_FRIEND = 36;
     public final static int STAFF_ALERT = 37;
     public final static int PLAYER_LAY = 38;
+    public final static int HABBOCLUB_DAYS = 39;
 
     private ServerOpCodes() {
 

@@ -2,6 +2,7 @@ package io.bobba.poc.core.users;
 
 import io.bobba.poc.communication.outgoing.users.LoginOkComposer;
 import io.bobba.poc.communication.outgoing.users.UpdateCreditsBalanceComposer;
+import io.bobba.poc.communication.outgoing.users.UpdateHabboClubComposer;
 import io.bobba.poc.core.gameclients.GameClient;
 import io.bobba.poc.core.rooms.Room;
 import io.bobba.poc.core.rooms.users.RoomUser;
@@ -14,6 +15,7 @@ public class User {
 	private int id;
 	private int rank;
 	private int credits;
+	private int hc_days;
 	private int homeRoomId;
 	private int loadingRoomId;
 	private String username;
@@ -76,8 +78,18 @@ public class User {
 		client.sendMessage(new UpdateCreditsBalanceComposer(credits));
 	}
 	
+	public void setClubDays(int hc_days) {
+		this.hc_days = hc_days;
+		client.sendMessage(new UpdateHabboClubComposer(this.hc_days));
+	}
+	
+	
 	public int getCredits() {
 		return credits;
+	}
+	
+	public int getHabboClub() {
+		return hc_days;
 	}
 
 	public Inventory getInventory() {
@@ -106,6 +118,7 @@ public class User {
 		this.look = look;
 		this.rank = 7;
 		this.credits = 1337;
+		this.hc_days = 169;
 		this.homeRoomId = 1;
 		this.loadingRoomId = 0;
 		this.client = client;

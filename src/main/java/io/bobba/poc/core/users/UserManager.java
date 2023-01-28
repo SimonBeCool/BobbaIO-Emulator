@@ -6,6 +6,7 @@ import java.util.Map;
 
 import io.bobba.poc.communication.outgoing.users.LoginOkComposer;
 import io.bobba.poc.communication.outgoing.users.UpdateCreditsBalanceComposer;
+import io.bobba.poc.communication.outgoing.users.UpdateHabboClubComposer;
 import io.bobba.poc.core.gameclients.GameClient;
 import io.bobba.poc.misc.logging.LogLevel;
 import io.bobba.poc.misc.logging.Logging;
@@ -46,6 +47,7 @@ public class UserManager {
 
             client.sendMessage(new LoginOkComposer(user.getId(), user.getUsername(), user.getLook(), user.getMotto()));
             client.sendMessage(new UpdateCreditsBalanceComposer(user.getCredits()));
+            client.sendMessage(new UpdateHabboClubComposer(user.getHabboClub()));
             
             addDummyFriends(user);
         } else {

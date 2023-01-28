@@ -62,6 +62,7 @@ public class SimpleChatCommandHandler {
                 
                 case "update_catalog":{
                 	BobbaEnvironment.getGame().getCatalogue().re_initialize(currentUser.getUser());
+                	BobbaEnvironment.getGame().getItemManager().initialize();
                 	BobbaEnvironment.getGame().getCatalogue().serializePage(currentUser.getUser(), -1);
                 	currentUser.getUser().getClient().sendMessage(new HandleAlert(true, "Der Shop wurde aktualisiert!"));
                 	return true;
