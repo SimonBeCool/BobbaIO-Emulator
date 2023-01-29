@@ -2,15 +2,20 @@
 # [bobba.io](https://bobba.io/) server &middot; [![GitHub license](https://img.shields.io/badge/license-GNU-blue.svg)](https://github.com/josedn/bobba_client/blob/master/LICENSE)
 ![bobba](https://i.imgur.com/wGITX22.png)
 
-Habbo Hotel (r60+) remake made with modern (as 2019) technologies.
+Habbo Hotel (r60+) HTML5 remake made with modern (as 2019+) technologies.
 This repo features a compatible [bobba_client](https://github.com/Josedn/bobba_client) server written in Java.
+This repo is a further development of the bobba.io (https://github.com/Josedn/) project.
 
 ## Features:
 * Basic room manager
 * Pathfinding with A* algorithm
-* Catalogue
+* Catalog
 * Navigator
-* Console  
+* Console
+* Commands
+* Habbo Club (basic)
+* Inventory
+* Furni interacting (beginning) 
 
 ## Requirements
 * Maven
@@ -27,7 +32,10 @@ Also, the first time you run the server, a **config.txt** file will be created. 
 ## Related projects
 * [bobba_client](https://github.com/Josedn/bobba_client): Official bobba client.
 
-##
-![Preview](https://i.imgur.com/u9RcF7y.png)
-##
-Made with <3 by Relevance.
+## Preview
+https://i.imgur.com/Z9VAHC5.png
+
+## Credits
+Relevance - https://github.com/Josedn/
+Meliodas  - https://github.com/SimonBeCool/
+code-rain002 - https://github.com/code-rain002/
