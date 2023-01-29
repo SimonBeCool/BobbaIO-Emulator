@@ -32,7 +32,10 @@ Also, the first time you run the server, a **config.txt** file will be created. 
 ## Related projects
 * [bobba_client](https://github.com/Josedn/bobba_client): Official bobba client.
 
-##
-![Preview]([https://i.imgur.com/Z9VAHC5.png])
-##
-Made with <3 by Relevance.
+## Preview
+https://i.imgur.com/Z9VAHC5.png
+
+## Credits
+Relevance - https://github.com/Josedn/
+Meliodas  - https://github.com/SimonBeCool/
+code-rain002 - https://github.com/code-rain002/
