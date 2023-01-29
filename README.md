@@ -33,6 +33,6 @@ Also, the first time you run the server, a **config.txt** file will be created. 
 * [bobba_client](https://github.com/Josedn/bobba_client): Official bobba client.
 
 ##
-![Preview]([https://i.imgur.com/Z9VAHC5_d.webp?maxwidth=760&fidelity=grand])
+![Preview]([https://i.imgur.com/Z9VAHC5.png])
 ##
 Made with <3 by Relevance.
