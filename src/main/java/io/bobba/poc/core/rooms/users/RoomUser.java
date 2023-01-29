@@ -13,7 +13,7 @@ import io.bobba.poc.misc.logging.Logging;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RoomUser {
+public class RoomUser implements Runnable {
 
     private int virtualId;
     private int x;
@@ -228,4 +228,10 @@ public class RoomUser {
             this.setWalking(true);
         }
     }
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 }

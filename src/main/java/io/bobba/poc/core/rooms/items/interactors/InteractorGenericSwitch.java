@@ -11,11 +11,13 @@ public class InteractorGenericSwitch extends  RoomItemInteractor {
 
     @Override
     public void onTrigger(RoomUser roomUser, boolean userHasRights) {
-        if (getItem().getState() + 1 < getItem().getBaseItem().getStates()) {
-            getItem().setState(getItem().getState() + 1);
-        } else {
-            getItem().setState(0);
-        }
-        getItem().updateState();
+    	if (roomUser != null && userHasRights != false) {
+	        if (getItem().getState() + 1 < getItem().getBaseItem().getStates()) {
+	            getItem().setState(getItem().getState() + 1);
+	        } else {
+	            getItem().setState(0);
+	        }
+	        getItem().updateState();
+    	}
     }
 }
