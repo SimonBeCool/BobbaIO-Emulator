@@ -3,21 +3,25 @@ package io.bobba.poc.core.rooms.gamemap.pathfinding.dream;
 import io.bobba.poc.core.rooms.gamemap.SqState;
 
 public class ModelInfo {
-    private SqState[][] mMap;
-    private int mMaxX;
-    private int mMaxY;
+	private int MaxX;
+	private int MaxY;
+	private SqState[][] gameMap;
 
-    public ModelInfo(int mMaxX, int mMaxY, SqState[][] mMap) {
-        this.mMap = mMap;
-        this.mMaxX = mMaxX;
-        this.mMaxY = mMaxY;
-    }
+	public ModelInfo(int pMaxX, int pMaxY, SqState[][] pGameMap) {
+	    MaxX = pMaxX;
+	    MaxY = pMaxY;
+	    gameMap = pGameMap;
+	}
 
-    SqState getState(int x, int y) {
-        if (x >= mMaxX || x < 0)
-            return SqState.Closed;
-        if (y >= mMaxY || y < 0)
-            return SqState.Closed;
-        return mMap[x][y];
-    }
+	public int getMaxX() {
+	    return MaxX;
+	}
+
+	public int getMaxY() {
+	    return MaxY;
+	}
+
+	public SqState getState(int x, int y) {
+	    return gameMap[x][y];
+	}
 }

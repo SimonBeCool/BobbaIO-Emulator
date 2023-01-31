@@ -2,6 +2,7 @@ package io.bobba.poc.core.rooms.gamemap;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -182,7 +183,7 @@ public class GameMap implements ISearchGrid {
         SquarePoint point = DreamPathfinder.getNextStep(currentX, currentY, targetX, targetY, map, itemHeightMap, roomModel.getMapSizeX(), roomModel.getMapSizeY(), false, diagonalEnabled);
         return new Point(point.getX(), point.getY());
     }
-
+    /*
     public List<RoomItem> getCoordinatedHeighestItems(Point coord) {
         if (!coordinatedItems.containsKey(coord)) {
             return new ArrayList<>();
@@ -204,6 +205,36 @@ public class GameMap implements ISearchGrid {
             }
         }
 
+        return returnItems;
+    }
+    */
+    public List<RoomItem> getCoordinatedHeighestItems(Point coord) {
+        if (!coordinatedItems.containsKey(coord)) {
+            return Collections.emptyList();
+        }
+        List<RoomItem> items = coordinatedItems.get(coord);
+        System.out.println("Items for coord " + coord + ": " + items);
+        if (items.size() == 1) {
+            return items;
+        }
+
+        List<RoomItem> returnItems = new ArrayList<>();
+        double highest = -1;
+        double tolerance = 0.00001;
+        for (RoomItem item : items) {
+        	try {
+                double height = item.getTotalHeight();
+                if (height > highest + tolerance) {
+                    highest = height;
+                    returnItems.clear();
+                    returnItems.add(item);
+                } else if (Math.abs(height - highest) < tolerance) {
+                    returnItems.add(item);
+                }
+            } catch (Exception e) {
+                System.err.println("Error while computing total height for item " + item + ": " + e.getMessage());
+            }
+        }
         return returnItems;
     }
 

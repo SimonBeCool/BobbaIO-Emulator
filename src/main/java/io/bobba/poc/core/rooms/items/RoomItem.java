@@ -159,7 +159,12 @@ public class RoomItem implements Runnable {
     }
 
     public double getTotalHeight() {
-        return baseItem.getZ() + z;
+    	if (baseItem.getZ() < 0 || z < 0) {
+            throw new IllegalStateException("Invalid height values: baseItem.getZ() = " + baseItem.getZ() + ", z = " + z);
+        } else {
+        	double height = baseItem.getZ() + z;
+        	return height;
+        }
     }
 
     public void onUserWalk(RoomUser user) {

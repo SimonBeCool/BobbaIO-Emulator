@@ -10,6 +10,8 @@ public class SquarePoint {
     private boolean inUse;
     private boolean override;
     private boolean lastStep;
+    private int pTargetX;
+    private int pTargetY;
 
     public SquarePoint(int pX, int pY, int pTargetX, int pTargetY, SqState SquareData, boolean pOverride) {
         x = pX;
@@ -41,20 +43,12 @@ public class SquarePoint {
     }
 
     public boolean canWalk() {
-        if (!lastStep) {
-            if (!override) {
-                return (squareData == SqState.Walkable);
-            } else {
-                return true;
-            }
-        } else {
-            if (!override) {
-                if (squareData == SqState.WalkableLast)
-                    return true;
-                if (squareData == SqState.Walkable)
-                    return true;
-            } else return true;
-        }
-        return false;
-    }
-}
+    	if (!lastStep) {
+	        if (x != pTargetX || y != pTargetY) {
+	            return override || squareData == SqState.Walkable;
+	        } else {
+	            return override || squareData == SqState.Walkable || squareData == SqState.WalkableLast;
+	        }
+    	}
+		return false;
+    }}

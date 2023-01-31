@@ -136,6 +136,8 @@ public class RoomModel {
 		sqFloorHeight[doorX][doorY] = doorZ;
 	}
 	
+	
+	
 	public void printHeightMap() {
 		for (int y = 0; y < mapSizeY; y++) {
 			for (int x = 0; x < mapSizeX; x++) {
