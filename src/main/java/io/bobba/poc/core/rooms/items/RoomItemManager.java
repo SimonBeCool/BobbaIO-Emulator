@@ -19,6 +19,7 @@ import io.bobba.poc.core.items.BaseItem;
 import io.bobba.poc.core.items.ItemType;
 import io.bobba.poc.core.rooms.Room;
 import io.bobba.poc.core.rooms.users.RoomUser;
+import io.bobba.poc.core.users.Coord;
 import io.bobba.poc.core.users.inventory.UserItem;
 import io.bobba.poc.threading.runnables.HabboWheelInteractor;
 import io.bobba.poc.threading.runnables.RandomBottleNumber;
@@ -73,6 +74,10 @@ public class RoomItemManager {
         }
 	}
 	
+	public Coord getCoordinate(int x, int y) {
+        return new Coord(x, y);
+    }
+	
 	public RoomItem getItem(int id) {
 		if (floorItems.containsKey(id))
 			return floorItems.get(id);
@@ -97,6 +102,58 @@ public class RoomItemManager {
 			room.getRoomUserManager().updateUserStatusses();
 		}
 	}
+	
+	public boolean IsWallItem(int id) {
+		RoomItem item = getItem(id);
+		if (item != null && item.getBaseItem().getType().toString() == "i") {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean IsFloorItem(int id) {
+		RoomItem item = getItem(id);
+		if (item != null && item.getBaseItem().getType().toString() == "s") {
+			return true;
+		}
+		return false;
+	}
+	
+	public Coord getSquareInFront(RoomItem item) {
+		int x_tile = item.getX();
+		int y_tile = item.getY();
+        Coord sq = new Coord(x_tile, y_tile);
+
+        if (item.getRot() == 0) {
+            sq.y--;
+        } else if (item.getRot() == 2) {
+            sq.x++;
+        } else if (item.getRot() == 4) {
+            sq.y++;
+        } else if (item.getRot() == 6) {
+            sq.x--;
+        }
+
+        return sq;
+    }
+	
+	public Coord getSquareBehind(RoomUser user) {
+		int x_tile = user.getX();
+		int y_tile = user.getY();
+		
+        Coord sq = new Coord(x_tile, y_tile);
+
+        if (user.getRot() == 0) {
+            sq.y++;
+        } else if (user.getRot() == 2) {
+            sq.x--;
+        } else if (user.getRot() == 4) {
+            sq.y--;
+        } else if (user.getRot() == 6) {
+            sq.x++;
+        }
+        return sq;
+    }
 
 	public void removeItem(int id) {
 		RoomItem item = getItem(id);

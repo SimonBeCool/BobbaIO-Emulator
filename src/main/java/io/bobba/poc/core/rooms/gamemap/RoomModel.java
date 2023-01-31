@@ -115,19 +115,22 @@ public class RoomModel {
 
 		this.sqState = new SqState[mapSizeX][mapSizeY];
 		this.sqFloorHeight = new int[mapSizeX][mapSizeY];
-
+		
 		for (int y = 0; y < mapSizeY; y++) {
 			String line = tempHeightmap[y];
-
-			for (int x = 0; x < mapSizeX; x++) {
-				char square = line.charAt(x);
-				if (square == 'x') {
-					sqState[x][y] = SqState.Closed;
-				} else {
-					sqState[x][y] = SqState.Walkable;
-					sqFloorHeight[x][y] = parse(square);
-				}
-			}
+		    if (y > 0) {
+		        tempHeightmap[y] = tempHeightmap[y].substring(1);
+		    }
+		    for (int x = 0; x < mapSizeX; x++) {
+		    	char square = line.charAt(x);
+		    	
+		        if (square == 'x') {
+		            this.sqState[x][y] = SqState.Closed;
+		        } else {
+		            sqState[x][y] = SqState.Walkable;
+		            sqFloorHeight[x][y] = parse(square);
+		        }
+		    }
 		}
 		sqState[doorX][doorY] = SqState.Walkable;
 		sqFloorHeight[doorX][doorY] = doorZ;

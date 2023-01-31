@@ -22,37 +22,35 @@ public class BaseItemManager {
 	}
 
 	private void loadFromDb() throws SQLException {
-		try (Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
-				Statement statement = connection.createStatement()) {
-			if (statement.execute("SELECT * FROM furniture")) {
-				try (ResultSet set = statement.getResultSet()) {
-					while (set.next()) {
-						int id = set.getInt("id");
-						String itemName = set.getString("item_name");
-						String type = set.getString("type");
-						int x = set.getInt("width");
-						int y = set.getInt("length");
-						double z = set.getDouble("stack_height");
-						boolean canStack = set.getString("can_stack").equals("1");
-						boolean canSit = set.getString("can_sit").equals("1");
-						boolean canWalk = set.getString("is_walkable").equals("1");
-						int spriteId = set.getInt("sprite_id");
-						//boolean inventoryStack = set.getString("allow_inventory_stack").equals("1");
-						String interaction = set.getString("interaction_type");
-						int states = set.getInt("interaction_modes_count");
-						
-						if (type.equals("s")) {
-							addRoomItem(id, spriteId, x, y, z, itemName, states, canStack, canWalk, canSit, Arrays.asList(0, 2, 4, 6), interaction);
-						} else if (type.equals("i")) {
-							addWallItem(id,  spriteId, itemName, states, interaction);
-						}
-					}
-				}
-			}
-		} catch (SQLException e) {
-			throw e;
-		}
-	}
+        String query = "SELECT * FROM furniture";
+
+        try (
+            Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query)
+        ) {
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String itemName = resultSet.getString("item_name");
+                String type = resultSet.getString("type");
+                int x = resultSet.getInt("width");
+                int y = resultSet.getInt("length");
+                double z = resultSet.getDouble("stack_height");
+                boolean canStack = resultSet.getString("can_stack").equals("1");
+                boolean canSit = resultSet.getString("can_sit").equals("1");
+                boolean canWalk = resultSet.getString("is_walkable").equals("1");
+                int spriteId = resultSet.getInt("sprite_id");
+                String interaction = resultSet.getString("interaction_type");
+                int states = resultSet.getInt("interaction_modes_count");
+
+                if (type.equals("s")) {
+                    addRoomItem(id, spriteId, x, y, z, itemName, states, canStack, canWalk, canSit, Arrays.asList(0, 2, 4, 6), interaction);
+                } else if (type.equals("i")) {
+                    addWallItem(id, spriteId, itemName, states, interaction);
+                }
+            }
+        }
+    }
 
 	public void initialize() throws SQLException {
 		loadFromDb();

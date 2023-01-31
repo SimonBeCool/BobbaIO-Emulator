@@ -29,7 +29,7 @@ public class RollerInteractor implements Runnable {
         if (item_rotation == 6) {
             user.moveTo(user.getX() - 1, user.getY());
         }
-        this.item.setState(0);
+        this.item.setState(1);
         this.item.updateState();
         BobbaEnvironment.getThreading().run(this.user);
     }

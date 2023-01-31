@@ -5,6 +5,7 @@ import io.bobba.poc.communication.outgoing.rooms.FurniStateComposer;
 import io.bobba.poc.communication.protocol.ServerMessage;
 import io.bobba.poc.core.items.BaseItem;
 import io.bobba.poc.core.rooms.Room;
+import io.bobba.poc.core.rooms.RoomManager;
 import io.bobba.poc.core.rooms.users.RoomUser;
 import io.bobba.poc.core.rooms.gamemap.GameMap;
 import io.bobba.poc.core.rooms.items.interactors.InteractorGenericSwitch;
@@ -171,7 +172,6 @@ public class RoomItem implements Runnable {
         }
         // IS ROLLER ?
         if(getBaseItem().getInteractionType().toString() == "ROLLER") {
-        	
 			Point point = null;
             if (getRot() == 4) {
                 point = new Point(user.getX(), user.getY() + 1);
@@ -195,8 +195,11 @@ public class RoomItem implements Runnable {
             RoomItem item = BobbaEnvironment.getGame().getRoomManager().getLoadedRoom(user.getRoom().getRoomData().getId()).getRoomItemManager().getItem(getId());
             
             if (user != null) {
+            	item.setState(-1);
+				item.updateState();
             	BobbaEnvironment.getThreading().run(new RollerInteractor(user, getRot(), item), 1500);
             }
+           
         }
         
         // IS WATER ?
