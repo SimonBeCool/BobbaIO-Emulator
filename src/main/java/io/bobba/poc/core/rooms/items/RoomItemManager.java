@@ -9,20 +9,19 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.lang.Math;   
+import java.util.Map;  
 
 import io.bobba.poc.BobbaEnvironment;
 import io.bobba.poc.communication.outgoing.rooms.FurniRemoveComposer;
 import io.bobba.poc.communication.outgoing.rooms.SerializeFloorItemComposer;
 import io.bobba.poc.communication.outgoing.rooms.SerializeWallItemComposer;
 import io.bobba.poc.core.items.BaseItem;
-import io.bobba.poc.core.items.BaseItemManager;
 import io.bobba.poc.core.items.ItemType;
 import io.bobba.poc.core.rooms.Room;
 import io.bobba.poc.core.rooms.users.RoomUser;
 import io.bobba.poc.core.users.inventory.UserItem;
+import io.bobba.poc.threading.runnables.HabboWheelInteractor;
+import io.bobba.poc.threading.runnables.RandomBottleNumber;
 import io.bobba.poc.threading.runnables.RandomDiceNumber;
 
 public class RoomItemManager {
@@ -53,6 +52,7 @@ public class RoomItemManager {
 						int posX = set.getInt("x");
 						int posY = set.getInt("y");
 						int rotation = set.getInt("rot");
+						int extraData = set.getInt("extra_data");
 
 						BaseItem baseItem = BobbaEnvironment.getGame().getItemManager().findItemByBaseId(itemId);
 
@@ -60,10 +60,10 @@ public class RoomItemManager {
 						  System.out.println("item is null");
 
 						if(baseItem.getType() == ItemType.WallItem) {
-							this.addWallItemToRoom(id, posX, posY, rotation, 0, baseItem);
+							this.addWallItemToRoom(id, posX, posY, rotation, extraData, baseItem);
 						} else {
 							double nextZ = room.getGameMap().sqAbsoluteHeight(new Point(posX, posY));
-							this.addFloorItemToRoom(id, posX, posY, nextZ, rotation, 0, baseItem);
+							this.addFloorItemToRoom(id, posX, posY, nextZ, rotation, extraData, baseItem);
 						}
 					}
                 }
@@ -89,9 +89,9 @@ public class RoomItemManager {
 		return new ArrayList<>(wallItems.values());
 	}
 	
-	public void addFloorItemToRoom(int id, int x, int y, double z, int rot, int state, BaseItem baseItem) {
+	public void addFloorItemToRoom(int id, int x, int y, double z, int rot, int extraData, BaseItem baseItem) {
 		if (getItem(id) == null) {
-			floorItems.put(id, new RoomItem(id, x, y, z, rot, state, room, baseItem));
+			floorItems.put(id, new RoomItem(id, x, y, z, rot, extraData, room, baseItem));
 			room.getGameMap().addItemToMap(floorItems.get(id));
 			room.sendMessage(new SerializeFloorItemComposer(floorItems.get(id)));
 			room.getRoomUserManager().updateUserStatusses();
@@ -142,7 +142,19 @@ public class RoomItemManager {
 						user.chat("Du hast: "+ BobbaEnvironment.getGame().getCatalogue().findItem(item.getBaseItem().getItemName()).getCost()+ " Taler eingelöst.");
 					break;
 					case "DICE":
-						BobbaEnvironment.getThreading().run(new RandomDiceNumber(item, room, item.getBaseItem().getStates()), 1500);
+						item.setState(-1);
+						item.updateState();
+						BobbaEnvironment.getThreading().run(new RandomDiceNumber(item), 1500);
+					break;
+					case "HABBOWHEEL":
+						item.setState(-1);
+						item.updateState();
+						BobbaEnvironment.getThreading().run(new HabboWheelInteractor(item), 1500);
+					break;
+					case "BOTTLE":
+						item.setState(-1);
+						item.updateState();
+						BobbaEnvironment.getThreading().run(new RandomBottleNumber(item), 1500);
 					break;
 				}
 			}

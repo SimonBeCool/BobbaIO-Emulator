@@ -13,14 +13,19 @@ import io.bobba.poc.threading.runnables.*;
 import io.bobba.poc.misc.TextHandling;
 
 import java.awt.Point;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RoomItem implements Runnable {
     private int id;
     private int x, y, rot;
     private double z;
     private int state;
+    private int extraData;
     private Room room;
 
     private boolean needsUpdate;
@@ -29,13 +34,13 @@ public class RoomItem implements Runnable {
     private RoomItemInteractor interactor;
     private List<Point> coords;
 
-    public RoomItem(int id, int x, int y, double z, int rot, int state, Room room, BaseItem baseItem) {
+    public RoomItem(int id, int x, int y, double z, int rot, int extraData, Room room, BaseItem baseItem) {
         this.id = id;
         this.x = x;
         this.y = y;
         this.rot = rot;
         this.z = z;
-        this.state = state;
+        this.state = extraData;
         this.room = room;
         this.needsUpdate = false;
         this.baseItem = baseItem;
@@ -131,9 +136,23 @@ public class RoomItem implements Runnable {
     public void setBaseItem(BaseItem baseItem) {
         this.baseItem = baseItem;
     }
+    
+    public int getRandomNumber(int min, int max) {
+        Random random = new Random();
+        return random.ints(min, max)
+          .findFirst()
+          .getAsInt();
+    }
 
     public void updateState() {
         this.needsUpdate = true;
+        try (Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection(); Statement statement = connection.createStatement()) {
+            String query = "UPDATE room_furnis SET extra_data = "+ state +" WHERE id = "+id;
+            if (statement.execute(query)) {}
+        } catch (SQLException e) {
+            System.out.println("RoomItem SQL ERROR: "+e);
+        }
+        
         ServerMessage updateMessage = new FurniStateComposer(id, state);
         room.sendMessage(updateMessage);
     }
