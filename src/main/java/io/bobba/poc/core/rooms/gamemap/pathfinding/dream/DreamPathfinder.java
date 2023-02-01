@@ -4,21 +4,17 @@ import io.bobba.poc.core.rooms.gamemap.SqState;
 
 public class DreamPathfinder {
 
-    public static SquarePoint getNextStep(int pUserX, int pUserY,
-                                          int pUserTargetX, int pUserTargetY,
-                                          SqState[][] pGameMap, double[][] pHeight,
-                                          int MaxX, int MaxY,
-                                          boolean pUserOverride, boolean pDiagonal) {
-        ModelInfo mapInfo = new ModelInfo(MaxX, MaxY, pGameMap);
-        SquarePoint targetPoint = new SquarePoint(pUserTargetX, pUserTargetY, pUserTargetX, pUserTargetY, mapInfo.getState(pUserTargetX, pUserTargetY), pUserOverride);
-
-        if (pUserX == pUserTargetX && pUserY == pUserTargetY) 
-            return targetPoint;
-
-        SquareInformation squareOnUser = new SquareInformation(pUserX, pUserY, targetPoint, mapInfo, pUserOverride, pDiagonal);
-
-        return getClosestSquare(squareOnUser, new HeightInfo(MaxX, MaxY, pHeight));
-    }
+	public static SquarePoint getNextStep(int pUserX, int pUserY,int pUserTargetX, int pUserTargetY,SqState[][] pGameMap, double[][] pHeight,int MaxX, int MaxY,boolean pUserOverride, boolean pDiagonal) {
+		if (pUserX == pUserTargetX && pUserY == pUserTargetY) {
+			return new SquarePoint(pUserTargetX, pUserTargetY, pUserTargetX, pUserTargetY, pGameMap[pUserTargetX][pUserTargetY], pUserOverride);
+		}
+	
+		ModelInfo mapInfo = new ModelInfo(MaxX, MaxY, pGameMap);
+		SquarePoint targetPoint = new SquarePoint(pUserTargetX, pUserTargetY, pUserTargetX, pUserTargetY, mapInfo.getState(pUserTargetX, pUserTargetY), pUserOverride);
+		SquareInformation squareOnUser = new SquareInformation(pUserX, pUserY, targetPoint, mapInfo, pUserOverride, pDiagonal);
+		
+		return getClosestSquare(squareOnUser, new HeightInfo(MaxX, MaxY, pHeight));
+	}
 
     private static SquarePoint getClosestSquare(SquareInformation pInfo, HeightInfo height) {
         double closest = pInfo.getPoint().getDistance();

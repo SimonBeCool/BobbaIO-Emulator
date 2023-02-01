@@ -1,6 +1,7 @@
 package io.bobba.poc.core.rooms.users;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -32,32 +33,40 @@ public class SimpleChatCommandHandler {
 
         try {
             switch (args[0].toLowerCase()) {
-                case "sit": {
-                    if (!currentUser.hasStatus("sit")) {
-                        if (currentUser.getRot() % 2 == 1) {
-                            currentUser.setRot(currentUser.getRot() - 1);
-                        }
-                        currentUser.addStatus("sit", "0.55");
-                        currentUser.setNeedsUpdate(true);
-                    } else {
-                        currentUser.getRoom().getRoomUserManager().updateUserStatus(currentUser);
-                    }
-                    return true;
-                }
+	            case "sit": {
+	                if (!currentUser.hasStatus("sit")) {
+	                    int newRot = currentUser.getRot();
+	                    if (newRot % 2 == 1) {
+	                        newRot = newRot - 1;
+	                    }
+	                    currentUser.setRot(newRot);
+	                    currentUser.addStatus("sit", "0.55");
+	                } else {
+	                    currentUser.removeStatus("sit");
+	                }
+	                currentUser.setNeedsUpdate(true);
+	                return true;
+	            }
                 
                 case "maps": {
                     currentUser.getRoom().getGameMap().generateMaps();
                     return true;
                 }
                 
-                case "about":{
-                	List<Room> rooms = BobbaEnvironment.getGame().getRoomManager().getLoadedRooms();
-                	int room_counter = 0;
-                	for (Room room : rooms) {
-                		room_counter++;
-                	}
-                	currentUser.getUser().getClient().sendMessage(new HandleAlert(true, "<b>Bobba.io Emulator</b> <br><br> Derzeitige geladene Räume: <b>"+ room_counter + "</b><br><br> <b>Credits</b><br><br> Josedn - <a href='https://github.com/Josedn'>Github</a> <br>Meliodas - <a href='https://github.com/SimonBeCool'>Github</a><br>code-rain002 - <a href='https://github.com/code-rain002'>Github</a>"));
-                	return true;
+                case "about": {
+                    int loadedRooms = BobbaEnvironment.getGame().getRoomManager().getLoadedRooms().size();
+                    String credits = 
+                        "Josedn - <a href='https://github.com/Josedn'>Github</a><br>" +
+                        "Meliodas - <a href='https://github.com/SimonBeCool'>Github</a><br>" +
+                        "code-rain002 - <a href='https://github.com/code-rain002'>Github</a><br>";
+                    currentUser.getUser().getClient().sendMessage(
+                        new HandleAlert(true, 
+                            "<b>Bobba.io Emulator</b><br><br>" +
+                            "Currently loaded rooms: <b>" + loadedRooms + "</b><br><br>" +
+                            "<b>Credits</b><br><br>" + credits
+                        )
+                    );
+                    return true;
                 }
                 
                 case "update_catalog":{
@@ -76,39 +85,30 @@ public class SimpleChatCommandHandler {
                 	return true;
                 }
                 
+                case "alert":
                 case "roomalert": {
-                	String Sentence = "";
-                	if(args.length > 1) {
-                		for(int lol = 0; lol < args.length; lol++) {
-                			String arg = args[lol] + " ";
-                		    Sentence = Sentence + arg;
-                		}
-                		
-                		List<RoomUser> currentUsers = BobbaEnvironment.getGame().getRoomManager().getLoadedRoom(currentUser.getRoom().getRoomData().getId()).getRoomUserManager().getUsers();
-	                	for (RoomUser user : currentUsers) {
-	                		user.getUser().getClient().sendMessage(new HandleAlert(true, Sentence.replaceAll("\\broomalert\\b", "")));
-	                	}
-                	}
-                	return true;
-                }
-                
-                case "alert": {
-                	String Sentence = "";
-                	if(args.length > 1) {
-                		for(int lol = 0; lol < args.length; lol++) {
-                			String arg = args[lol] + " ";
-                		    Sentence = Sentence + arg;
-                		}
-                		
-                		List<Room> rooms = BobbaEnvironment.getGame().getRoomManager().getLoadedRooms();
-                		for (Room room : rooms) {
-                			List<RoomUser> currentUsers = BobbaEnvironment.getGame().getRoomManager().getLoadedRoom(room.getRoomData().getId()).getRoomUserManager().getUsers();
-                			for (RoomUser user : currentUsers) {
-    	                		user.getUser().getClient().sendMessage(new HandleAlert(true, Sentence.replaceAll("\\balert\\b", "")));
-    	                	}
-                		}
-                	}
-                	return true;
+                	String command = args[0].toLowerCase();
+                    String Sentence = "";
+                    if (args.length > 1) {
+                        for (int lol = 1; lol < args.length; lol++) {
+                            Sentence += args[lol] + " ";
+                        }
+
+                        List<RoomUser> currentUsers = null;
+                        if (command.equals("roomalert")) {
+                            currentUsers = BobbaEnvironment.getGame().getRoomManager().getLoadedRoom(currentUser.getRoom().getRoomData().getId()).getRoomUserManager().getUsers();
+                        } else {
+                            currentUsers = new ArrayList<>();
+                            for (Room room : BobbaEnvironment.getGame().getRoomManager().getLoadedRooms()) {
+                                currentUsers.addAll(room.getRoomUserManager().getUsers());
+                            }
+                        }
+
+                        for (RoomUser user : currentUsers) {
+                            user.getUser().getClient().sendMessage(new HandleAlert(true, Sentence));
+                        }
+                    }
+                    return true;
                 }
                 
                 case "pickall": {
@@ -149,104 +149,66 @@ public class SimpleChatCommandHandler {
                 }
 
                 case "pull": {
-                    Point point = null;
-                    if (currentUser.getRot() == 4) {
-                        point = new Point(currentUser.getX(), currentUser.getY() + 2);
+                    Point targetPoint = null;
+                    switch (currentUser.getRot()) {
+                        case 4:targetPoint = new Point(currentUser.getX(), currentUser.getY() + 2);break;
+                        case 0:targetPoint = new Point(currentUser.getX(), currentUser.getY() - 2);break;
+                        case 6:targetPoint = new Point(currentUser.getX() - 2, currentUser.getY());break;
+                        case 2:targetPoint = new Point(currentUser.getX() + 2, currentUser.getY());break;
                     }
-                    if (currentUser.getRot() == 0) {
-                        point = new Point(currentUser.getX(), currentUser.getY() - 2);
-                    }
-                    if (currentUser.getRot() == 6) {
-                        point = new Point(currentUser.getX() - 2, currentUser.getY());
-                    }
-                    if (currentUser.getRot() == 2) {
-                        point = new Point(currentUser.getX() + 2, currentUser.getY());
-                    }
-                    if (point != null) {
-                        List<RoomUser> userList = currentUser.getRoom().getGameMap().getRoomUsersForSquare(point);
-                        if (userList.size() > 0) {
-                            targetRoomUser = userList.get(0);
+
+                    if (targetPoint != null) {
+                        List<RoomUser> targetUsers = currentUser.getRoom().getGameMap().getRoomUsersForSquare(targetPoint);
+                        if (!targetUsers.isEmpty()) {
+                            RoomUser targetRoomUsers = targetUsers.get(0);
+                            switch (currentUser.getRot()) {
+                                case 0:targetRoomUsers.moveTo(targetRoomUsers.getX(), targetRoomUsers.getY() + 1);break;
+                                case 4:targetRoomUsers.moveTo(targetRoomUsers.getX(), targetRoomUsers.getY() - 1);break;
+                                case 2:targetRoomUsers.moveTo(targetRoomUsers.getX() - 1, targetRoomUsers.getY());break;
+                                case 6:targetRoomUsers.moveTo(targetRoomUsers.getX() + 1, targetRoomUsers.getY());break;
+                            }
+                            currentUser.chat("*pulls " + targetRoomUsers.getUser().getUsername() + "*");
                         }
-                    }
-                    if (targetRoomUser != null) {
-                        if (currentUser.getRot() == 0) {
-                            targetRoomUser.moveTo(targetRoomUser.getX(), targetRoomUser.getY() + 1);
-                        }
-                        if (currentUser.getRot() == 4) {
-                            targetRoomUser.moveTo(targetRoomUser.getX(), targetRoomUser.getY() - 1);
-                        }
-                        if (currentUser.getRot() == 2) {
-                            targetRoomUser.moveTo(targetRoomUser.getX() - 1, targetRoomUser.getY());
-                        }
-                        if (currentUser.getRot() == 6) {
-                            targetRoomUser.moveTo(targetRoomUser.getX() + 1, targetRoomUser.getY());
-                        }
-                        currentUser.chat("*pulls " + targetRoomUser.getUser().getUsername() + "*");
                     }
                     return true;
                 }
 
                 case "push": {
+                    RoomUser targetRoomUsers = null;
                     if (args.length > 1) {
-                        targetRoomUser = currentUser.getRoom().getRoomUserManager().getUser(args[1]);
+                        targetRoomUsers = currentUser.getRoom().getRoomUserManager().getUser(args[1]);
                     } else {
-
                         Point point = null;
-                        if (currentUser.getRot() == 4) {
-                            point = new Point(currentUser.getX(), currentUser.getY() + 1);
-                        }
-                        if (currentUser.getRot() == 0) {
-                            point = new Point(currentUser.getX(), currentUser.getY() - 1);
-                        }
-                        if (currentUser.getRot() == 6) {
-                            point = new Point(currentUser.getX() - 1, currentUser.getY());
-                        }
-                        if (currentUser.getRot() == 2) {
-                            point = new Point(currentUser.getX() + 1, currentUser.getY());
+                        switch (currentUser.getRot()) {
+                            case 4: point = new Point(currentUser.getX(), currentUser.getY() + 1); break;
+                            case 0: point = new Point(currentUser.getX(), currentUser.getY() - 1); break;
+                            case 6: point = new Point(currentUser.getX() - 1, currentUser.getY()); break;
+                            case 2: point = new Point(currentUser.getX() + 1, currentUser.getY()); break;
+                            default: break;
                         }
                         if (point != null) {
                             List<RoomUser> userList = currentUser.getRoom().getGameMap().getRoomUsersForSquare(point);
-                            if (userList.size() > 0) {
-                                targetRoomUser = userList.get(0);
+                            if (!userList.isEmpty()) {
+                                targetRoomUsers = userList.get(0);
                             }
                         }
                     }
-                    if (targetRoomUser != null) {
-                        if ((targetRoomUser.getX() == currentUser.getX() - 1) || (targetRoomUser.getX() == currentUser.getX() + 1) || (targetRoomUser.getY() == currentUser.getY() - 1) || (targetRoomUser.getY() == currentUser.getY() + 1)) {
-                            if (currentUser.getRot() == 4) {
-                                targetRoomUser.moveTo(targetRoomUser.getX(), targetRoomUser.getY() + 1);
-                            }
-
-                            if (currentUser.getRot() == 0) {
-                                targetRoomUser.moveTo(targetRoomUser.getX(), targetRoomUser.getY() - 1);
-                            }
-
-                            if (currentUser.getRot() == 6) {
-                                targetRoomUser.moveTo(targetRoomUser.getX() - 1, targetRoomUser.getY());
-                            }
-
-                            if (currentUser.getRot() == 2) {
-                                targetRoomUser.moveTo(targetRoomUser.getX() + 1, targetRoomUser.getY());
-                            }
-
-                            if (currentUser.getRot() == 3) {
-                                targetRoomUser.moveTo(targetRoomUser.getX() + 1, targetRoomUser.getY() + 1);
-                            }
-
-                            if (currentUser.getRot() == 1) {
-                                targetRoomUser.moveTo(targetRoomUser.getX() + 1, targetRoomUser.getY() - 1);
-                            }
-
-                            if (currentUser.getRot() == 7) {
-                                targetRoomUser.moveTo(targetRoomUser.getX() - 1, targetRoomUser.getY() - 1);
-                            }
-
-                            if (currentUser.getRot() == 5) {
-                                targetRoomUser.moveTo(targetRoomUser.getX() - 1, targetRoomUser.getY() + 1);
-                            }
-
-                            currentUser.chat("*pushes " + targetRoomUser.getUser().getUsername() + "*");
+                    if (targetRoomUsers != null) {
+                        int newX = targetRoomUsers.getX();
+                        int newY = targetRoomUsers.getY();
+                        switch (currentUser.getRot()) {
+                            case 4: newY++; break;
+                            case 0: newY--; break;
+                            case 6: newX--; break;
+                            case 2: newX++; break;
+                            case 3: newX++; newY++; break;
+                            case 1: newX++; newY--; break;
+                            case 7: newX--; newY--; break;
+                            case 5: newX--; newY++; break;
+                            default: break;
                         }
+                        targetRoomUsers.moveTo(newX, newY);
+                        currentUser.chat("*pushes " + targetRoomUsers.getUser().getUsername() + "*");
                     }
                     return true;
                 }

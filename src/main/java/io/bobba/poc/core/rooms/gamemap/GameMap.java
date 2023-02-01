@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 import io.bobba.poc.core.rooms.Room;
 import io.bobba.poc.core.rooms.gamemap.pathfinding.astar.AStar;
@@ -172,42 +173,16 @@ public class GameMap implements ISearchGrid {
     public Point getUserNextStep(int currentX, int currentY, int targetX, int targetY) {
         Node initialNode = new Node(currentX, currentY);
         Node finalNode = new Node(targetX, targetY);
-        if (!initialNode.equals(finalNode)) {
-            AStar aStar = new AStar(roomModel.getMapSizeX(), roomModel.getMapSizeY(), initialNode, finalNode, diagonalEnabled, this);
-            List<Node> path = aStar.findPath();
-            if (path.size() > 1) {
-                return new Point(new Point(path.get(1).getRow(), path.get(1).getCol()));
-            }
+        List<Node> path = new AStar(roomModel.getMapSizeX(), roomModel.getMapSizeY(), initialNode, finalNode, diagonalEnabled, this).findPath();
+
+        if (path.size() > 1) {
+            return new Point(path.get(1).getRow(), path.get(1).getCol());
         }
-        //Path is closed... then try heuristic walking
+
         SquarePoint point = DreamPathfinder.getNextStep(currentX, currentY, targetX, targetY, map, itemHeightMap, roomModel.getMapSizeX(), roomModel.getMapSizeY(), false, diagonalEnabled);
         return new Point(point.getX(), point.getY());
     }
-    /*
-    public List<RoomItem> getCoordinatedHeighestItems(Point coord) {
-        if (!coordinatedItems.containsKey(coord)) {
-            return new ArrayList<>();
-        }
-        List<RoomItem> items = coordinatedItems.get(coord);
-        if (items.size() == 1) {
-            return new ArrayList<>(items);
-        }
-
-        List<RoomItem> returnItems = new ArrayList<>();
-        double heighest = -1; //TODO: Find a better way
-        for (RoomItem item : items) {
-            if (item.getTotalHeight() > heighest) {
-                heighest = item.getTotalHeight(); //TODO: It may be getZ() or getTotalHeight()
-                returnItems.clear();
-                returnItems.add(item);
-            } else if (item.getTotalHeight() == heighest) {
-                returnItems.add(item);
-            }
-        }
-
-        return returnItems;
-    }
-    */
+   
     public List<RoomItem> getCoordinatedHeighestItems(Point coord) {
         if (!coordinatedItems.containsKey(coord)) {
             return Collections.emptyList();
@@ -249,22 +224,18 @@ public class GameMap implements ISearchGrid {
         map = new SqState[roomModel.getMapSizeX()][roomModel.getMapSizeY()];
         itemHeightMap = new double[roomModel.getMapSizeX()][roomModel.getMapSizeY()];
 
-        for (int i = 0; i < roomModel.getMapSizeX(); i++) {
-            for (int j = 0; j < roomModel.getMapSizeY(); j++) {
-                setDefaultValue(i, j);
-            }
-        }
+        IntStream.range(0, roomModel.getMapSizeX()).forEach(i -> 
+            IntStream.range(0, roomModel.getMapSizeY()).forEach(j -> 
+                setDefaultValue(i, j)));
 
-        List<RoomUser> users = room.getRoomUserManager().getUsers(); //Are there concurrency problems??1
-        for (RoomUser user : users) {
+        List<RoomUser> users = room.getRoomUserManager().getUsers();
+        users.forEach(user -> {
             user.setCurrentSqState(map[user.getX()][user.getY()]);
             map[user.getX()][user.getY()] = SqState.Closed;
-        }
+        });
 
         List<RoomItem> items = room.getRoomItemManager().getFloorItems();
-        for (RoomItem item : items) {
-            addItemToMap(item);
-        }
+        items.forEach(this::addItemToMap);
 
         map[roomModel.getDoorX()][roomModel.getDoorY()] = SqState.WalkableLast;
     }
@@ -292,77 +263,50 @@ public class GameMap implements ISearchGrid {
     }
 
     public double sqAbsoluteHeight(Point coord) {
-        if (coordinatedItems.containsKey(coord)) {
-            List<RoomItem> items = coordinatedItems.get(coord);
-            double highestStack = 0;
+        List<RoomItem> items = coordinatedItems.getOrDefault(coord, new ArrayList<>());
+        double highestStack = 0;
 
-            boolean deduct = false;
-            double deductable = 0.0;
-
-            for (RoomItem item : items) {
-                if (item.getTotalHeight() > highestStack) {
-                    if (item.getBaseItem().isSeat()) {
-                        deduct = true;
-                        deductable = item.getBaseItem().getZ();
-                    } else {
-                        deduct = false;
-                    }
-                    highestStack = item.getTotalHeight();
-                }
+        for (RoomItem item : items) {
+            double itemHeight = item.getTotalHeight();
+            if (item.getBaseItem().isSeat()) {
+                itemHeight -= item.getBaseItem().getZ();
             }
-
-            //double floorHeight = 0.0; // Always 0 cuz no model heightmap // Model.SqFloorHeight[X, Y];
-            double floorHeight = getRoomModel().getSqFloorHeight()[coord.x][coord.y];
-            double stackHeight = highestStack - floorHeight;
-
-            if (deduct)
-                stackHeight -= deductable;
-            if (stackHeight < 0)
-                stackHeight = 0;
-            return floorHeight + stackHeight;
+            highestStack = Math.max(highestStack, itemHeight);
         }
-        return getRoomModel().getSqFloorHeight()[coord.x][coord.y];
+
+        double floorHeight = getRoomModel().getSqFloorHeight()[coord.x][coord.y];
+        return floorHeight + highestStack;
     }
 
     public static List<Point> getAffectedTiles(int x, int y, int posX, int posY, int rotation) {
         List<Point> pointList = new ArrayList<>();
-        if (y > 1) {
+
+        for (int i = 1; i < x || i < y; i++) {
+            int currX = posX;
+            int currY = posY;
+
             if (rotation == 0 || rotation == 4) {
-                for (int i = 1; i < y; i++) {
-                    pointList.add(new Point(posX, posY + i));
-
-                    for (int j = 1; j < x; j++) {
-                        pointList.add(new Point(posX + j, posY + i));
-                    }
-                }
+                currX += (i < x) ? i : 0;
+                currY += (i < y) ? i : 0;
             } else if (rotation == 2 || rotation == 6) {
-                for (int i = 1; i < y; i++) {
-                    pointList.add(new Point(posX + i, posY));
-
-                    for (int j = 1; j < x; j++) {
-                        pointList.add(new Point(posX + i, posY + j));
-                    }
-                }
+                currX += (i < y) ? i : 0;
+                currY += (i < x) ? i : 0;
             }
-        }
 
-        if (x > 1) {
-            if (rotation == 0 || rotation == 4) {
-                for (int i = 1; i < x; i++) {
-                    pointList.add(new Point(posX + i, posY));
+            pointList.add(new Point(currX, currY));
 
-                    for (int j = 1; j < y; j++) {
-                        pointList.add(new Point(posX + i, posY + j));
-                    }
+            for (int j = 1; j < x && j < y; j++) {
+                int nextX = currX;
+                int nextY = currY;
+                
+                if (rotation == 0 || rotation == 4) {
+                    nextX = (i < x) ? currX : currX + j;
+                    nextY = (i < y) ? currY + j : currY;
+                } else if (rotation == 2 || rotation == 6) {
+                    nextX = (i < y) ? currX + j : currX;
+                    nextY = (i < x) ? currY : currY + j;
                 }
-            } else if (rotation == 2 || rotation == 6) {
-                for (int i = 1; i < x; i++) {
-                    pointList.add(new Point(posX, posY + i));
-
-                    for (int j = 1; j < y; j++) {
-                        pointList.add(new Point(posX + j, posY + i));
-                    }
-                }
+                pointList.add(new Point(nextX, nextY));
             }
         }
         return pointList;

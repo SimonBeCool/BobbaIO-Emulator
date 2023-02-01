@@ -13,16 +13,9 @@ public class HeightMapComposer extends ServerMessage {
         appendInt(model.getDoorX());
         appendInt(model.getDoorY());
 
-        for (int i = 0; i < model.getMapSizeX(); i++)
-        {
-            for (int j = 0; j < model.getMapSizeY(); j++)
-            {
-            	if (model.getSqState()[i][j] != SqState.Closed) {
-            		appendInt(model.getSqFloorHeight()[i][j] + 1);
-            	} else {
-            		appendInt(0);
-            	}
-                
+        for (int i = 0; i < model.getMapSizeX(); i++) {
+            for (int j = 0; j < model.getMapSizeY(); j++) {
+                appendInt(model.getSqState()[i][j] == SqState.Closed ? 0 : model.getSqFloorHeight()[i][j] + 1);
             }
         }
     }
