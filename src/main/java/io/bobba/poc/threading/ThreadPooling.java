@@ -15,68 +15,47 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class ThreadPooling {
-	 private static final Logger LOGGER = LoggerFactory.getLogger(ThreadPooling.class);
+	  private static final Logger LOGGER = LoggerFactory.getLogger(ThreadPooling.class);
 
-	    public final int threads;
-	    private final ScheduledExecutorService scheduledPool;
-	    private volatile boolean canAdd;
+	  public final int threads;
+	  private final ScheduledExecutorService scheduledPool;
+	  private volatile boolean canAdd;
 
-	    public ThreadPooling(Integer threads) {
-	        this.threads = threads;
-	        this.scheduledPool = new HabboExecutorService(this.threads, new DefaultThreadFactory("HabExec"));
-	        this.canAdd = true;
-	        LOGGER.info("Thread Pool -> Loaded!");
-	    }
+	  public ThreadPooling(Integer threads) {
+	    this.threads = threads;
+	    this.scheduledPool = new HabboExecutorService(this.threads, new DefaultThreadFactory("HabExec"));
+	    this.canAdd = true;
+	    LOGGER.info("Thread Pool -> Loaded!");
+	  }
 
-	    public ScheduledFuture run(Runnable run) {
+	  public ScheduledFuture run(Runnable run) {
+	    return run(run, 0);
+	  }
+
+	  public ScheduledFuture run(Runnable run, long delay) {
+	    if (this.canAdd) {
+	      return this.scheduledPool.schedule(() -> {
 	        try {
-	            if (this.canAdd) {
-	                return this.run(run, 0);
-	            } else {
-	                if (BobbaEnvironment.isShuttingDown) {
-	                    run.run();
-	                }
-	            }
+	          run.run();
 	        } catch (Exception e) {
-	            LOGGER.error("Caught exception", e);
+	          LOGGER.error("Caught exception", e);
 	        }
-
-	        return null;
+	      }, delay, TimeUnit.MILLISECONDS);
 	    }
+	    return null;
+	  }
 
-	    public ScheduledFuture run(Runnable run, long delay) {
-	        try {
-	            if (this.canAdd) {
-	                return this.scheduledPool.schedule(() -> {
-	                    try {
-	                        run.run();
-	                    } catch (Exception e) {
-	                        LOGGER.error("Caught exception", e);
-	                    }
-	                }, delay, TimeUnit.MILLISECONDS);
-	            }
-	        } catch (Exception e) {
-	            LOGGER.error("Caught exception", e);
-	        }
+	  public void shutDown() {
+	    this.canAdd = false;
+	    this.scheduledPool.shutdownNow();
+	    LOGGER.info("Threading -> Disposed!");
+	  }
 
-	        return null;
-	    }
+	  public void setCanAdd(boolean canAdd) {
+	    this.canAdd = canAdd;
+	  }
 
-	    public void shutDown() {
-	        this.canAdd = false;
-	        this.scheduledPool.shutdownNow();
-
-	        LOGGER.info("Threading -> Disposed!");
-	    }
-
-	    public void setCanAdd(boolean canAdd) {
-	        this.canAdd = canAdd;
-	    }
-
-	    public ScheduledExecutorService getService() {
-	        return this.scheduledPool;
-	    }
-
-		
-
-}
+	  public ScheduledExecutorService getService() {
+	    return this.scheduledPool;
+	  }
+	}
