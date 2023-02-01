@@ -1,6 +1,7 @@
 package io.bobba.poc.core.catalogue;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,67 +30,57 @@ public class Catalogue {
 	public Catalogue() {
 		this.pages = new LinkedHashMap<>();
 	}
+	public void loadFromDb() throws SQLException {
+	    String selectPageSQL = "SELECT * FROM catalog_pages";
+	    String selectItemSQL = "SELECT * FROM catalog_items WHERE page_id = ?";
+	    try (Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
+	         PreparedStatement selectPageStatement = connection.prepareStatement(selectPageSQL);
+	         PreparedStatement selectItemStatement = connection.prepareStatement(selectItemSQL)) {
 
-	private void loadFromDb() throws SQLException {
-		try (Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
-				Statement statement = connection.createStatement()) {
-			if (statement.execute("SELECT * FROM catalog_pages")) {
-				try (ResultSet set = statement.getResultSet()) {
-					while (set.next()) {
-						int pageId = set.getInt("id");
-						int parentId = set.getInt("parent_id");
-						String caption = set.getString("caption");
-						int iconColor = set.getInt("icon_color");
-						int iconImage = set.getInt("icon_image");
-						boolean visible = set.getString("visible").equals("1");
-						boolean enabled = set.getString("enabled").equals("1");
-						int minRank = set.getInt("min_rank");
-						String layout = set.getString("page_layout");
-						String headline = set.getString("page_headline");
-						String teaser = set.getString("page_teaser");
-						String text1 = set.getString("page_text1");
-						String text2 = set.getString("page_text2");
-						String text3 = set.getString("page_text_details");
-						String text4 = set.getString("page_text_teaser");
-						
-						List<CatalogueItem> dummy = new ArrayList<>();
+	        ResultSet pageResultSet = selectPageStatement.executeQuery();
+	        pages.clear();
+	        while (pageResultSet.next()) {
+	            int pageId = pageResultSet.getInt("id");
+	            int parentId = pageResultSet.getInt("parent_id");
+	            String caption = pageResultSet.getString("caption");
+	            int iconColor = pageResultSet.getInt("icon_color");
+	            int iconImage = pageResultSet.getInt("icon_image");
+	            boolean visible = pageResultSet.getString("visible").equals("1");
+	            boolean enabled = pageResultSet.getString("enabled").equals("1");
+	            int minRank = pageResultSet.getInt("min_rank");
+	            String layout = pageResultSet.getString("page_layout");
+	            String headline = pageResultSet.getString("page_headline");
+	            String teaser = pageResultSet.getString("page_teaser");
+	            String text1 = pageResultSet.getString("page_text1");
+	            String text2 = pageResultSet.getString("page_text2");
+	            String text3 = pageResultSet.getString("page_text_details");
+	            String text4 = pageResultSet.getString("page_text_teaser");
 
-						try (Connection connection2 = BobbaEnvironment.getGame().getDatabase().getDataSource()
-								.getConnection(); Statement statement2 = connection.createStatement()) {
-							if (statement2.execute("SELECT * FROM catalog_items WHERE page_id = " + pageId)) {
-								try (ResultSet set2 = statement2.getResultSet()) {
-									while (set2.next()) {
-										int lol = 1;
-										int loli = lol++;
-										int catalogItemId = set2.getInt("id");
-										String catalogName = set2.getString("catalog_name");
-										int baseId = Integer.parseInt(set2.getString("item_ids"));
-										int cost = set2.getInt("cost_credits");
-										
-										BaseItem base = BobbaEnvironment.getGame().getItemManager().getItem(baseId);
-										if (base != null) {
-											dummy.add(new CatalogueItem(catalogItemId, pageId, base, catalogName, cost, 1));	
-										} else {
-											//System.out.println("null base: " + catalogName);
-										}
-									}
-								}
-							}
-						}
+	            List<CatalogueItem> items = new ArrayList<>();
+	            selectItemStatement.setInt(1, pageId);
+	            ResultSet itemResultSet = selectItemStatement.executeQuery();
+	            while (itemResultSet.next()) {
+	                int catalogItemId = itemResultSet.getInt("id");
+	                String catalogName = itemResultSet.getString("catalog_name");
+	                int baseId = itemResultSet.getInt("item_ids");
+	                int cost = itemResultSet.getInt("cost_credits");
 
+	                BaseItem base = BobbaEnvironment.getGame().getItemManager().getItem(baseId);
+	                if (base != null) {
+	                    items.add(new CatalogueItem(catalogItemId, pageId, base, catalogName, cost, 1));
+	                } else {
+	                    //System.out.println("null base: " + catalogName);
+	                }
+	            }
 
-					pages.put(pageId, new CataloguePage(pageId, parentId, caption, visible, enabled, minRank, iconColor,
-							iconImage, layout, headline, teaser, text1, text2, text3, text4, dummy));
-				}
-			}
-				LOGGER.info("Catalog -> Loaded!");
-		}
-	}catch(SQLException e)
-		{
-			throw e;
-		}
+	            pages.put(pageId, new CataloguePage(pageId, parentId, caption, visible, enabled, minRank, iconColor,
+	                    iconImage, layout, headline, teaser, text1, text2, text3, text4, items));
+	        }
+	        LOGGER.info("Catalog cache reloaded!");
+	    } catch (SQLException e) {
+	        throw e;
+	    }
 	}
-
 	public void initialize() throws SQLException {
 		loadFromDb();
 	}

@@ -1,15 +1,19 @@
 package io.bobba.poc.core.rooms.items;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.awt.Point;
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;  
+import java.util.Map;
+
+import org.slf4j.LoggerFactory;
 
 import io.bobba.poc.BobbaEnvironment;
 import io.bobba.poc.communication.outgoing.rooms.FurniRemoveComposer;
@@ -21,11 +25,13 @@ import io.bobba.poc.core.rooms.Room;
 import io.bobba.poc.core.rooms.users.RoomUser;
 import io.bobba.poc.core.users.Coord;
 import io.bobba.poc.core.users.inventory.UserItem;
+import io.bobba.poc.threading.ThreadPooling;
 import io.bobba.poc.threading.runnables.HabboWheelInteractor;
 import io.bobba.poc.threading.runnables.RandomBottleNumber;
 import io.bobba.poc.threading.runnables.RandomDiceNumber;
 
 public class RoomItemManager {
+	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(RoomItemManager.class);
 	private Map<Integer, RoomItem> floorItems;
 	private Map<Integer, WallItem> wallItems;
 	private Room room;
@@ -42,37 +48,42 @@ public class RoomItemManager {
 
 
 	public void loadRoomsFurnisFromDb() throws SQLException {
-        try (Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection(); Statement statement = connection.createStatement()) {
+	    Map<Integer, BaseItem> itemCache = new HashMap<>();
+	    String query = "SELECT * FROM room_furnis WHERE room_id = ?";
+	    try (Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
+	         PreparedStatement statement = connection.prepareStatement(query)) {
+	        statement.setInt(1, room.getRoomData().getId());
+	        try (ResultSet set = statement.executeQuery()) {
+	            while (set.next()) {
+	                int id = set.getInt("id");
+	                int itemId = set.getInt("item_id");
+	                int posX = set.getInt("x");
+	                int posY = set.getInt("y");
+	                int rotation = set.getInt("rot");
+	                int extraData = set.getInt("extra_data");
 
-        	String query = "SELECT * FROM room_furnis WHERE room_id = "+room.getRoomData().getId();
-        	if (statement.execute(query)) {
-                try (ResultSet set = statement.getResultSet()) {
-                    while (set.next()) {
-                    	int id = set.getInt("id");
-			        	int itemId = set.getInt("item_id");
-						int posX = set.getInt("x");
-						int posY = set.getInt("y");
-						int rotation = set.getInt("rot");
-						int extraData = set.getInt("extra_data");
+	                BaseItem baseItem = itemCache.get(itemId);
+	                if (baseItem == null) {
+	                    baseItem = BobbaEnvironment.getGame().getItemManager().findItemByBaseId(itemId);
+	                    itemCache.put(itemId, baseItem);
+	                }
 
-						BaseItem baseItem = BobbaEnvironment.getGame().getItemManager().findItemByBaseId(itemId);
-
-						if(baseItem == null)
-						  System.out.println("item is null");
-
-						if(baseItem.getType() == ItemType.WallItem) {
-							this.addWallItemToRoom(id, posX, posY, rotation, extraData, baseItem);
-						} else {
-							double nextZ = room.getGameMap().sqAbsoluteHeight(new Point(posX, posY));
-							this.addFloorItemToRoom(id, posX, posY, nextZ, rotation, extraData, baseItem);
-						}
-					}
-                }
-            }
-        } catch (SQLException e) {
-            throw e;
-        }
+	                if (baseItem == null) {
+	                    LOGGER.error("Item is null for id: " + itemId);
+	                } else if (baseItem.getType() == ItemType.WallItem) {
+	                    addWallItemToRoom(id, posX, posY, rotation, extraData, baseItem);
+	                } else {
+	                    double nextZ = room.getGameMap().sqAbsoluteHeight(new Point(posX, posY));
+	                    addFloorItemToRoom(id, posX, posY, nextZ, rotation, extraData, baseItem);
+	                }
+	            }
+	        }
+	    } catch (SQLException e) {
+	        throw e;
+	    }
 	}
+	
+	
 	
 	public Coord getCoordinate(int x, int y) {
         return new Coord(x, y);
@@ -216,7 +227,7 @@ public class RoomItemManager {
 				}
 			}
 		}
-}
+	}
 
 	public void onCycle() {
 	}
