@@ -1,5 +1,6 @@
 package io.bobba.poc.core.rooms.users;
 
+import io.bobba.poc.BobbaEnvironment;
 import io.bobba.poc.communication.outgoing.rooms.ChatComposer;
 import io.bobba.poc.communication.outgoing.rooms.WaveComposer;
 import io.bobba.poc.communication.outgoing.rooms.LayComposer;
@@ -10,7 +11,14 @@ import io.bobba.poc.core.users.User;
 import io.bobba.poc.misc.logging.LogLevel;
 import io.bobba.poc.misc.logging.Logging;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RoomUser implements Runnable {
@@ -193,9 +201,38 @@ public class RoomUser implements Runnable {
         if ((message.startsWith(":") || message.startsWith("/")) && SimpleChatCommandHandler.parse(this, message.substring(1))) {
             return;
         }
+
+        List<String> badWords = null;
+		try {
+			badWords = loadBadWordsFromDb();
+		} catch (SQLException e) {
+			System.out.print("Wordfilter can't loaded because: " + e);
+		}
+        for (String badWord : badWords) {
+            if (message.toLowerCase().contains(badWord.toLowerCase())) {
+                message = message.replaceAll("(?i)" + badWord, "**** BAD WORD ****");
+            }
+        }
+
         if (message.toLowerCase().contains("o/"))
             wave();
         room.sendMessage(new ChatComposer(virtualId, message));
+    }
+
+    private List<String> loadBadWordsFromDb() throws SQLException {
+        List<String> badWords = new ArrayList<>();
+        String query = "SELECT * FROM wordfilter";
+
+        try (
+            Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query)
+        ) {
+            while (resultSet.next()) {
+                badWords.add(resultSet.getString("badword"));
+            }
+        }
+        return badWords;
     }
 
     public void furniInteract(int itemId) {
@@ -230,8 +267,5 @@ public class RoomUser implements Runnable {
     }
 
 	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void run() {}
 }
