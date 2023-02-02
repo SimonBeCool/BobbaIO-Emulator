@@ -111,15 +111,15 @@ public class User {
 		client.sendMessage(new LoginOkComposer(getId(), getUsername(), getLook(), getMotto()));
 	}
 
-	public User(int id, String username, String motto, String look, GameClient client) {
+	public User(int id, String username, String motto, String look, int rank, int credits, int hc_days, int home_room_id, GameClient client) {
 		this.id = id;
 		this.username = username;
 		this.motto = motto;
 		this.look = look;
-		this.rank = 7;
-		this.credits = 1337;
-		this.hc_days = 169;
-		this.homeRoomId = 1;
+		this.rank = rank;
+		this.credits = credits;
+		this.hc_days = hc_days;
+		this.homeRoomId = home_room_id;
 		this.loadingRoomId = 0;
 		this.client = client;
 		this.disconnected = false;

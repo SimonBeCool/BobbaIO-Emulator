@@ -11,7 +11,7 @@
  Target Server Version : 80029
  File Encoding         : 65001
 
- Date: 17/01/2023 11:54:16
+ Date: 02/02/2023 14:53:44
 */
 
 SET NAMES utf8mb4;
@@ -33,7 +33,7 @@ CREATE TABLE `catalog_items`  (
   `hc_state` enum('0','1','2') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '0',
   `preset_flags` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 3569962 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 8404835 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of catalog_items
@@ -206,7 +206,6 @@ INSERT INTO `catalog_items` VALUES (187, 30, '629', 'divider_poly3*6', 6, 0, 1, 
 INSERT INTO `catalog_items` VALUES (188, 142, '329', 'toy1*3', 3, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (189, 129, '1502', 'bump_road', 0, 1250, 20, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (190, 30, '632', 'divider_poly3*9', 6, 0, 1, 0, '0', '');
-INSERT INTO `catalog_items` VALUES (191, 7, '20060', 'DEAL_HC_1', 100, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (192, 28, '1373', 'xmas08_icetree', 4, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (193, 35, '36', 'bench_armas', 3, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (194, 35, '37', 'table_armas', 4, 0, 1, 0, '0', '');
@@ -449,7 +448,7 @@ INSERT INTO `catalog_items` VALUES (430, 27, '19971', 'xm09_man_b', 3, 0, 1, 0, 
 INSERT INTO `catalog_items` VALUES (431, 57, '669', 'chair_china', 3, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (432, 27, '19972', 'xm09_man_c', 3, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (433, 27, '19974', 'xm09_bench', 5, 0, 1, 0, '0', '');
-INSERT INTO `catalog_items` VALUES (434, 7, '20060', 'DEAL_HC_2', 250, 0, 3, 0, '0', '');
+INSERT INTO `catalog_items` VALUES (3569958, 7, '900011114', 'hc_gift_31days', 60, 0, 1, 0, '0', ' ');
 INSERT INTO `catalog_items` VALUES (435, 27, '19977', 'xm09_forestwall', 3, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (436, 27, '19978', 'xm09_lodgewall', 3, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (437, 27, '19979', 'xm09_bauble_25', 3, 0, 1, 0, '0', '');
@@ -1136,7 +1135,7 @@ INSERT INTO `catalog_items` VALUES (1117, 103, '1278', 'diner_bardesk_gate*3', 6
 INSERT INTO `catalog_items` VALUES (1118, 103, '1279', 'diner_bardesk_gate*4', 6, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (1119, 103, '1280', 'diner_bardesk_gate*5', 6, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (1120, 103, '1281', 'diner_bardesk_gate*6', 6, 0, 1, 0, '0', '');
-INSERT INTO `catalog_items` VALUES (1121, 7, '20060', 'DEAL_HC_3', 500, 0, 6, 0, '0', '');
+INSERT INTO `catalog_items` VALUES (3569959, 7, '900011114', 'hc_gift_31days', 60, 0, 1, 0, '0', ' ');
 INSERT INTO `catalog_items` VALUES (1122, 103, '1282', 'diner_bardesk_gate*7', 6, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (1123, 103, '1283', 'diner_bardesk_gate*8', 6, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (1124, 103, '1284', 'diner_bardesk_gate*9', 6, 0, 1, 0, '0', '');
@@ -4248,6 +4247,9 @@ INSERT INTO `catalog_items` VALUES (3569953, 658, '900011109', 'anna_civider', 1
 INSERT INTO `catalog_items` VALUES (3569954, 658, '900011110', 'anna_cofa', 10, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (3569955, 658, '900011111', 'anna_cug', 10, 0, 1, 0, '0', '');
 INSERT INTO `catalog_items` VALUES (3569956, 658, '900011112', 'anna_ctool', 10, 0, 1, 0, '0', '');
+INSERT INTO `catalog_items` VALUES (3569957, 7, '900011113', 'hc_gift_14days', 30, 0, 1, 0, '0', ' ');
+INSERT INTO `catalog_items` VALUES (3569960, 660, '900011115', 'wintercabin_c19_antlerlight', 60, 0, 1, 0, '0', ' ');
+INSERT INTO `catalog_items` VALUES (3569961, 660, '900011116', 'wintercabin_c19_window', 60, 0, 1, 0, '0', ' ');
 
 -- ----------------------------
 -- Table structure for catalog_pages
@@ -4274,17 +4276,17 @@ CREATE TABLE `catalog_pages`  (
   `page_text_details` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `page_text_teaser` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 660 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 661 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of catalog_pages
 -- ----------------------------
-INSERT INTO `catalog_pages` VALUES (1, -1, 'Katalog', 6, 1, '1', '1', 1, '0', '0', 1, 'frontpage', 'catalog_frontpage_headline2_fi_001', 'fatherhabbo_300x187_girl', '', 'Bobba Catalogue', 'who is Relevance?', 'Why is it in Spanish?', 'I took it from my Spanish hotel... Sorry bout that :)');
+INSERT INTO `catalog_pages` VALUES (1, -1, '#Katalog', 6, 1, '1', '1', 1, '0', '0', 1, 'frontpage', 'catalog_frontpage_headline2_fi_001', 'fatherhabbo_300x187_girl', '', 'Bobba Katalog', 'Wo ist Relevance ?', 'Welcome to Bobba Client!!', 'Derzeit arbeiten wir am Bobba Client und Emulator, deshalb ist alles noch unfertig.');
 INSERT INTO `catalog_pages` VALUES (3, -1, 'Möbel', 3, 2, '1', '0', 1, '0', '0', 3, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', '', '', '', '');
 INSERT INTO `catalog_pages` VALUES (4, -1, 'Pixel Möbel', 5, 5, '1', '0', 1, '0', '0', 4, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', '', '', '', '');
-INSERT INTO `catalog_pages` VALUES (5, -1, 'Habbo Club & Vip', 7, 75, '1', '0', 1, '0', '0', 8, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', '', '', '', '');
-INSERT INTO `catalog_pages` VALUES (7, 5, 'Unirse', 1, 75, '1', '1', 1, '0', '0', 1, 'club_buy', 'hc2_clubtitle', 'catalog_vip_teaser', '', 'Obtén mejores beneficios uniéndote al Habbo Club', '', '', '');
-INSERT INTO `catalog_pages` VALUES (8, 5, 'Furnis', 1, 75, '1', '1', 1, '0', '0', 2, 'default_3x3', 'catalog_club_headline1', 'catalog_hc_teaser', '', 'We\'ve got all that exclusive club furniture available for you right here .. but for an exclusive price.', '', '', '');
+INSERT INTO `catalog_pages` VALUES (5, -1, 'Habbo Club & Vip', 7, 75, '1', '0', 1, '0', '0', 8, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', 'Wenn du HC Mitglied wirst bekommst du Zugang zu exklusiver Kleidung, Möbel nur für HC, besondere Raum Layouts und Chatbefehle!', '', '', '');
+INSERT INTO `catalog_pages` VALUES (7, 5, 'Mitgliedschaft', 1, 75, '1', '1', 1, '0', '0', 1, 'club_buy', 'hc2_clubtitle', 'catalog_hc_teaser', 'hc_catalog_teaser', 'Wenn du HC Mitglied wirst bekommst du Zugang zu exklusiver Kleidung, Möbel nur für HC, besondere Raum Layouts und Chatbefehle!', '', '', '');
+INSERT INTO `catalog_pages` VALUES (8, 5, 'Möbel', 1, 75, '1', '1', 1, '0', '0', 2, 'default_3x3', 'catalog_club_headline1', 'catalog_hc_teaser', '', 'NEUE Habbo Club Möbelserie. Erlaube diesen Möbeln in deinem Raum zu glänzen.', '', '', '');
 INSERT INTO `catalog_pages` VALUES (9, -1, 'Ecotron', 3, 7, '1', '0', 1, '0', '0', 9, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', '', '', '', '');
 INSERT INTO `catalog_pages` VALUES (10, 9, 'Ecotron', 1, 7, '1', '1', 1, '0', '0', 1, 'recycler', 'catalog_recycler_headline3', 'ctlg_ecotron_image', '', 'Become an Eco-warrior', 'Recycle your worthless stuff and be rewarded with a random prize. Check out the prizes and the instructions for recycling.', 'Drag 5 items to the boxes below and click recycle!', '');
 INSERT INTO `catalog_pages` VALUES (11, 9, 'Recompensas', 1, 26, '1', '1', 1, '0', '0', 2, 'recycler_prizes', 'catalog_recycler_headline3', '', '', 'What are the prizes? Ecotron box may contain one of these:', '', '', '');
@@ -4292,63 +4294,63 @@ INSERT INTO `catalog_pages` VALUES (12, 9, 'Instrucciones', 1, 42, '1', '1', 1, 
 INSERT INTO `catalog_pages` VALUES (13, -1, 'Währungen', 0, 6, '1', '1', 1, '0', '0', 7, 'default_3x3', 'catalog_bank_headline1_es', 'catalog_bank_teaser', '', 'Convierte tus CrÃ©ditos en una moneda especial tradeable. AsÃ­, no sólo podrás intercambiar Furni, sino tambiÃ©n comprarlos mientras tradeas. Nota: ten en cuenta que una cosa es el valor y otra el precio al que compras cada pieza.', '', 'Haz clic en cada Furni para verlo en detalle', '');
 INSERT INTO `catalog_pages` VALUES (14, -1, 'Haustiere', 2, 8, '1', '0', 1, '0', '0', 5, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', '', '', '', '');
 INSERT INTO `catalog_pages` VALUES (15, 3, 'Tapeten', 1, 55, '1', '1', 1, '0', '0', 6, 'spaces', 'look_feel', '', '', 'Suelos, paredes y vistas - consigue la combinación perfecta para tu Sala. Utiliza la visualización previa de debajo para testear los diseños y colores y, una vez lo tengas todo listo, haz clic en \'Comprar\'.', '', '', '');
-INSERT INTO `catalog_pages` VALUES (16, 3, 'Edicion Limitada', 1, 26, '0', '0', 1, '0', '0', 2, 'default_3x3', 'catalog_limited_headline1', '', 'catalog_special_txtbg1', 'This weeks limited edition rare (updated every Sunday) is the petal patch!', '', 'Click on an item for more information.', 'Get \'em before they\'re gone!');
-INSERT INTO `catalog_pages` VALUES (24, 3, 'Ventanas', 0, 63, '1', '1', 1, '0', '0', 7, 'default_3x3', 'ctlg_windows_headline1_es', 'ctlg_windows_teaser1_es', 'catalog_special_txtbg2', '¡Deja que la luz entre en tu Sala! Tienes ventanas de diferentes estilos para darle un toque único.', '', '', '¡Pedazo de vista!');
+INSERT INTO `catalog_pages` VALUES (660, 3, 'Winterkabine 2019', 4, 91, '1', '1', 1, '0', '0', 12, 'default_3x3', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+INSERT INTO `catalog_pages` VALUES (24, 3, 'Fenster', 0, 63, '1', '1', 1, '0', '0', 7, 'default_3x3', 'ctlg_windows_headline1_es', 'ctlg_windows_teaser1_es', 'catalog_special_txtbg2', '¡Deja que la luz entre en tu Sala! Tienes ventanas de diferentes estilos para darle un toque único.', '', '', '¡Pedazo de vista!');
 INSERT INTO `catalog_pages` VALUES (26, 3, 'Stimmungslichter', 0, 40, '1', '1', 1, '0', '0', 10, 'default_3x3', 'catalog_dimmers_header1_es', 'catalog_extra_teaser1', '', '¡Dale un vuelco a la iluminaciÃ³n de tu Sala simplemente pulsando un Interruptor o el Panel de Fusibles!', '', '', '');
 INSERT INTO `catalog_pages` VALUES (27, 3, 'Weihnachten', 1, 64, '1', '1', 1, '0', '0', 60, 'default_3x3', 'catalog_xmas_headline1', 'xmas2009_catalogue', 'catalog_special_txtbg2', 'Get yourself into the Christmas spirit with our selection of festive furni! From baubles to Reindeer poo, we\'ve got it all!', '', 'Click on an item for more information.', '\'tis the season!');
-INSERT INTO `catalog_pages` VALUES (28, 3, 'Artic', 0, 13, '1', '1', 1, '0', '0', 48, 'default_3x3', 'catalog_arc_header1_en', 'catalog_arc_teaser1_en', '', 'Stay cool (or warm with out campfire!) with and create your own Winter Wonderland or Humble Homeland for your Penguins.', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (28, 3, 'Artik', 0, 13, '1', '1', 1, '0', '0', 48, 'default_3x3', 'catalog_arc_header1_en', 'catalog_arc_teaser1_en', '', 'Stay cool (or warm with out campfire!) with and create your own Winter Wonderland or Humble Homeland for your Penguins.', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (29, 3, 'Teleport-Maschinen', 0, 58, '1', '1', 1, '0', '0', 25, 'default_3x3', 'catalog_doors_headline1_es', 'catalog_teleports_teaser2_es', '', '¡Cambia de Sala Privada a la velocidad de la luz! Al comprarlo, recibirás dos Teleports que deberás poner en Salas distintas para asÃí poder viajar entre ellas.', '', 'Selecciona:', '');
 INSERT INTO `catalog_pages` VALUES (30, 3, 'Mode', 0, 39, '1', '1', 1, '0', '0', 12, 'default_3x3', 'catalog_mode_headline1', 'catalog_mode_teaser1', 'catalog_special_txtbg2', '¿Funcionalidad y diseño en uno? Estos Furni están reservados a Habbos que se sienten intocables y seguros de sí mismos. ¿Tienes estilo o no?', '', 'Selecciona:', '¡No veas cómo brilla!');
 INSERT INTO `catalog_pages` VALUES (31, 3, 'Candy', 0, 19, '1', '1', 1, '0', '0', 17, 'default_3x3', 'catalog_candy_headline1', 'catalog_candy_teaser1', 'catalog_special_txtbg2', 'A bit more feminine than \'Mode\', this will add a bit of glamour and glitz to your rooms. Lacking a few items? Head on over to the \'Mode\' catagory!', '', 'Click on an item for more information.', 'lol I killed a pink bear for this rug!');
 INSERT INTO `catalog_pages` VALUES (32, 3, 'Pura', 0, 48, '1', '1', 1, '0', '0', 21, 'default_3x3', 'catalog_pura_headline1', 'catalog_pura_teaser1', 'catalog_special_txtbg1', 'Aquí tienes unos muebles de lineas y colores puros. ¡Relájate!', '', 'Haz clic para ver un Furni con detalle', '¡Diseño de categoría!');
-INSERT INTO `catalog_pages` VALUES (33, 3, 'Área', 0, 14, '1', '1', 1, '0', '0', 0, 'default_3x3', 'catalog_area_headline1_br', 'catalog_area_teaser1', '', 'Clásicos, cómodos y sencillos. Si no quieres romperte la cabeza, usa estos Furni.', '', '¡Cliquea un furni para más información!', '');
-INSERT INTO `catalog_pages` VALUES (34, 3, 'Campo', 0, 21, '1', '1', 1, '0', '0', 44, 'default_3x3', 'country_header1_en_001', 'country_teaser1', 'catalog_special_txtbg2', 'Lets leave the busy city streets and head over to the wide abyss of golden whear, emerald fields and home grown, organic vegetables. Everything you need to create a farm!', '', 'Click on an item for more information.', 'Who\'d be a crow, eh?');
-INSERT INTO `catalog_pages` VALUES (35, 3, 'Rústico', 0, 37, '1', '1', 1, '0', '0', 18, 'default_3x3', 'catalog_lodge_headline1_es', 'catalog_lodge_teaser1', 'catalog_special_txtbg2', '¡De pura cepa! Aquí encontrarás Furni de madera que darán a tu Sala un aire muy especial y verdaderamente cálido.', '', 'Selecciona:', '¿Hoy te sientes rústico?');
-INSERT INTO `catalog_pages` VALUES (36, 3, 'Plastic', 0, 46, '1', '1', 1, '0', '0', 24, 'plasto', 'catalog_plasto_headline1', '', '', '¡Ponle color a tu Habbo vida! AquÃí tienes una gran selección de sillas y mesas de plástico que reflejarán tu alegría.', '', '', '');
+INSERT INTO `catalog_pages` VALUES (33, 3, 'Area', 0, 14, '1', '1', 1, '0', '0', 0, 'default_3x3', 'catalog_area_headline1_br', 'catalog_area_teaser1', '', 'Clásicos, cómodos y sencillos. Si no quieres romperte la cabeza, usa estos Furni.', '', '¡Cliquea un furni para más información!', '');
+INSERT INTO `catalog_pages` VALUES (34, 3, 'Camping', 0, 21, '1', '1', 1, '0', '0', 44, 'default_3x3', 'country_header1_en_001', 'country_teaser1', 'catalog_special_txtbg2', 'Lets leave the busy city streets and head over to the wide abyss of golden whear, emerald fields and home grown, organic vegetables. Everything you need to create a farm!', '', 'Click on an item for more information.', 'Who\'d be a crow, eh?');
+INSERT INTO `catalog_pages` VALUES (35, 3, 'Holz', 0, 37, '1', '1', 1, '0', '0', 18, 'default_3x3', 'catalog_lodge_headline1_es', 'catalog_lodge_teaser1', 'catalog_special_txtbg2', '¡De pura cepa! Aquí encontrarás Furni de madera que darán a tu Sala un aire muy especial y verdaderamente cálido.', '', 'Selecciona:', '¿Hoy te sientes rústico?');
+INSERT INTO `catalog_pages` VALUES (36, 3, 'Plastik', 0, 46, '1', '1', 1, '0', '0', 24, 'plasto', 'catalog_plasto_headline1', '', '', '¡Ponle color a tu Habbo vida! AquÃí tienes una gran selección de sillas y mesas de plástico que reflejarán tu alegría.', '', '', '');
 INSERT INTO `catalog_pages` VALUES (37, 3, 'Cocina', 0, 43, '1', '1', 1, '0', '0', 42, 'default_3x3', 'kitchen_header_en', 'kitchen_teaser_en', 'catalog_special_txtbg2', 'Hygiene, hygiene, hygiene! With this new range you can keep your meat chilled and vegetables stored correctly! Just watch out for that dreaded Health Inspector...', '', 'Click on an item for more information.', 'Choccy mouse you say?');
-INSERT INTO `catalog_pages` VALUES (38, 3, 'Baño', 0, 17, '1', '1', 1, '0', '0', 27, 'default_3x3', 'catalog_bath_headline1_es', 'catalog_bath_teaser1', 'catalog_special_txtbg2', '¡La moda ha llegado hasta el mismÃ­simo cuarto de baÃ±o! No pierdas el tiempo, aquÃ­ ya encontrarÃ¡s todo lo que necesitas...', '', 'Selecciona:', 'Todo Habbo necesita uno');
-INSERT INTO `catalog_pages` VALUES (39, 3, 'Plantas', 0, 45, '1', '1', 1, '0', '0', 28, 'default_3x3', 'catalog_plants_headline1_es', 'catalog_plants_teaser1', 'catalog_special_txtbg2', 'Una Sala sin plantas es como un jardín sin flores. ¡Oxigena tu habitación y dale el frescor verde que necesita!', '', 'Click on an item for more information.', '¡Soy un árbol!');
-INSERT INTO `catalog_pages` VALUES (40, 3, 'Alfombras', 0, 52, '1', '1', 1, '0', '0', 29, 'default_3x3', 'catalog_rugs_headline1_es', 'catalog_rugs_teaser1', 'catalog_special_txtbg2', '¡Será por colores y diseños! Elige lo que te gusta y cambia cuando quieras.', '', 'Selecciona:', '¡Quedará perfecta en mi Sala!');
-INSERT INTO `catalog_pages` VALUES (41, 3, 'Posters y Banderas', 0, 47, '1', '1', 1, '0', '0', 30, 'default_3x3', 'catalog_gallery_headline1', 'catalog_posters_teaser1', 'catalog_special_txtbg2', '¿GeografÃ­a o Arte? Â¿Eres alguien de Bandera o te inclinas mÃ¡s por los posters? Â¡TÃº decides!', '', 'Selecciona:', 'Â¡Dale brillo a tus paredes!');
-INSERT INTO `catalog_pages` VALUES (42, 3, 'Trofeos', 0, 60, '1', '1', 1, '0', '0', 32, 'trophies', 'catalog_trophies_headline1', '', '', 'Everyone a winner with Uber trophies! Now you can reward all your friends with our pre-polished array of trohpies. In bronze, silver and gold. \r\nFirst choose your trophy model, then the metal and carefully type your inscription. Don\'t worry, we\'ll engrave it all with your name and the date.', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (38, 3, 'Bad', 0, 17, '1', '1', 1, '0', '0', 27, 'default_3x3', 'catalog_bath_headline1_es', 'catalog_bath_teaser1', 'catalog_special_txtbg2', '¡La moda ha llegado hasta el mismÃ­simo cuarto de baÃ±o! No pierdas el tiempo, aquÃ­ ya encontrarÃ¡s todo lo que necesitas...', '', 'Selecciona:', 'Todo Habbo necesita uno');
+INSERT INTO `catalog_pages` VALUES (39, 3, 'Pflanzen', 0, 45, '1', '1', 1, '0', '0', 28, 'default_3x3', 'catalog_plants_headline1_es', 'catalog_plants_teaser1', 'catalog_special_txtbg2', 'Una Sala sin plantas es como un jardín sin flores. ¡Oxigena tu habitación y dale el frescor verde que necesita!', '', 'Click on an item for more information.', '¡Soy un árbol!');
+INSERT INTO `catalog_pages` VALUES (40, 3, 'Teppiche', 0, 52, '1', '1', 1, '0', '0', 29, 'default_3x3', 'catalog_rugs_headline1_es', 'catalog_rugs_teaser1', 'catalog_special_txtbg2', '¡Será por colores y diseños! Elige lo que te gusta y cambia cuando quieras.', '', 'Selecciona:', '¡Quedará perfecta en mi Sala!');
+INSERT INTO `catalog_pages` VALUES (41, 3, 'Poster', 0, 47, '1', '1', 1, '0', '0', 30, 'default_3x3', 'catalog_gallery_headline1', 'catalog_posters_teaser1', 'catalog_special_txtbg2', '¿GeografÃ­a o Arte? Â¿Eres alguien de Bandera o te inclinas mÃ¡s por los posters? Â¡TÃº decides!', '', 'Selecciona:', 'Â¡Dale brillo a tus paredes!');
+INSERT INTO `catalog_pages` VALUES (42, 3, 'Trophäen', 0, 60, '1', '1', 1, '0', '0', 32, 'trophies', 'catalog_trophies_headline1', '', '', 'Everyone a winner with Uber trophies! Now you can reward all your friends with our pre-polished array of trohpies. In bronze, silver and gold. \r\nFirst choose your trophy model, then the metal and carefully type your inscription. Don\'t worry, we\'ll engrave it all with your name and the date.', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (43, 3, 'Extras', 0, 11, '1', '1', 1, '0', '0', 31, 'default_3x3', 'catalog_extra_headline1_de', 'catalog_extra_teaser1', 'catalog_special_txtbg2', 'Los accesorios son indispensables para dar personalidad. Â¡DiferÃ©nciate!', '', 'Selecciona:', '¡Me encanta!');
 INSERT INTO `catalog_pages` VALUES (45, 4, 'Alquiler', 0, 44, '1', '1', 1, '0', '0', 23, 'default_3x3', 'catalog_pixelrent_headline1_en', 'catalog_pxl_teaser3_en', '', 'Hire some cool effects to add an explosive touch to your room. From bubbles to firestarters, you can enhance your room dramatically!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (58, 3, 'Ciudad Perdida', 0, 18, '1', '1', 1, '0', '0', 38, 'default_3x3', 'catalog_lc_headline2_en', '', '', '¡Abajo del maaaaaar, oh si, abajo del maaaaaar! ¿Cómo se ve tu mundo submarino? ¡Lo tenemos todo aquí!, ¡Cangrejos, más cangrejos y medusas!', '', 'Haz click en el furni para más información', '');
-INSERT INTO `catalog_pages` VALUES (59, 3, 'Pascua', 0, 25, '1', '1', 1, '0', '0', 61, 'default_3x3', 'catalog_easter_headline1', '', '', 'Little birdies hatching from their eggs, pretty, dainty flowers blooming and cute rabbits bouncy in Spring meadows.. FUCK IT ALL! LETS BUY FURNI!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (60, 3, 'Ejecutivo', 0, 27, '1', '1', 1, '0', '0', 51, 'default_3x3', 'catalog_exe_headline1_en', '', '', 'Para los ejecutivos trabajadores, éstos diseños preparados desde Italia con cuero café y de un diseño fantástico. ¿Qué esperas para probar la vida de un ejecutivo?', '', '¡Cliquea un furni para más información!', '');
-INSERT INTO `catalog_pages` VALUES (61, 3, 'Cristal', 0, 29, '1', '1', 1, '0', '0', 53, 'default_3x3', 'catalog_glass_headline1', '', '', 'You can really open up a space with this stylish glass furniture, just don\'t walk into it!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (62, 3, 'Gotico', 0, 30, '1', '1', 1, '0', '0', 50, 'default_3x3', 'catalog_gothic_headline1', '', '', 'As the church bells ring out midnight, you walk through your cobbled hall lit by candles, throw yourself into your medieval throne and paint your nails black. This is what we imagined when we ordered this range!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (63, 3, 'Deporte', 0, 56, '1', '1', 1, '0', '0', 56, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', 'Sport contains all those vital Olympic pieces from running tracks to basketball courts! 3 2 1 GO!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (64, 3, 'Grunge', 0, 32, '1', '1', 1, '0', '0', 40, 'default_3x3', 'catalog_grunge_headline1', '', '', 'Sleeping rough? Make the streets a bit more bearable with our collection of homeless furni, Grunge!', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (58, 3, 'Unterwasser', 0, 18, '1', '1', 1, '0', '0', 38, 'default_3x3', 'catalog_lc_headline2_en', '', '', '¡Abajo del maaaaaar, oh si, abajo del maaaaaar! ¿Cómo se ve tu mundo submarino? ¡Lo tenemos todo aquí!, ¡Cangrejos, más cangrejos y medusas!', '', 'Haz click en el furni para más información', '');
+INSERT INTO `catalog_pages` VALUES (59, 3, 'Ostern', 0, 25, '1', '1', 1, '0', '0', 61, 'default_3x3', 'catalog_easter_headline1', '', '', 'Little birdies hatching from their eggs, pretty, dainty flowers blooming and cute rabbits bouncy in Spring meadows.. FUCK IT ALL! LETS BUY FURNI!', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (60, 3, 'Executive', 0, 27, '1', '1', 1, '0', '0', 51, 'default_3x3', 'catalog_exe_headline1_en', '', '', 'Para los ejecutivos trabajadores, éstos diseños preparados desde Italia con cuero café y de un diseño fantástico. ¿Qué esperas para probar la vida de un ejecutivo?', '', '¡Cliquea un furni para más información!', '');
+INSERT INTO `catalog_pages` VALUES (61, 3, 'Glass', 0, 29, '1', '1', 1, '0', '0', 53, 'default_3x3', 'catalog_glass_headline1', '', '', 'You can really open up a space with this stylish glass furniture, just don\'t walk into it!', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (62, 3, 'Gothic', 0, 30, '1', '1', 1, '0', '0', 50, 'default_3x3', 'catalog_gothic_headline1', '', '', 'As the church bells ring out midnight, you walk through your cobbled hall lit by candles, throw yourself into your medieval throne and paint your nails black. This is what we imagined when we ordered this range!', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (63, 3, 'Sport', 0, 56, '1', '1', 1, '0', '0', 56, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', 'Sport contains all those vital Olympic pieces from running tracks to basketball courts! 3 2 1 GO!', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (64, 3, 'Straße', 0, 32, '1', '1', 1, '0', '0', 40, 'default_3x3', 'catalog_grunge_headline1', '', '', 'Sleeping rough? Make the streets a bit more bearable with our collection of homeless furni, Grunge!', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (56, 3, 'Alhambra', 0, 12, '1', '1', 1, '0', '0', 34, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', 'Para las noches frías en Arabia, necesitarás un palacio.. ¡Y nosotros tenemos todo lo que necesitas! ¡La alfombra verde quedará asombrosa!', '', 'Haz click en un furni para ver con más detalle.', '');
-INSERT INTO `catalog_pages` VALUES (57, 3, 'Asia', 0, 143, '1', '1', 1, '0', '0', 35, 'default_3x3', 'catalog_asian_headline1', '', '', '¡Ting tong! ¿Ching chong? Ting chong ting, ¡ping ping! Como decia.. Con nuestros auténticos furnis chinos, ¡Tú podrás crear una sala oriental!', '', 'Haz click en el furni para más información', '');
+INSERT INTO `catalog_pages` VALUES (57, 3, 'Asien', 0, 143, '1', '1', 1, '0', '0', 35, 'default_3x3', 'catalog_asian_headline1', '', '', '¡Ting tong! ¿Ching chong? Ting chong ting, ¡ping ping! Como decia.. Con nuestros auténticos furnis chinos, ¡Tú podrás crear una sala oriental!', '', 'Haz click en el furni para más información', '');
 INSERT INTO `catalog_pages` VALUES (55, 3, 'Iced', 0, 13, '1', '1', 1, '0', '0', 23, 'default_3x3', 'catalog_iced_headline1', '', '', 'The Iced range, squishy, soft and most definitely cool. Whatever your needs, this stylish range should  cover it!', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (65, 3, 'HabboWood', 0, 33, '1', '1', 1, '0', '0', 52, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', 'No flash photography, darling! This range is only for the VIP Hollywood actors!', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (66, 3, 'Halloween', 0, 34, '1', '1', 1, '0', '0', 62, 'default_3x3', 'catalog_halloween_headline1', '', '', 'WooOOOOoooOOoo! Spooky! Don\'t wanna be left with this range at night.. who knows what would happen!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (67, 3, 'Japanese', 0, 36, '1', '1', 1, '0', '0', 36, 'default_3x3', 'catalog_jap_headline2_en', '', '', '¡Tenemos sushi, Tatatmi y Katanas! No tengo idea de cuál sea la diferencia, ¡Pero estoy seguro de que es japonés! ¡Compra algo hoy para crear una gran sala!', '', 'Haz click en el furni para más información.', '');
-INSERT INTO `catalog_pages` VALUES (68, 3, 'Tribu Perdida', 0, 38, '1', '1', 1, '0', '0', 39, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', '¡Empiza tu propia tribu con nuestra gama de furnis!, todos tallados de una piedra enorme. NOTA: La lava está caliente, pide a un adulto que te ayude.', '', 'Haz click en el furni para más información.', '');
+INSERT INTO `catalog_pages` VALUES (67, 3, 'Japan', 0, 36, '1', '1', 1, '0', '0', 36, 'default_3x3', 'catalog_jap_headline2_en', '', '', '¡Tenemos sushi, Tatatmi y Katanas! No tengo idea de cuál sea la diferencia, ¡Pero estoy seguro de que es japonés! ¡Compra algo hoy para crear una gran sala!', '', 'Haz click en el furni para más información.', '');
+INSERT INTO `catalog_pages` VALUES (68, 3, 'Urwald', 0, 38, '1', '1', 1, '0', '0', 39, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', '¡Empiza tu propia tribu con nuestra gama de furnis!, todos tallados de una piedra enorme. NOTA: La lava está caliente, pide a un adulto que te ayude.', '', 'Haz click en el furni para más información.', '');
 INSERT INTO `catalog_pages` VALUES (69, 3, 'Neon', 0, 41, '1', '1', 1, '0', '0', 55, 'default_3x3', 'catalog_neon_header1_en', '', '', 'New years eve, birthdays and every other day of the year, there\'s always an exscuse for a party! So, why don\'t you buy some Neon furni!?', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (71, 3, 'Relax', 0, 49, '1', '1', 1, '0', '0', 54, 'default_3x3', 'rela_header_en', '', '', 'Relax after a busy day in the Welcome Lounge. Light a few candles, and chill out with a good read in a wicker chair. We understand the needs of an Uber with a hectic lifestyle!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (72, 3, 'Romantico', 0, 50, '1', '1', 1, '0', '0', 58, 'default_3x3', 'catalog_romantique_headline1', '', '', 'Found in a French barn, this sweet but sexily romantic range caters to every ladies needs. Just going to powder my nose!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (73, 3, 'Ciencia Ficcion', 0, 53, '1', '1', 1, '0', '0', 41, 'default_3x3', 'sf_header_en', '', '', 'Blipblop blip blip blip.. Oooh.. what\'s this button do?.. You can find out exactly what it does with our new Scifi range, batteries included!', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (72, 3, 'Romantic', 0, 50, '1', '1', 1, '0', '0', 58, 'default_3x3', 'catalog_romantique_headline1', '', '', 'Found in a French barn, this sweet but sexily romantic range caters to every ladies needs. Just going to powder my nose!', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (73, 3, 'Sci-Fi', 0, 53, '1', '1', 1, '0', '0', 41, 'default_3x3', 'sf_header_en', '', '', 'Blipblop blip blip blip.. Oooh.. what\'s this button do?.. You can find out exactly what it does with our new Scifi range, batteries included!', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (74, 3, 'Shalimar', 0, 54, '1', '1', 1, '0', '0', 57, 'default_3x3', 'catalog_shal_header1_en', '', '', 'Everyone loves Bollywood! Want some free credits? Tell Oscar you successfully read the Shalimar page! Tell no one else you found this Easter egg. Watch out for rose petals!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (75, 3, 'Verano', 0, 57, '1', '1', 1, '0', '0', 45, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', 'Phwoar! Start up the barbie! This range has everything you need for the perfect summer garden!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (76, 3, 'Love', 0, 62, '1', '1', 1, '0', '0', 59, 'default_3x3', 'catalog_love_headline1', '', '', 'Love is in the air once again! Buy your sweetheart a rose or whisper sweet nothings in their ear on a love sofa. Can you feel it? <3', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (77, 3, 'Griego', 0, 31, '1', '1', 1, '0', '0', 37, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', '¡Transportate a la antigua grecia, con muchas y maravillosas cosas!. Aparte de eso, ¡Usa esta gran gama de furnis para crear tu templo griego!', '', 'Haz click en el furni para más información.', '');
+INSERT INTO `catalog_pages` VALUES (75, 3, 'Strand', 0, 57, '1', '1', 1, '0', '0', 45, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', 'Phwoar! Start up the barbie! This range has everything you need for the perfect summer garden!', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (76, 3, 'Liebe', 0, 62, '1', '1', 1, '0', '0', 59, 'default_3x3', 'catalog_love_headline1', '', '', 'Love is in the air once again! Buy your sweetheart a rose or whisper sweet nothings in their ear on a love sofa. Can you feel it? <3', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (77, 3, 'Griechenland', 0, 31, '1', '1', 1, '0', '0', 37, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', '¡Transportate a la antigua grecia, con muchas y maravillosas cosas!. Aparte de eso, ¡Usa esta gran gama de furnis para crear tu templo griego!', '', 'Haz click en el furni para más información.', '');
 INSERT INTO `catalog_pages` VALUES (85, 4, 'Coleccionables', 0, 71, '1', '1', 1, '0', '0', 1, 'default_3x3', 'catalog_pixeldeals_headline1_en', 'catalog_pxl_teaser2_en', '', 'The Pixel Collectables are the ultimate collectors items, requiring a mammoth 2000 pixels and credits to buy! If you collect all the pieces and manage to put them together in certain ways, you\'ll receive a special effect!', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (88, 3, 'Virus', 0, 61, '1', '1', 1, '0', '0', 49, 'default_3x3', 'catalog_vir_header1_en', '', '', 'All of Uber\'s emergency pandemic supplies are kept here! They need a bit of a clean after the exploding puss disease but.. they\'ll do fine!', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (91, -1, 'Staff Möbel', 6, 28, '1', '0', 5, '0', '0', 10, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', '', '', '', '');
-INSERT INTO `catalog_pages` VALUES (93, 91, 'Trofeos', 1, 60, '1', '1', 5, '0', '0', 1, 'trophies', 'catalog_trophies_headline1', '', '', 'This page contains special trophies available for staff to give as prizes. STAFF CAUGHT GIVING OUT THESE WITH NO REASON WILL BE DEMOTED.', '', 'Click in this grey box and type your inscription *carefully* - it\'s permanent!', '');
-INSERT INTO `catalog_pages` VALUES (94, 91, 'Rares', 1, 10, '1', '1', 5, '0', '0', 2, 'default_3x3', 'catalog_rares_headline1', '', '', 'This page contains special rares available for staff. STAFF CAUGHT GIVING OUT THESE WITH NO REASON WILL BE DEMOTED.', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (95, 91, 'Promocional', 1, 11, '1', '1', 6, '0', '0', 3, 'default_3x3', 'catalog_rares_headline1', '', '', 'This page contains special promotional items available for staff. STAFF CAUGHT GIVING OUT THESE WITH NO REASON WILL BE DEMOTED.', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (93, 91, 'Trophäen', 1, 60, '1', '1', 5, '0', '0', 1, 'trophies', 'catalog_trophies_headline1', '', '', 'This page contains special trophies available for staff to give as prizes. STAFF CAUGHT GIVING OUT THESE WITH NO REASON WILL BE DEMOTED.', '', 'Click in this grey box and type your inscription *carefully* - it\'s permanent!', '');
+INSERT INTO `catalog_pages` VALUES (94, 91, 'Alte Rares', 1, 10, '1', '1', 5, '0', '0', 2, 'default_3x3', 'catalog_rares_headline1', '', '', 'This page contains special rares available for staff. STAFF CAUGHT GIVING OUT THESE WITH NO REASON WILL BE DEMOTED.', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (95, 91, 'Unsortierte Rares', 1, 11, '1', '1', 6, '0', '0', 3, 'default_3x3', 'catalog_rares_headline1', '', '', 'This page contains special promotional items available for staff. STAFF CAUGHT GIVING OUT THESE WITH NO REASON WILL BE DEMOTED.', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (105, 91, 'Mega Raros', 0, 69, '1', '1', 6, '0', '0', 57, 'default_3x3', 'catalog_rares_headline1', '', '', '¡En esta página, tenemos algunos Mega raros hermosos para ti! ¡Hemos mantenido algunos detrás de la cortina para que los utilices como premios de eventos!', '', 'Haz clic en algún furni para obtener más información', '');
 INSERT INTO `catalog_pages` VALUES (103, 3, 'Diner', 0, 51, '1', '1', 1, '0', '0', 43, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', 'Originally from the 50\'s this furni has been refurbished and put right into the catalogue! Use this with the Kitchen range for ultimate diner experience!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (112, 3, 'Luna nueva', 0, 64, '1', '1', 1, '0', '0', 63, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', 'I\'ve never read the book, all I know is it has vampires playing basket ball and some heart throb called Edward Cullen, but the furni looks good!', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (112, 91, 'Test ?', 0, 64, '1', '1', 1, '0', '0', 63, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', 'I\'ve never read the book, all I know is it has vampires playing basket ball and some heart throb called Edward Cullen, but the furni looks good!', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (123, 4, 'Hello Furni', 0, 35, '1', '1', 1, '0', '0', 24, 'default_3x3', 'catalog_hello_header1_en', 'catalog_hello_teaser1_en', '', 'Hello Furni is available with Pixels and is perfect if you are decorating your room for the very first time. The Furni is yours to keep and therefore cannot be traded.', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (125, 4, 'Efectos Especiales', 0, 61, '1', '1', 1, '0', '0', 25, 'default_3x3', 'catalog_pixeleffects_headline1_en', 'catalog_pxl_teaser1_en', '', 'Tune your character with cool effects that fit the occasion. Ride the hoverboard and spit on the mic. Effects can be activated from the menu, by clicking on your avatar.', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (125, 4, 'Effekte', 0, 61, '1', '1', 1, '0', '0', 25, 'default_3x3', 'catalog_pixeleffects_headline1_en', 'catalog_pxl_teaser1_en', '', 'Tune your character with cool effects that fit the occasion. Ride the hoverboard and spit on the mic. Effects can be activated from the menu, by clicking on your avatar.', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (126, 3, 'Tiki', 0, 59, '1', '1', 1, '0', '0', 46, 'default_3x3', 'catalog_tiki_header1_en', '', '', 'Imagine in the scene.. lost on a desert island when you stumble across a small local tribe.. now you can with our Tiki range!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (128, 3, 'Urbano', 0, 26, '1', '1', 1, '0', '0', 33, 'default_3x3', 'urban_header_en', '', '', '¡Los furnis urbano son perfectos para cualquier calle, colonia o avenida! Banquetas, luces. ¡Todos los furnis que tú necesitas!', '', 'Haz click en un furni para ver con más detalle.', '');
-INSERT INTO `catalog_pages` VALUES (129, 4, 'Automoviles', 0, 16, '1', '1', 1, '0', '0', 26, 'default_3x3', 'catalog_automobile_header1_en', 'catalog_automobile_teaser1_en', '', 'Every Uber needs a car effect! Not only do they bring a bit of the outside inside, they also enhance the air quality! And what better gift for a friend than a beautiful traffic sign or elegant pile of tires...', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (128, 3, 'Urban', 0, 26, '1', '1', 1, '0', '0', 33, 'default_3x3', 'urban_header_en', '', '', '¡Los furnis urbano son perfectos para cualquier calle, colonia o avenida! Banquetas, luces. ¡Todos los furnis que tú necesitas!', '', 'Haz click en un furni para ver con más detalle.', '');
+INSERT INTO `catalog_pages` VALUES (129, 3, 'Automobil', 0, 16, '1', '1', 1, '0', '0', 26, 'default_3x3', 'catalog_automobile_header1_en', 'catalog_automobile_teaser1_en', '', 'Every Uber needs a car effect! Not only do they bring a bit of the outside inside, they also enhance the air quality! And what better gift for a friend than a beautiful traffic sign or elegant pile of tires...', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (134, 91, 'System', 0, 1, '1', '1', 5, '0', '0', 4, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', '', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (137, 3, 'Orgie', 51, 1, '1', '1', 1, '0', '0', 67, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', 'The latest range from Ann Summers, the Orgie line. Made of soft, wipe clean plastic, its perfect for any three, four or fivesome!', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (136, 3, 'Bling', 0, 42, '1', '1', 1, '0', '0', 64, 'default_3x3', 'catalog_header_bling_en', 'catalog_teaser_rollerblades', '', 'Bling, Bling! Flash, Flash! Want to have that real celebrity lifestyle? Well, go somewhere else, all we have here is a tacky range of furni.', '', 'Click on an item for more information.', '');
@@ -4363,33 +4365,33 @@ INSERT INTO `catalog_pages` VALUES (148, 14, 'Osos', 0, 68, '1', '1', 1, '0', '0
 INSERT INTO `catalog_pages` VALUES (149, 14, 'Gatos', 0, 20, '1', '1', 1, '0', '0', 4, 'pets', 'catalog_pet_headline1', '', '', 'Fluff, whiskers, meows and purrs! You\'re about to enter the world of Habbo Cats. These cute little critters make great playmates and will keep you company if you look after them well. Find a new friend from our ever-changing selection.', '', 'Give a name:Pick a color:Pick a race:', '');
 INSERT INTO `catalog_pages` VALUES (150, 14, 'Perros', 0, 24, '1', '1', 1, '0', '0', 5, 'pets', 'catalog_pet_headline1', '', '', 'Wet noses, paws, yaps and woofs! You\'re about to enter the world of Habbo Dogs. An adorable and faithful servant awaits you with a wagging tail everytime they see you. Find a new friend from our ever-changing selection.', '', 'Give a name:Pick a color:Pick a race:', '');
 INSERT INTO `catalog_pages` VALUES (151, 14, 'Cocodrilos', 0, 22, '1', '1', 1, '0', '0', 6, 'pets', 'catalog_pet_headline1', '', '', 'Scaly skin, growls and snaps! You\'re about to enter the world of Habbo Crocs. Security for your room or to scare your friends a trustworthy and surprisingly loving companion can be yours. Find a new friend from our ever-changing selection.', '', 'Give a name:Pick a color:Pick a race:', '');
-INSERT INTO `catalog_pages` VALUES (152, 3, 'Futbol', 0, 56, '1', '1', 1, '0', '0', 8, 'default_3x3', 'worldcup_header_en', '', '', 'futbol', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (102, 3, 'Rollers', 0, 96, '1', '1', 1, '0', '0', 26, 'default_3x3', 'catalog_roller_headline1', 'catalog_teaser_rollers_es', '', 'Si con una simple palanca se puede mover el mundo, con un Habbo Roller pondrÃ¡s patas arriba el ciberespacio entero. Â¡MuÃ©vete, Habbo! Â¡MuÃ©vete! (SÃ³lo 35 por Sala).', '', 'Selecciona:', '');
+INSERT INTO `catalog_pages` VALUES (152, 3, 'Fußball', 0, 56, '1', '1', 1, '0', '0', 8, 'default_3x3', 'worldcup_header_en', '', '', 'futbol', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (102, 3, 'Roller', 0, 96, '1', '1', 1, '0', '0', 26, 'default_3x3', 'catalog_roller_headline1', 'catalog_teaser_rollers_es', '', 'Si con una simple palanca se puede mover el mundo, con un Habbo Roller pondrÃ¡s patas arriba el ciberespacio entero. Â¡MuÃ©vete, Habbo! Â¡MuÃ©vete! (SÃ³lo 35 por Sala).', '', 'Selecciona:', '');
 INSERT INTO `catalog_pages` VALUES (163, 3, 'CapriSun', 1, 26, '1', '1', 1, '0', '0', 22, 'default_3x3', 'caprisun_teaser', 'caprisun_header', '', 'Mira ese jugo, tal persona quiere tomarlo, ?eh? Hay muchas formas de refrescarse ahora en este verano. Y CapriSun es uno de los mejores refrescos de este verano 2010. ?Pruebalo!', '', '', '');
 INSERT INTO `catalog_pages` VALUES (185, 3, 'Fuentes Pez', 1, 18, '1', '1', 1, '0', '0', 9, 'default_3x3', 'catalog_rares_headl ine1', '', '', '?Aqu? tienes una larga lista de rares! ?Aprov?chalos!.', '', 'Clickea en un furni para obtener m?s informaci?n.', '');
-INSERT INTO `catalog_pages` VALUES (165, 3, 'Playa', 1, 57, '1', '1', 1, '0', '0', 14, 'default_3x3', 'verano2', 'beach_teaser', 'catalog_special_txtbg1_en', 'Al parecer, la playa ha llegado al hotel. Ya que estamos en verano, no es imposible dejar de comer helado o estar bronceandonos. Ahora, ¡estamos en Playa! Y es hora de echarnos bloqueador solar.', '', '', '¡Sólo en este Verano 2010!');
+INSERT INTO `catalog_pages` VALUES (165, 3, 'Strand 2#', 1, 57, '1', '1', 1, '0', '0', 14, 'default_3x3', 'verano2', 'beach_teaser', 'catalog_special_txtbg1_en', 'Al parecer, la playa ha llegado al hotel. Ya que estamos en verano, no es imposible dejar de comer helado o estar bronceandonos. Ahora, ¡estamos en Playa! Y es hora de echarnos bloqueador solar.', '', '', '¡Sólo en este Verano 2010!');
 INSERT INTO `catalog_pages` VALUES (159, 3, 'Cárcel', 2, 14, '1', '1', 1, '0', '0', 1, 'default_3x3', 'catalog_extra_headline1', 'catalog_extra_teaser1', 'catalog_special_txtbg2', '¡Cárcel en Habbo Lan! ¡Ni un solo prisionero saldrá libre!', '', '¡Cliquea un furni para más información!', '');
-INSERT INTO `catalog_pages` VALUES (116, -1, 'Mercadillo', 6, 69, '0', '0', 1, '0', '0', 5, 'default_3x3', 'catalog_marketplace_header_es', '', '', '', '', '', '');
-INSERT INTO `catalog_pages` VALUES (117, 116, 'Ofertas', 1, 70, '1', '1', 1, '0', '0', 1, 'marketplace', 'catalog_marketplace_header_es', '', '', '', '', '', '');
-INSERT INTO `catalog_pages` VALUES (118, 116, 'Mis ventas', 1, 71, '1', '1', 1, '0', '0', 2, 'marketplace_own_items', 'catalog_marketplace_header_es', '', '', '', '', '', '');
-INSERT INTO `catalog_pages` VALUES (172, -1, 'Raros', 0, 3, '0', '0', 1, '0', '0', 2, 'default_3x3', 'catalog_cltbs_header1_en', 'catalog_cltbs_teaser_en', '', 'Los Raros coleccionables son Furni especial que se vende sólo por un breve espacio de tiempo. Aumentan tu poder de cambio y lucen como ningún otro objeto en tus Salas.', '', '', '');
+INSERT INTO `catalog_pages` VALUES (116, -1, 'Marktplatz', 6, 69, '0', '0', 1, '0', '0', 5, 'default_3x3', 'catalog_marketplace_header_es', '', '', '', '', '', '');
+INSERT INTO `catalog_pages` VALUES (117, 116, 'Meine Angebote', 1, 70, '1', '1', 1, '0', '0', 1, 'marketplace', 'catalog_marketplace_header_es', '', '', '', '', '', '');
+INSERT INTO `catalog_pages` VALUES (118, 116, 'Markt', 1, 71, '1', '1', 1, '0', '0', 2, 'marketplace_own_items', 'catalog_marketplace_header_es', '', '', '', '', '', '');
+INSERT INTO `catalog_pages` VALUES (172, 91, 'Rares', 0, 3, '0', '0', 1, '0', '0', 2, 'default_3x3', 'catalog_cltbs_header1_en', 'catalog_cltbs_teaser_en', '', 'Los Raros coleccionables son Furni especial que se vende sólo por un breve espacio de tiempo. Aumentan tu poder de cambio y lucen como ningún otro objeto en tus Salas.', '', '', '');
 INSERT INTO `catalog_pages` VALUES (121, 6, 'Trax Machines', 0, 4, '1', '1', 1, '0', '0', 52, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', 'Buy your Trax machines here, ready to load with all your wonderful, musical creations! Check the Sound Sets page for all the discs you could use!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (497, 3, 'Stray Pixels', 28, 1, '1', '1', 1, '0', '0', 19, 'default_3x3', 'straypixels', '', '', 'Stray Pixel', '', '', '');
-INSERT INTO `catalog_pages` VALUES (496, 3, 'Hospital', 10, 61, '1', '1', 1, '0', '0', 15, 'default_3x3', '', '', '', 'The new hospital furniture range is here! Buy it now and create your own Hospital!', '', '', '');
-INSERT INTO `catalog_pages` VALUES (502, 3, 'African', 1, 30, '1', '1', 1, '0', '0', 4, 'default_3x3', 'The new African furniture range is here!', '', '', 'The new African furniture range is here!', '', '', '');
+INSERT INTO `catalog_pages` VALUES (497, 3, 'Kunst', 28, 1, '1', '1', 1, '0', '0', 19, 'default_3x3', 'straypixels', '', '', 'Stray Pixel', '', '', '');
+INSERT INTO `catalog_pages` VALUES (496, 3, 'Krankenhaus', 10, 61, '1', '1', 1, '0', '0', 15, 'default_3x3', '', '', '', 'The new hospital furniture range is here! Buy it now and create your own Hospital!', '', '', '');
+INSERT INTO `catalog_pages` VALUES (502, 3, 'Afrika', 1, 30, '1', '1', 1, '0', '0', 4, 'default_3x3', 'The new African furniture range is here!', '', '', 'The new African furniture range is here!', '', '', '');
 INSERT INTO `catalog_pages` VALUES (122, 6, 'Trax Packs', 0, 4, '1', '1', 1, '0', '0', 53, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', 'We have every sound you could ever want right here! From sound effects and ambient tunes to rock and roll and heavy metal!', '', 'Click on an item for more information.', '');
-INSERT INTO `catalog_pages` VALUES (6, -1, 'Tienda de Trax', 4, 4, '1', '0', 1, '0', '0', 6, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', '', '', '', '');
-INSERT INTO `catalog_pages` VALUES (120, -1, 'Battle Banzai', 5, 78, '1', '1', 1, '0', '0', 3, 'default_3x3', 'catalog_battleBanzai_header_en', 'catalog_battleBanzai_teaser', '', '¡Ya está aquí el Battle Banzai!, ¡compra tu propio pack y únete a la diversión!', '', 'Has click en un item para más información.', '');
+INSERT INTO `catalog_pages` VALUES (6, -1, 'Trax Maschine', 4, 4, '1', '0', 1, '0', '0', 6, 'default_3x3', 'catalog_frontpage_headline2_en', '', '', '', '', '', '');
+INSERT INTO `catalog_pages` VALUES (120, 659, 'Battle Banzai', 5, 78, '1', '1', 1, '0', '0', 3, 'default_3x3', 'catalog_battleBanzai_header_en', 'catalog_battleBanzai_teaser', '', '¡Ya está aquí el Battle Banzai!, ¡compra tu propio pack y únete a la diversión!', '', 'Has click en un item para más información.', '');
 INSERT INTO `catalog_pages` VALUES (167, 14, 'León', 1, 76, '1', '1', 1, '0', '0', 0, 'pets', 'catalog_pet_headline1', '', '', '', '', 'Un depredador feroz en la naturaleza, el león ha sido domesticado para ser su fiel amigo en Habbo Hotel.', '');
 INSERT INTO `catalog_pages` VALUES (168, 14, 'Rinoceronte', 1, 77, '1', '1', 1, '0', '0', 6, 'pets', 'catalog_pet_headline1', '', '', '', '', 'Sin descripcion', '');
 INSERT INTO `catalog_pages` VALUES (200, 3, 'VooDoo', 0, 79, '1', '1', 1, '0', '0', 5, 'default_3x3', 'catalog_voodoo_header_en', 'catalog_voodoo_teaser', '', '¡VooDoo 2010 llegó a Habbo Lan!.', '', 'Has click en un item para más información.', '');
 INSERT INTO `catalog_pages` VALUES (161, -1, 'Wired', 1, 80, '1', '1', 1, '0', '0', 1, 'pets2', 'catalog_wired_header1', 'ctlg_pic_teaser_wired', '', 'Los Furni Wired te dan posibilidades casi infinitas. PodrÃ¡s hacer que tus Furni hagan prÃ¡cticamente de todo si aprendes cÃ³mo utilizar los Causantes, Efectos y Condiciones', '', '', '¿CÃ³mo funcionan?\r\nPara conseguir un resultado Wired completo necesitas tres tipos de Furni:\r\n1. Causantes: Cosas que necesitas hacer para que tenga lugar un Efecto.\r\n2. Efectos: Lo que sucede una vez has activado un Causante.\r\n3. Condiciones (opcional): Condiciones que deben darse antes de que el Causante se ponga en marcha.\r\nCon todo, Causante+Efecto+CondiciÃ³n=Wired\r\nCada uno de ellos puede ser programado por separado. Apila tu Causante, Efecto y CondiciÃ³n uno encima de otro, Â¡y trabajarÃ¡n en conjunto para transformar tu Sala!');
 INSERT INTO `catalog_pages` VALUES (176, 161, 'Series', 1, 84, '0', '0', 1, '0', '0', 0, 'default_3x3', 'catalog_wired_header6_es', 'ctlg_pic_wired_deals', '', '¡La forma mÃ¡s fÃ¡cil de sacar partido a los Furni Wired es a travÃ©s de las series! Cada una de ellas contiene todos los Furni necesarios para dar lugar a una acciÃ³n especÃ­fica, como \'Puertas con contraseÃ±a\'.\r\n', '', '¡Haz clic en cada serie para ver quÃ© contiene!', '');
 INSERT INTO `catalog_pages` VALUES (177, 161, 'Causantes', 1, 81, '1', '1', 1, '0', '0', 0, 'default_3x3', 'catalog_wired_header2_es', 'ctlg_pic_wired_triggers', '', 'Los Causantes permiten definir quÃ© se necesita que pase para que tenga lugar un Efecto. Para programar un Causante, colÃ³calo en una Sala, haz doble clic en Ã©l y ponlo en marcha. NecesitarÃ¡s apilar un Efecto sobre un Causante.', '', '¡Haz clic en cada objeto para ver cÃ³mo funciona!', '');
-INSERT INTO `catalog_pages` VALUES (600, 3, '¡Año Nuevo! 2011', 1, 91, '1', '1', 1, '0', '0', 16, 'default_3x3', 'catalog_header_year2011_en', 'catalog_teaser_year2011', '', 'Se acaba el añoo, pero no las novedades. Hazte con los Furni ideales para celebrar el Fin de Año de la mejor forma posible.', '', '', '');
-INSERT INTO `catalog_pages` VALUES (602, -1, 'Navidad 2011', 1, 90, '0', '0', 1, '0', '0', 1, 'default_3x3', 'catalog_header_val12_2_en', '', '', '', '', '', '');
+INSERT INTO `catalog_pages` VALUES (600, 3, 'Silvester 2011', 1, 91, '1', '1', 1, '0', '0', 16, 'default_3x3', 'catalog_header_year2011_en', 'catalog_teaser_year2011', '', 'Se acaba el añoo, pero no las novedades. Hazte con los Furni ideales para celebrar el Fin de Año de la mejor forma posible.', '', '', '');
+INSERT INTO `catalog_pages` VALUES (602, 3, 'Weihnachten 2011', 1, 90, '0', '0', 1, '0', '0', 1, 'default_3x3', 'catalog_header_val12_2_en', '', '', '', '', '', '');
 INSERT INTO `catalog_pages` VALUES (603, 3, 'Furni Nevado', 0, 86, '1', '1', 1, '0', '0', 69, 'default_3x3', 'catalog_snowflake_es_001', 'ctlg_pic_snowflake_december', '', '¡Este año tú decides qué regalarte! Completa los retos diarios y logra Copos de Nieve. Canjéalos luego aquí por Furni exclusivo. Hazte con el \'Calendario Santa\' o \'Calendario de Nieve\', que incluyen los retos.', '', '', '');
-INSERT INTO `catalog_pages` VALUES (604, 91, 'Advertesiment', 0, 38, '1', '1', 6, '0', '0', 69, 'default_3x3', 'catalog_frontpage_headline_shop_ES', '', '', '', '', 'Click on an item for more information.', '');
+INSERT INTO `catalog_pages` VALUES (604, 91, 'Werbung', 0, 38, '1', '1', 6, '0', '0', 69, 'default_3x3', 'catalog_frontpage_headline_shop_ES', '', '', '', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (606, 91, 'Infobus', 4, 5, '1', '1', 6, '0', '0', 58, 'default_3x3', 'catalog_rares_headline1', '', '', '', '', 'Click on an item for more information.', '');
 INSERT INTO `catalog_pages` VALUES (181, 161, 'Efectos', 1, 82, '1', '1', 1, '0', '0', 0, 'default_3x3', 'catalog_wired_header3_es', 'ctlg_pic_wired_effects', '', 'Los Efectos son lo que sucede despuÃ©s de haber activado un Causante. Para programar un Efecto, colÃ³calo en una Sala, haz doble clic en Ã©l y ponlo en marcha. NecesitarÃ¡s siempre apilar un Causante sobre un Efecto.', '', 'Â¡Haz clic en cada objeto para ver lo que hace cada Efecto!', '');
 INSERT INTO `catalog_pages` VALUES (180, 161, 'Condiciones', 1, 83, '1', '1', 1, '0', '0', 0, 'default_3x3', 'catalog_wired_header4_es', 'ctlg_pic_wired_conditions', '', 'Las Condiciones son determinados criterios que deben ser especificados antes de que el Causante se ponga en marcha. Si quieres usar una CondiciÃ³n, deberÃ¡s apilarla sobre un Causante y un Efecto.', '', 'Â¡Haz clic en cada objeto para ver cÃ³mo funcionan las Condiciones!', '');
@@ -4398,10 +4400,10 @@ INSERT INTO `catalog_pages` VALUES (607, 3, 'Bling 2011', 0, 93, '1', '1', 1, '0
 INSERT INTO `catalog_pages` VALUES (608, 3, 'Cubie', 3, 100, '1', '1', 1, '0', '0', 0, 'default_3x3', 'catalog_cubie_header_en', 'catalog_cubie_teaser', '', 'Hemos hecho una gran apuesta por el diseño y por varios Furni modulares que incluso se pueden apilar. ¿A qué esperas para probarlos?', '', '¡Cliquea un furni para más información!', '');
 INSERT INTO `catalog_pages` VALUES (609, 3, 'Waasa', 3, 103, '1', '1', 1, '0', '0', 0, 'default_3x3', 'waasa_catalogue_header', 'waasa_teaser', '', 'Deja volar la imaginación y vive grandes aventuras de la mano de los Furni Waasa.', '', '¡Cliquea un furni para más información!', '');
 INSERT INTO `catalog_pages` VALUES (610, 3, 'Anna', 0, 104, '1', '1', 1, '0', '0', 0, 'default_3x3', 'catalog_anna_header', 'catalog_anna_teaser', '', 'Decora con estilo tus Salas gracias a los Furni que puedes encontrar en esta sección.', '', '¡Cliquea un furni para más información!', '');
-INSERT INTO `catalog_pages` VALUES (611, -1, 'Freeze', 4, 87, '1', '1', 1, '0', '0', 3, 'default_3x3', 'catalog_freeze_en', 'ctlg_teaser_es', '', 'Seguro que después de participar en este juego ya no te gusta tanto la nieve... Compite por equipos y consigue que impacten el mayor número de bolas de nieve posibles sobre tus contrincantes. ¡Son como auténticas bombas!', '', '', '');
+INSERT INTO `catalog_pages` VALUES (611, 659, 'Freeze', 4, 87, '1', '1', 1, '0', '0', 3, 'default_3x3', 'catalog_freeze_en', 'ctlg_teaser_es', '', 'Seguro que después de participar en este juego ya no te gusta tanto la nieve... Compite por equipos y consigue que impacten el mayor número de bolas de nieve posibles sobre tus contrincantes. ¡Son como auténticas bombas!', '', '', '');
 INSERT INTO `catalog_pages` VALUES (612, 4, 'Kuurna', 1, 5, '1', '1', 1, '0', '0', 2, 'default_3x3', 'ctlg_kuurna_es', 'ctlg_kuurna_teaser', '', 'Emplea los Pí­xeles que hayas ganado para hacerte con unos Muebles cuyo diseño es de los que quitan el hipo. Mira, mira...', '', '', '');
 INSERT INTO `catalog_pages` VALUES (614, 3, 'Mazmorra', 4, 110, '1', '1', 1, '0', '0', 3, 'default_3x3', 'drago', 'teas_drago2', '', 'La mazmorra del dragón.... ¿te atreves a aventurarte en ella?', '', '¡Cliquea un furni para más información!', '');
-INSERT INTO `catalog_pages` VALUES (615, 4, 'Skateboard', 5, 16, '1', '1', 1, '0', '0', 0, 'default_3x3', 'catalog_frontpage_headline_shop_ES', '', '', '', '', '', '');
+INSERT INTO `catalog_pages` VALUES (615, 3, 'Skateboard', 5, 16, '1', '1', 1, '0', '0', 0, 'default_3x3', 'catalog_frontpage_headline_shop_ES', '', '', '', '', '', '');
 INSERT INTO `catalog_pages` VALUES (616, 3, 'Coco', 5, 127, '1', '1', 1, '0', '0', 1, 'default_3x3', 'catalog_coco2', 'catalog_limited_teaser', '', 'Tenemos para ti la sección de COCO la cual te presentamos una serie de muebles cómodos para tu sala ¡A disfrutarlos como a nada!', '¡Cliquea un furni para más información!', '', '');
 INSERT INTO `catalog_pages` VALUES (617, 3, 'Furni del mono', 1, 128, '1', '1', 1, '0', '0', 4, 'default_3x3', 'catalog_monkey_headline', 'catalog_monkey_teaser', '', '', '', '', '');
 INSERT INTO `catalog_pages` VALUES (618, 3, 'USVA', 1, 129, '1', '1', 1, '0', '0', 6, 'default_3x3', 'catalog_usva_2', 'catalog_usva_picture', '', '', '', '', '');
@@ -4409,14 +4411,14 @@ INSERT INTO `catalog_pages` VALUES (619, 3, 'MTV Studio', 1, 136, '1', '1', 1, '
 INSERT INTO `catalog_pages` VALUES (620, 91, 'Accesorios de Caballos', 1, 132, '1', '1', 6, '0', '0', 12, 'default_3x3', 'catalog_horseaccessories_header1_es', 'horse_teaser', '', 'Encuentra aquí todo lo necesario para el cuidado de tu Caballo y para crear tu propio Establo o Rancho.', '', '', '');
 INSERT INTO `catalog_pages` VALUES (621, 3, 'Escuela', 1, 130, '1', '1', 1, '0', '0', 5, 'default_3x3', 'ruletheschool_header', 'school_article_teaser', '', '', '', '', '');
 INSERT INTO `catalog_pages` VALUES (622, 3, 'Boutique', 1, 131, '1', '1', 1, '0', '0', 4, 'default_3x3', 'boutique_catalog_01', '', '', '', '', '', '');
-INSERT INTO `catalog_pages` VALUES (626, 3, 'Black Hole', 1, 125, '1', '1', 1, '0', '0', 4, 'default_3x3', 'blackhole', '', '', 'A 2x2 piece that creates a BLACK HOLE in your room... Awesome as a divider, but also lets you design your very own custom room layouts!', '', '', '');
+INSERT INTO `catalog_pages` VALUES (626, 3, 'Schwarzelöcher', 1, 125, '1', '1', 1, '0', '0', 4, 'default_3x3', 'blackhole', '', '', 'A 2x2 piece that creates a BLACK HOLE in your room... Awesome as a divider, but also lets you design your very own custom room layouts!', '', '', '');
 INSERT INTO `catalog_pages` VALUES (624, 3, 'Refugio Ski', 1, 139, '1', '1', 1, '0', '0', 3, 'default_3x3', 'catalog_xmas_headline2_es', 'xmas2009_catalogue', '', 'Refúgiate del frío, este año las temperatueas han bajado más que nunca...', '', '', '');
 INSERT INTO `catalog_pages` VALUES (625, 3, 'En el exterior', 1, 13, '1', '1', 1, '0', '0', 4, 'default_3x3', 'catalog_xmas_headline2_es', 'catalog_xmas_teaser', '', 'Disfruta y saca todo el partido posible a unos paisajes nevados alucinantes.', '', '', '');
-INSERT INTO `catalog_pages` VALUES (627, -1, 'Rare Temporal', 3, 69, '1', '1', 1, '0', '0', 3, 'default_3x3', 'catalog_rares_headline1', 'catalog_extra_teaser1', '', '¡Disponible por tiempo limitado!', '', '', '');
-INSERT INTO `catalog_pages` VALUES (628, 3, '¡Año Nuevo! 2012', 1, 91, '1', '1', 1, '0', '0', 4, 'default_3x3', 'catalog_header_year2012_en', 'catalog_teaser_year2011', '', '10, 9, 8, 7... ¡¡2012!! Échale un vistazo a los nuevos Furni, ¡te van a sorprender!', '', 'Fuegos Artificiales, Furni de fiesta y mucho más', '¡Y venga Fuegos!');
+INSERT INTO `catalog_pages` VALUES (627, 91, 'Temporär', 3, 69, '1', '1', 1, '0', '0', 3, 'default_3x3', 'catalog_rares_headline1', 'catalog_extra_teaser1', '', '¡Disponible por tiempo limitado!', '', '', '');
+INSERT INTO `catalog_pages` VALUES (628, 3, 'Silvester 2012', 1, 91, '1', '1', 1, '0', '0', 4, 'default_3x3', 'catalog_header_year2012_en', 'catalog_teaser_year2011', '', '10, 9, 8, 7... ¡¡2012!! Échale un vistazo a los nuevos Furni, ¡te van a sorprender!', '', 'Fuegos Artificiales, Furni de fiesta y mucho más', '¡Y venga Fuegos!');
 INSERT INTO `catalog_pages` VALUES (629, 3, 'Tienda de Regalos', 1, 49, '1', '1', 1, '0', '0', 4, 'default_3x3', 'catalog_gifts2_headline1_es', 'catalog_gifts2_teaser1', '', '¿Aún no sabes qué regalos puedes hacer durante estas Navidades? En esta sección encontrarás varias ideas impactantes.', '', '', '');
-INSERT INTO `catalog_pages` VALUES (630, 91, 'Snowboarding', 1, 140, '1', '1', 5, '0', '0', 7, 'default_3x3', 'snowboarding_catalog_02', 'catalog_snowboarding_teaser1', '', 'Muestra tu clase sobre la tabla, trata de impresionar a los demás con tus movimientos y, simplemente, ¡disfruta del snowboarding!', '', '', '');
-INSERT INTO `catalog_pages` VALUES (631, -1, 'Custom Furni', 1, 91, '1', '1', 6, '0', '0', 11, 'default_3x3', 'catalog_frontpage_headline_shop_ES', 'ctlg_pic_wired_triggers', '', '', '', '', '');
+INSERT INTO `catalog_pages` VALUES (630, 659, 'Snowboarding', 1, 140, '1', '1', 5, '0', '0', 7, 'default_3x3', 'snowboarding_catalog_02', 'catalog_snowboarding_teaser1', '', 'Muestra tu clase sobre la tabla, trata de impresionar a los demás con tus movimientos y, simplemente, ¡disfruta del snowboarding!', '', '', '');
+INSERT INTO `catalog_pages` VALUES (631, 91, 'Kaputte Rares', 1, 91, '1', '1', 6, '0', '0', 11, 'default_3x3', 'catalog_frontpage_headline_shop_ES', 'ctlg_pic_wired_triggers', '', '', '', '', '');
 INSERT INTO `catalog_pages` VALUES (632, 631, 'Thrones', 1, 123, '1', '1', 6, '0', '0', 1, 'default_3x3', '', '', '', '', '', '', '');
 INSERT INTO `catalog_pages` VALUES (633, 631, 'Personajes', 1, 65, '1', '1', 6, '0', '0', 2, 'default_3x3', '', '', '', '', '', '', '');
 INSERT INTO `catalog_pages` VALUES (634, 631, 'Apple', 1, 142, '1', '1', 6, '0', '0', 3, 'default_3x3', '', '', '', '', '', '', '');
@@ -4431,9 +4433,9 @@ INSERT INTO `catalog_pages` VALUES (643, 14, 'Monos', 1, 128, '1', '1', 1, '0', 
 INSERT INTO `catalog_pages` VALUES (644, 14, 'Ranas', 1, 97, '1', '1', 1, '0', '0', 4, 'pets', 'catalog_pet_headline1_es', '', '', 'La Rana. Lindo, verde y viscoso! Las ranas vienen en una variedad de colores raros y se pueden encontrar en todo el mundo. Las ranas son puentes grandes, y hacer grandes animales domÃ©sticos, pero son mÃ¡s difÃ­ciles de retener a una supermodelo en un tornado', '', 'Nombra tu rana:', '');
 INSERT INTO `catalog_pages` VALUES (645, 14, 'Dragones', 1, 109, '1', '1', 1, '0', '0', 2, 'pets', 'catalog_pet_headline1_es', '', '', 'Â¡La nueva mascota dragÃ³n ya estÃ¡ aquÃ­! Mas rapidos que cualquier otro hotel, les traemos a ustedes la nueva mascota que hara arder tus salas. Habbo Fantsy Hotel (HUH.SYTES.NET)', '', '', '');
 INSERT INTO `catalog_pages` VALUES (646, 14, 'Caballos', 1, 134, '1', '1', 1, '0', '0', 1, 'pets', 'catalog_pet_headline1_es', ' ', ' ', ' ', ' ', 'Dale un Nombre:', 'Escoge un color: ');
-INSERT INTO `catalog_pages` VALUES (647, 3, 'San Valentín 2012', 1, 144, '1', '1', 1, '0', '0', 3, 'default_3x3', 'catalog_header_val12_2_en', 'catalog_teaser_val12_en', '', '¿Acaso hay algo más romántico que emprender un viaje sin demasiadas ilusiones y encontrar en él a tu media naranja? Abre bien los ojos, el amor está en el aire...', '', '', '');
+INSERT INTO `catalog_pages` VALUES (647, 3, 'Valentinstag 2012', 1, 144, '1', '1', 1, '0', '0', 3, 'default_3x3', 'catalog_header_val12_2_en', 'catalog_teaser_val12_en', '', '¿Acaso hay algo más romántico que emprender un viaje sin demasiadas ilusiones y encontrar en él a tu media naranja? Abre bien los ojos, el amor está en el aire...', '', '', '');
 INSERT INTO `catalog_pages` VALUES (648, 6, 'Trax Discs', 1, 4, '1', '1', 1, '0', '0', 2, 'soundmachine', 'catalog_djshop_headline1', 'catalog_djshop_teaser1', '', 'These are music discs.', '', 'Go listen!', '');
-INSERT INTO `catalog_pages` VALUES (650, 91, 'Jardineria', 1, 153, '1', '1', 6, '0', '0', 3, 'default_3x3', '', '', '', '', '', '', '');
+INSERT INTO `catalog_pages` VALUES (650, 3, 'Garten', 1, 153, '1', '1', 6, '0', '0', 3, 'default_3x3', '', '', '', '', '', '', '');
 INSERT INTO `catalog_pages` VALUES (651, 3, 'Egipcios', 1, 250, '1', '1', 1, '0', '0', 1, 'default_3x3', 'egypt1', 'egypt_furni_promo', '', 'Desde el desierto, donde vivían grandes faraones ha llegado el furni Egipcio ¡Manos a la obra! ¡Las pirámides no se harán solas!', '', '¡Cliquea un furni para más información!', '');
 INSERT INTO `catalog_pages` VALUES (652, 3, 'Sabana', 1, 30, '1', '1', 1, '0', '0', 1, 'default_3x3', 'ancients123', 'kenya_furni_promo', '', '¡El ambiente tal como la Sabana! ¿Qué tal si te preparas para el safari?....', '', '¡Cliquea un furni para más información!', '');
 INSERT INTO `catalog_pages` VALUES (653, 3, 'Ejecutivo Vainilla', 1, 161, '1', '1', 1, '0', '0', 1, 'default_3x3', 'catalog_exe_headline1_en', '', '', '¡Todo lo que un buen ejecutivo debe tener en su oficina! ¡¿Qué tal disfrutar de la vida fácil con lo nuevo de \'Ejecutivo vainilla\'?', '', '¡Cliquea un furni para más información!', '');
@@ -4441,6 +4443,7 @@ INSERT INTO `catalog_pages` VALUES (655, 3, 'Banderas LED', 1, 16, '1', '1', 1, 
 INSERT INTO `catalog_pages` VALUES (656, 3, 'Olímpicos', 1, 160, '1', '1', 1, '0', '0', 1, 'default_3x3', '', '', '', '¡De las Olimpiadas de Inglaterra, a Habbo Lan!', '', '¡Cliquea un furni para más información!', '');
 INSERT INTO `catalog_pages` VALUES (657, 91, 'System - Public Rooms', 1, 43, '1', '1', 5, '0', '0', 5, 'default_3x3', '', '', '', '', '', '', '');
 INSERT INTO `catalog_pages` VALUES (658, 91, 'Testing', 1, 65, '1', '1', 1, '0', '0', 6, 'default_3x3', '', '', '', '', '', '', '');
+INSERT INTO `catalog_pages` VALUES (659, -1, 'Spiele', 1, 1, '1', '1', 1, '0', '0', 12, 'default_3x3', 'catalog', ' ', ' ', ' ', ' ', ' ', ' ');
 
 -- ----------------------------
 -- Table structure for furniture
@@ -4466,15 +4469,15 @@ CREATE TABLE `furniture`  (
   `interaction_type` enum('default','currency','gate','postit','roomeffect','dimmer','trophy','bed','scoreboard','vendingmachine','alert','onewaygate','loveshuffler','habbowheel','dice','bottle','teleport','rentals','pet','roller','ball','water1','water2','water3','valskate','bunnyfield','eleblock','wired','iceskate','bb_score','bb_blue_gate','bb_red_gate','bb_yellow_gate','bb_green_gate','frz_tile','frz_counter','fball_goal','box','usvashelf','fball_gate','firework','lighttile','disk','jukebox','bb_tele') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'default',
   `interaction_modes_count` int NOT NULL DEFAULT 1,
   `vending_ids` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '0',
-  `foot_figure` varchar(1000) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `foot_figure` varchar(1000) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 900011113 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 900011117 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of furniture
 -- ----------------------------
 INSERT INTO `furniture` VALUES (3568458, 'Infobus', 'poster2005', 'i', 0, 0, 1, '1', '0', '0', 5193, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (3568381, 'Beach Ball', 'bw_bball', 's', 1, 1, 0.001, '0', '0', '1', 3547, '1', '1', '1', '1', '1', 'ball', 1, '0', '');
+INSERT INTO `furniture` VALUES (3568381, 'Strandball', 'bw_bball', 's', 1, 1, 0.001, '0', '0', '1', 3547, '1', '1', '1', '1', '1', 'ball', 1, '0', '');
 INSERT INTO `furniture` VALUES (3568460, 'Love Carp', 'bling11_statue2', 's', 2, 2, 1, '0', '0', '0', 3785, '1', '1', '1', '1', '1', 'default', 2, '0', '');
 INSERT INTO `furniture` VALUES (3568461, 'Slot Machine', 'bling11_slot', 's', 1, 1, 1, '1', '0', '0', 3786, '1', '1', '1', '1', '1', 'default', 2, '0', '');
 INSERT INTO `furniture` VALUES (3568464, 'Bling Teleporter', 'bling11_tele', 's', 1, 1, 0.001, '0', '0', '0', 3789, '1', '1', '1', '1', '1', 'teleport', 1, '0', '');
@@ -4488,28 +4491,28 @@ INSERT INTO `furniture` VALUES (1, 'Bookcase', 'shelves_norja', 's', 1, 1, 1, '0
 INSERT INTO `furniture` VALUES (2, 'Bookcase', 'shelves_polyfon', 's', 2, 1, 1, '0', '0', '0', 14, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (3, 'Bookcase', 'shelves_silo', 's', 2, 1, 1, '0', '0', '0', 15, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (4, 'Small Coffee Table', 'table_polyfon_small', 's', 2, 2, 1, '0', '0', '0', 17, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (5, 'Dining Chair', 'chair_polyfon', 's', 1, 1, 1, '0', '1', '0', 18, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (6, 'Coffee Table', 'table_norja_med', 's', 2, 2, 1, '1', '0', '0', 20, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (7, 'Coffee Table', 'table_silo_med', 's', 2, 2, 1, '1', '0', '0', 21, '1', '1', '1', '1', '1', 'default', 1, '0', '');
+INSERT INTO `furniture` VALUES (5, 'Restaurant Stuhl', 'chair_polyfon', 's', 1, 1, 1, '0', '1', '0', 18, '1', '1', '1', '1', '1', 'default', 1, '0', '');
+INSERT INTO `furniture` VALUES (6, 'Kaffee Tisch', 'table_norja_med', 's', 2, 2, 1, '1', '0', '0', 20, '1', '1', '1', '1', '1', 'default', 1, '0', '');
+INSERT INTO `furniture` VALUES (7, 'Kaffee Tisch', 'table_silo_med', 's', 2, 2, 1, '1', '0', '0', 21, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (8, 'Occasional Table', 'table_plasto_4leg', 's', 2, 2, 1, '1', '0', '0', 22, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (9, 'Round Dining Table', 'table_plasto_round', 's', 2, 2, 1, '1', '0', '0', 23, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (10, 'Square Dining Table', 'table_plasto_bigsquare', 's', 2, 2, 1, '1', '0', '0', 24, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (11, 'Shelf', 'stand_polyfon_z', 's', 1, 1, 0.5, '1', '0', '0', 25, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (12, 'Dining Chair', 'chair_silo', 's', 1, 1, 1.1, '0', '1', '0', 26, '1', '1', '1', '1', '1', 'default', 1, '0', '');
+INSERT INTO `furniture` VALUES (12, 'Restaurant Stuhl', 'chair_silo', 's', 1, 1, 1.1, '0', '1', '0', 26, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (13, 'Cushioned', 'sofa_silo', 's', 2, 1, 1.1, '0', '1', '0', 28, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (14, 'Bench', 'couch_norja', 's', 2, 1, 1, '0', '1', '0', 29, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (15, 'Chair', 'chair_norja', 's', 1, 1, 1, '0', '1', '0', 30, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (16, 'Large Coffee Table', 'table_polyfon_med', 's', 2, 2, 1, '1', '0', '0', 31, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (17, 'Doormat', 'doormat_love', 's', 1, 1, 0.1, '0', '0', '1', 32, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (18, 'Doormat', 'doormat_plain', 's', 1, 1, 0.1, '0', '0', '1', 33, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (19, 'Armchair', 'sofachair_polyfon', 's', 1, 1, 1.1, '0', '1', '0', 34, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (20, 'Two-seater Sofa', 'sofa_polyfon', 's', 2, 1, 1.1, '0', '1', '0', 35, '1', '1', '1', '1', '1', 'default', 1, '0', '');
+INSERT INTO `furniture` VALUES (15, 'Stuhl', 'chair_norja', 's', 1, 1, 1, '0', '1', '0', 30, '1', '1', '1', '1', '1', 'default', 1, '0', '');
+INSERT INTO `furniture` VALUES (16, 'Langer Kaffee Tisch', 'table_polyfon_med', 's', 2, 2, 1, '1', '0', '0', 31, '1', '1', '1', '1', '1', 'default', 1, '0', '');
+INSERT INTO `furniture` VALUES (17, 'Türmatte', 'doormat_love', 's', 1, 1, 0.1, '0', '0', '1', 32, '1', '1', '1', '1', '1', 'default', 1, '0', '');
+INSERT INTO `furniture` VALUES (18, 'Türmatte', 'doormat_plain', 's', 1, 1, 0.1, '0', '0', '1', 33, '1', '1', '1', '1', '1', 'default', 1, '0', '');
+INSERT INTO `furniture` VALUES (19, 'Armlehne', 'sofachair_polyfon', 's', 1, 1, 1.1, '0', '1', '0', 34, '1', '1', '1', '1', '1', 'default', 1, '0', '');
+INSERT INTO `furniture` VALUES (20, 'Zweisitz Sofa', 'sofa_polyfon', 's', 2, 1, 1.1, '0', '1', '0', 35, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (21, 'Large', 'sofachair_silo', 's', 1, 1, 1.1, '0', '1', '0', 36, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (22, 'Plastic Pod Chair', 'chair_plasty', 's', 1, 1, 1, '0', '1', '0', 38, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (23, 'Chair', 'chair_plasto', 's', 1, 1, 1, '0', '1', '0', 39, '1', '1', '1', '1', '1', 'default', 1, '0', '');
+INSERT INTO `furniture` VALUES (23, 'Stuhl', 'chair_plasto', 's', 1, 1, 1, '0', '1', '0', 39, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (24, 'Occasional Table', 'table_plasto_square', 's', 1, 1, 1, '1', '0', '0', 40, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (25, 'Double Bed', 'bed_polyfon', 's', 2, 3, 1.8, '0', '0', '0', 41, '1', '1', '1', '1', '1', 'bed', 1, '0', '');
-INSERT INTO `furniture` VALUES (26, 'Single Bed', 'bed_polyfon_one', 's', 1, 3, 1.8, '0', '0', '0', 42, '1', '1', '1', '1', '1', 'bed', 1, '0', '');
+INSERT INTO `furniture` VALUES (25, 'Doppelbett', 'bed_polyfon', 's', 2, 3, 1.8, '0', '0', '0', 41, '1', '1', '1', '1', '1', 'bed', 1, '0', '');
+INSERT INTO `furniture` VALUES (26, 'Einzelbett', 'bed_polyfon_one', 's', 1, 3, 1.8, '0', '0', '0', 42, '1', '1', '1', '1', '1', 'bed', 1, '0', '');
 INSERT INTO `furniture` VALUES (27, 'Plain Single Bed', 'bed_trad_one', 's', 2, 3, 1, '0', '0', '0', 43, '1', '1', '1', '1', '1', 'bed', 1, '0', '');
 INSERT INTO `furniture` VALUES (28, 'Plain Double Bed', 'bed_trad', 's', 2, 3, 1.6, '0', '0', '0', 44, '1', '1', '1', '1', '1', 'bed', 1, '0', '');
 INSERT INTO `furniture` VALUES (29, 'Single Bed', 'bed_silo_one', 's', 1, 3, 1.8, '0', '0', '0', 45, '1', '1', '1', '1', '1', 'bed', 1, '0', '');
@@ -4691,7 +4694,7 @@ INSERT INTO `furniture` VALUES (207, 'Wannabe bunny', 'easterduck', 's', 1, 1, 1
 INSERT INTO `furniture` VALUES (208, 'Squidgy Bunny', 'bunny', 's', 1, 1, 1, '0', '0', '0', 236, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (209, 'Basket Of Eggs', 'basket', 's', 1, 1, 1, '0', '0', '0', 237, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (210, 'Pop-up Egg', 'birdie', 's', 1, 1, 1, '0', '0', '0', 238, '1', '1', '1', '1', '1', 'default', 2, '0', '');
-INSERT INTO `furniture` VALUES (211, 'Holo-dice', 'edice', 's', 1, 1, 1, '0', '0', '0', 239, '1', '1', '1', '1', '1', 'dice', 1, '0', '');
+INSERT INTO `furniture` VALUES (211, 'Holo-dice', 'edice', 's', 1, 1, 1, '0', '0', '0', 239, '1', '1', '1', '1', '1', 'dice', 7, '0', '');
 INSERT INTO `furniture` VALUES (212, 'Club sofa', 'club_sofa', 's', 2, 1, 1, '0', '1', '0', 267, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (213, 'Gold Trophy', 'prize1', 's', 1, 1, 1, '0', '0', '0', 185, '1', '1', '1', '1', '0', 'trophy', 1, '0', '');
 INSERT INTO `furniture` VALUES (214, 'Silver Trophy', 'prize2', 's', 1, 1, 1, '0', '0', '0', 186, '1', '1', '1', '1', '0', 'trophy', 1, '0', '');
@@ -4725,7 +4728,7 @@ INSERT INTO `furniture` VALUES (242, 'Basketball Court', 'carpet_legocourt', 's'
 INSERT INTO `furniture` VALUES (243, 'Team Bench', 'bench_lego', 's', 4, 1, 1, '0', '1', '0', 279, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (244, 'Basketball Trophy', 'legotrophy', 's', 1, 1, 1, '0', '0', '0', 280, '1', '1', '1', '1', '0', 'trophy', 2, '0', '');
 INSERT INTO `furniture` VALUES (245, 'Holiday Romance', 'valentinescreen', 's', 2, 1, 0.1, '0', '0', '1', 283, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (246, 'Dicemaster', 'edicehc', 's', 1, 1, 1, '0', '0', '0', 284, '1', '1', '1', '1', '1', 'dice', 1, '0', '');
+INSERT INTO `furniture` VALUES (246, 'Dicemaster', 'edicehc', 's', 1, 1, 1, '0', '0', '0', 284, '1', '1', '1', '1', '1', 'dice', 7, '0', '');
 INSERT INTO `furniture` VALUES (247, 'Petal Patch', 'rare_daffodil_rug', 's', 2, 2, 0, '1', '0', '1', 285, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (248, 'Blue Amber Lamp', 'rare_beehive_bulb', 's', 1, 1, 1, '0', '0', '0', 286, '1', '1', '1', '1', '1', 'default', 2, '0', '');
 INSERT INTO `furniture` VALUES (249, 'Throne Sofa', 'hcsohva', 's', 2, 1, 1, '0', '1', '0', 287, '1', '1', '1', '1', '1', 'default', 1, '0', '');
@@ -4815,8 +4818,8 @@ INSERT INTO `furniture` VALUES (334, 'Chocolate Mouse', 'goodie2', 's', 1, 1, 0.
 INSERT INTO `furniture` VALUES (335, 'Bronze Habbo trophy', 'a0 prizetrophy7_b', 's', 1, 1, 1, '0', '0', '0', 1547, '1', '1', '1', '1', '0', 'trophy', 1, '0', '');
 INSERT INTO `furniture` VALUES (336, 'Gold Habbo trophy', 'a0 prizetrophy7_g', 's', 1, 1, 1, '0', '0', '0', 1548, '1', '1', '1', '1', '0', 'trophy', 1, '0', '');
 INSERT INTO `furniture` VALUES (337, 'Silver Habbo trophy', 'a0 prizetrophy7_s', 's', 1, 1, 1, '0', '0', '0', 1549, '1', '1', '1', '1', '0', 'trophy', 1, '0', '');
-INSERT INTO `furniture` VALUES (338, 'Red Laser Door', 'scifiport*0', 's', 1, 1, 0.001, '0', '0', '0', 1549, '1', '1', '1', '1', '1', 'gate', 2, '0', '');
-INSERT INTO `furniture` VALUES (339, 'Violet Sci-Fi Port', 'scifiport*9', 's', 1, 1, 0.001, '0', '0', '0', 1550, '1', '1', '1', '1', '1', 'gate', 2, '0', '');
+INSERT INTO `furniture` VALUES (338, 'Red Laser Door', 'scifiport*0', 's', 1, 1, 0.001, '0', '0', '1', 1549, '1', '1', '1', '1', '1', 'gate', 2, '0', '');
+INSERT INTO `furniture` VALUES (339, 'Violet Sci-Fi Port', 'scifiport*9', 's', 1, 1, 0.001, '0', '0', '1', 1550, '1', '1', '1', '1', '1', 'gate', 2, '0', '');
 INSERT INTO `furniture` VALUES (340, 'Purple Sci-Fi Port', 'scifiport*8', 's', 1, 1, 0.001, '0', '0', '0', 1551, '1', '1', '1', '1', '1', 'gate', 2, '0', '');
 INSERT INTO `furniture` VALUES (341, 'Aqua Laser Gate', 'scifiport*7', 's', 1, 1, 0.001, '0', '0', '0', 1552, '1', '1', '1', '1', '1', 'gate', 2, '0', '');
 INSERT INTO `furniture` VALUES (342, 'White Sci-Fi Port', 'scifiport*6', 's', 1, 1, 0.001, '0', '0', '0', 1553, '1', '1', '1', '1', '1', 'gate', 2, '0', '');
@@ -5296,7 +5299,7 @@ INSERT INTO `furniture` VALUES (816, 'Maze Shrubbery Gate', 'plant_mazegate', 's
 INSERT INTO `furniture` VALUES (817, 'Maze Shrubbery', 'plant_maze', 's', 2, 1, 1, '0', '0', '0', 2129, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (818, 'Bulrush', 'plant_bulrush', 's', 1, 1, 1, '0', '0', '0', 2130, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (819, 'T-Bones Mega Multipack', 'petfood4', 's', 1, 1, 0.01, '0', '0', '1', 2131, '1', '1', '1', '1', '1', 'default', 1, '0', '');
-INSERT INTO `furniture` VALUES (820, 'Red carpet', 'carpet_valentine', 's', 2, 7, 0, '1', '0', '1', 2132, '1', '1', '1', '1', '1', 'default', 1, '0', '');
+INSERT INTO `furniture` VALUES (820, 'Roter Teppich', 'carpet_valentine', 's', 2, 7, 0, '1', '0', '1', 2132, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (821, 'Cobbled Path', 'gothic_carpet', 's', 2, 4, 0, '1', '0', '1', 2133, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (822, 'Dungeon Floor', 'gothic_carpet2', 's', 2, 4, 0, '1', '0', '1', 2134, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (823, '', 'gothic_chair', 's', 1, 1, 1, '0', '1', '0', 2135, '1', '1', '1', '1', '1', 'default', 1, '0', '');
@@ -6357,7 +6360,7 @@ INSERT INTO `furniture` VALUES (20054, 'Window with Candles', 'ads_twi_windw', '
 INSERT INTO `furniture` VALUES (20055, 'Truck and Motorcycles', 'ads_twi_bwall2', 'i', 0, 0, 1, '1', '0', '0', 4276, '1', '1', '1', '1', '1', 'default', 2, '0', '');
 INSERT INTO `furniture` VALUES (20056, 'Dream Catcher', 'ads_twi_dreamc', 'i', 0, 0, 1, '1', '0', '0', 4273, '1', '1', '1', '1', '1', 'default', 1, '0', '');
 INSERT INTO `furniture` VALUES (20057, 'Barn Wall', 'ads_twi_bwall1', 'i', 0, 0, 1, '1', '0', '0', 4274, '1', '1', '1', '1', '1', 'default', 3, '0', '');
-INSERT INTO `furniture` VALUES (20060, 'DEAL_HC_1', 'DEAL_HC_1', 'h', 0, 0, 0, '0', '0', '0', 0, '0', '0', '1', '0', '0', 'default', 0, '0', '');
+INSERT INTO `furniture` VALUES (20060, 'DEAL_HC_1', 'DEAL_HC_1', 's', 0, 0, 0, '0', '0', '0', 0, '0', '0', '1', '0', '0', 'default', 0, '0', '');
 INSERT INTO `furniture` VALUES (20072, 'ads_gsArcade_1 name', 'ads_gsArcade_1', 's', 1, 1, 1, '1', '0', '0', 3277, '1', '1', '1', '1', '1', 'default', 2, '0', '');
 INSERT INTO `furniture` VALUES (20063, 'Hot Choc Machine', 'xm09_cocoa', 's', 1, 1, 1, '1', '0', '0', 3337, '1', '1', '1', '1', '1', 'vendingmachine', 0, '10', '');
 INSERT INTO `furniture` VALUES (20064, 'Astro-Bar', 'sf_mbar', 's', 1, 1, 1, '1', '0', '0', 3273, '1', '1', '1', '1', '1', 'vendingmachine', 0, '44', '');
@@ -8310,6 +8313,10 @@ INSERT INTO `furniture` VALUES (900011109, 'Cyan Anna Divider', 'anna_civider', 
 INSERT INTO `furniture` VALUES (900011110, 'Cyan Anna Sofa', 'anna_cofa', 's', 1, 1, 1, '0', '0', '0', 778077, '1', '1', '1', '1', '1', 'default', 2, '0', '');
 INSERT INTO `furniture` VALUES (900011111, 'Cyan Anna Rug', 'anna_cug', 's', 1, 1, 1, '0', '0', '0', 778078, '1', '1', '1', '1', '1', 'default', 2, '0', '');
 INSERT INTO `furniture` VALUES (900011112, 'Cyan Anna Stool', 'anna_ctool', 's', 1, 1, 1, '0', '0', '0', 778079, '1', '1', '1', '1', '1', 'default', 2, '0', '');
+INSERT INTO `furniture` VALUES (900011113, 'Habbo Mitgliedschaft 14 Tage', 'hc_gift_14days', 'i', 1, 1, 0, '0', '0', '0', 4696709, '1', '1', '1', '1', '1', 'default', 1, '0', ' ');
+INSERT INTO `furniture` VALUES (900011114, 'Habbo Mitgliedschaft 31 Tage', 'hc_gift_31days', 'i', 1, 1, 1, '0', '0', '0', 4696710, '1', '1', '1', '1', '1', 'default', 1, '0', ' ');
+INSERT INTO `furniture` VALUES (900011115, 'Winterkabinen Krone', 'wintercabin_c19_antlerlight', 's', 1, 1, 0, '1', '0', '1', 10858, '1', '1', '1', '1', '1', 'default', 1, '0', ' ');
+INSERT INTO `furniture` VALUES (900011116, 'Winterkabinen Fenster', 'wintercabin_c19_window', 's', 2, 2, 1, '1', '0', '0', 10852, '1', '1', '1', '1', '1', 'default', 1, '0', ' ');
 
 -- ----------------------------
 -- Table structure for room_furnis
@@ -8323,17 +8330,21 @@ CREATE TABLE `room_furnis`  (
   `y` int NOT NULL DEFAULT 0,
   `z` double NOT NULL DEFAULT 0,
   `rot` int NOT NULL DEFAULT 0,
+  `extra_data` int NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `id`(`id`) USING BTREE,
   INDEX `roomid`(`room_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 41 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of room_furnis
 -- ----------------------------
-INSERT INTO `room_furnis` VALUES (2, 1, 1627, 5, 7, 0, 4);
-INSERT INTO `room_furnis` VALUES (3, 1, 3541, 9, 7, 0, 4);
-INSERT INTO `room_furnis` VALUES (4, 1, 2511, 8, 4, 0, 4);
+INSERT INTO `room_furnis` VALUES (34, 1, 3302, 6, 4, 0, 0, 0);
+INSERT INTO `room_furnis` VALUES (37, 1, 3302, 4, 4, 0, 0, 0);
+INSERT INTO `room_furnis` VALUES (40, 1, 3302, 9, 2, 0, 2, 0);
+INSERT INTO `room_furnis` VALUES (15, 1, 3302, 6, 8, 0, 4, 0);
+INSERT INTO `room_furnis` VALUES (35, 1, 3302, 8, 4, 0, 0, 0);
+INSERT INTO `room_furnis` VALUES (31, 1, 215, 4, 3, 0, 4, 0);
 
 -- ----------------------------
 -- Table structure for room_models
@@ -8388,39 +8399,59 @@ INSERT INTO `room_models` VALUES ('model_y', 0, 3, 0, 2, 'xxxxxxxxxxxxxxxxxxxxxx
 DROP TABLE IF EXISTS `rooms`;
 CREATE TABLE `rooms`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `lockType` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `name` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT 'Room',
-  `owner` varchar(75) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '',
-  `description` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '',
-  `capacity` int NULL DEFAULT 0,
-  `state` enum('open','locked','password') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT 'open',
-  `users_now` int NULL DEFAULT 0,
-  `users_max` int NULL DEFAULT 25,
-  `modelId` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `public_ccts` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '',
-  `score` int NULL DEFAULT 0,
-  `tags` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '',
-  `icon_bg` int NULL DEFAULT 1,
-  `icon_fg` int NULL DEFAULT 0,
-  `icon_items` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '',
-  `password` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '',
-  `wallpaper` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '0.0',
-  `floor` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '0.0',
-  `landscape` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '0.0',
-  `allow_pets` enum('0','1') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '1',
-  `allow_pets_eat` enum('0','1') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '0',
-  `allow_walkthrough` enum('0','1') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '0',
-  `allow_hidewall` enum('0','1') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '0',
-  `wallthick` int NULL DEFAULT 0,
-  `floorthick` int NULL DEFAULT 0,
-  `achievement` int NULL DEFAULT 0,
-  `JukeboxSongID` int NULL DEFAULT 0,
+  `name` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'Room',
+  `owner` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '',
+  `description` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'Keine Beschreibung',
+  `password` varchar(8) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '',
+  `modelId` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `lockType` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `capacity` int NOT NULL DEFAULT 0,
+  `state` enum('open','locked','password') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'open',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 10 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of rooms
 -- ----------------------------
-INSERT INTO `rooms` VALUES (1, 'Open', 'fdsfds', 'fdsfdsfds', '', 25, 'open', 0, 25, 'model_a', '', 0, '', 1, 0, '', '', '0.0', '0.0', '0.0', '1', '0', '0', '0', 0, 0, 0, 0);
+INSERT INTO `rooms` VALUES (1, 'sdfdsfsd', 'loolo', '', '', 'model_a', 'Open', 25, 'open');
+INSERT INTO `rooms` VALUES (2, 'lolololo', 'lolo', '', '', 'model_m', 'Open', 25, 'open');
+
+-- ----------------------------
+-- Table structure for users
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `look` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `motto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `rank` int NULL DEFAULT 0,
+  `credits` int NULL DEFAULT 0,
+  `hc_days` int NULL DEFAULT 0,
+  `home_room_id` int NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES (1, 'Meliodas', 'sh-725-68.he-3258-1410-92.hr-3012-45.ch-665-110.lg-3006-110-110.hd-600-28', 'My motto', 0, 0, 0, 0);
+INSERT INTO `users` VALUES (2, 'Meliodas2', 'hr-828-1407.sh-3089-110.ha-1013-110.ch-3323-110-92.lg-3058-82.hd-180-10', 'My motto', 0, 0, 0, 0);
+
+-- ----------------------------
+-- Table structure for wordfilter
+-- ----------------------------
+DROP TABLE IF EXISTS `wordfilter`;
+CREATE TABLE `wordfilter`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `badword` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of wordfilter
+-- ----------------------------
+INSERT INTO `wordfilter` VALUES (1, 'habbo.de');
+INSERT INTO `wordfilter` VALUES (2, 'bitch');
 
 SET FOREIGN_KEY_CHECKS = 1;
