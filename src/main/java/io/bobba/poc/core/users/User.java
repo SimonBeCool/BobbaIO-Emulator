@@ -1,5 +1,10 @@
 package io.bobba.poc.core.users;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import io.bobba.poc.BobbaEnvironment;
 import io.bobba.poc.communication.outgoing.users.LoginOkComposer;
 import io.bobba.poc.communication.outgoing.users.UpdateCreditsBalanceComposer;
 import io.bobba.poc.communication.outgoing.users.UpdateHabboClubComposer;
@@ -75,11 +80,59 @@ public class User {
 	
 	public void setCredits(int credits) {
 		this.credits = credits;
+		Connection connection = null;
+		PreparedStatement statement = null;
+		
+		try {
+		    connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
+		    String query = "UPDATE users SET credits = ? WHERE id = ?";
+		    statement = connection.prepareStatement(query);
+		    statement.setInt(1, credits);
+		    statement.setInt(2, id);
+		    statement.executeUpdate();
+		} catch (SQLException e) {
+		    e.printStackTrace();
+		} finally {
+		    try {
+		        if (statement != null) {
+		            statement.close();
+		        }
+		        if (connection != null) {
+		            connection.close();
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		}
 		client.sendMessage(new UpdateCreditsBalanceComposer(credits));
 	}
 	
 	public void setClubDays(int hc_days) {
 		this.hc_days = hc_days;
+		Connection connection = null;
+		PreparedStatement statement = null;
+		
+		try {
+		    connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
+		    String query = "UPDATE users SET hc_days = ? WHERE id = ?";
+		    statement = connection.prepareStatement(query);
+		    statement.setInt(1, hc_days);
+		    statement.setInt(2, id);
+		    statement.executeUpdate();
+		} catch (SQLException e) {
+		    e.printStackTrace();
+		} finally {
+		    try {
+		        if (statement != null) {
+		            statement.close();
+		        }
+		        if (connection != null) {
+		            connection.close();
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		}
 		client.sendMessage(new UpdateHabboClubComposer(this.hc_days));
 	}
 	

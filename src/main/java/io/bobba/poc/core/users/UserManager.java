@@ -119,7 +119,7 @@ public class UserManager {
 	    try {
 	        connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
 
-	        statement = connection.prepareStatement("INSERT INTO users (username, look, motto, `rank`, credits, hc_days, home_room_id) VALUES (?, ?, ?, 0, 0, 0, 0)", Statement.RETURN_GENERATED_KEYS);
+	        statement = connection.prepareStatement("INSERT INTO users (username, look, motto, `rank`, credits, hc_days, home_room_id) VALUES (?, ?, ?, 1, 1337, 14, 1)", Statement.RETURN_GENERATED_KEYS);
 	        statement.setString(1, username);
 	        statement.setString(2, look);
 	        statement.setString(3, "I love BobbaIO <3");
@@ -136,22 +136,13 @@ public class UserManager {
 	        Logging.getInstance().writeLine("Error adding user to the database: " + e.getMessage(), LogLevel.Warning, this.getClass());
 	    } finally {
 	        try {
-	            if (resultSet != null) {
-	                resultSet.close();
-	            }
-
-	            if (statement != null) {
-	                statement.close();
-	            }
-
-	            if (connection != null) {
-	                connection.close();
-	            }
+	            if (resultSet != null) { resultSet.close(); }
+	            if (statement != null) { statement.close(); }
+	            if (connection != null){ connection.close();}
 	        } catch (SQLException e) {
 	            Logging.getInstance().writeLine("Error closing database connection: " + e.getMessage(), LogLevel.Warning, this.getClass());
 	        }
 	    }
-
 	    return null;
 	}
 }
