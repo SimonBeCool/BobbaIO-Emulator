@@ -49,25 +49,25 @@ public class GameClientMessageHandler {
 	}
 
 	public boolean handleMessage(GameClient client, ClientMessage message) {
-		if (message.getId() < 0 || message.getId() > HIGHEST_MESSAGE_ID) {
-			Logging.getInstance().writeLine("MessageId out of protocol request.", LogLevel.Debug, this.getClass());
-			return false;
-		}
+	    int messageId = message.getId();
+	    if (messageId < 0 || messageId > HIGHEST_MESSAGE_ID) {
+	        Logging.getInstance().writeLine("Invalid message Id: " + messageId, LogLevel.Debug, this.getClass());
+	        return false;
+	    }
 
-		if (requestHandlers[message.getId()] == null) {
-			Logging.getInstance().writeLine("No handler for id: " + message.getId(), LogLevel.Debug, this.getClass());
-			return false;
-		}
-		Logging.getInstance().writeLine("Handled by: " + requestHandlers[message.getId()].getClass().getSimpleName(),
-				LogLevel.Debug, this.getClass());
-		try {
-			requestHandlers[message.getId()].handle(client, message);
-		} catch (Exception e) {
-			Logging.getInstance().logError(
-					"Error handling " + requestHandlers[message.getId()].getClass().getSimpleName() + ". ", e,
-					this.getClass());
-		}
-		return true;
+	    IIncomingEvent handler = requestHandlers[messageId];
+	    if (handler == null) {
+	        Logging.getInstance().writeLine("No handler for message Id: " + messageId, LogLevel.Debug, this.getClass());
+	        return false;
+	    }
+
+	    try {
+	        handler.handle(client, message);
+	        Logging.getInstance().writeLine("Message handled by: " + handler.getClass().getSimpleName(), LogLevel.Debug, this.getClass());
+	    } catch (Exception e) {
+	        Logging.getInstance().logError("Error handling " + handler.getClass().getSimpleName() + ": " + e.getMessage(), e, this.getClass());
+	    }
+	    return true;
 	}
 
 	private void registerRequests() {

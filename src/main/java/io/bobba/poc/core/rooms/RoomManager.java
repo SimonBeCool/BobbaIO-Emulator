@@ -1,6 +1,7 @@
 package io.bobba.poc.core.rooms;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -46,73 +47,60 @@ public class RoomManager {
 		this.loadRoomsFromDb();
 	}
 	
-	private void loadModelsFromDb() throws SQLException {	
-        try (Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection(); Statement statement = connection.createStatement()) {
-            if (statement.execute("SELECT id, door_x, door_y, door_z, door_dir, heightmap FROM room_models")) {
-                try (ResultSet set = statement.getResultSet()) {
-                    while (set.next()) {                    	
-                    	String name = set.getString("id");
-        				int doorX = set.getInt("door_x");
-        				int doorY = set.getInt("door_y");
-        				int doorZ = set.getInt("door_z");
-        				int doorDir = set.getInt("door_dir");
-        				String heightmap = set.getString("heightmap");
+	private void loadModelsFromDb() throws SQLException {
+	    String sql = "SELECT id, door_x, door_y, door_z, door_dir, heightmap FROM room_models";
+	    try (Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
+	         PreparedStatement statement = connection.prepareStatement(sql)) {
+	        try (ResultSet set = statement.executeQuery()) {
+	            while (set.next()) {
+	                String name = set.getString("id");
+	                int doorX = set.getInt("door_x");
+	                int doorY = set.getInt("door_y");
+	                int doorZ = set.getInt("door_z");
+	                int doorDir = set.getInt("door_dir");
+	                String heightmap = set.getString("heightmap");
 
-        				models.put(name, new RoomModel(doorX, doorY, doorZ, doorDir, heightmap));
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            throw e;
-        }
+	                models.put(name, new RoomModel(doorX, doorY, doorZ, doorDir, heightmap));
+	            }
+	        }
+	    }
 	}
 	
 	private void loadRoomsFromDb() throws SQLException {
-	    try (Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection(); Statement statement = connection.createStatement()) {
-	        if (statement.execute("SELECT * FROM rooms")) {
-	            try (ResultSet set = statement.getResultSet()) {
-	                while (set.next()) {                
-	    				int roomid = set.getInt("id");
-	                	String roomName = set.getString("name");
-	    				String roomOwner = set.getString("owner");
-	    				String roomDesc = set.getString("description");
-	    				String roomPass = set.getString("password");
-	    				String roomModel = set.getString("modelId");
-	    				String roomLockType = set.getString("lockType");
-	    				int roomCapacity = set.getInt("capacity");
-	    				LockType lockStyle = LockType.valueOf(roomLockType);
-	    							
-	    				if(roomLockType == "Locked")
-	    					lockStyle = LockType.Locked;
-	    				else if(roomLockType == "Password")
-	    					lockStyle = LockType.Password;
-	    							
-	    				RoomData roomData = new RoomData(roomid, roomName, roomOwner, roomDesc, roomCapacity, roomPass, roomModel, lockStyle);
-						Room room = new Room(roomData, getModel(roomData.getModelId()));		
-						this.rooms.put(room.getRoomData().getId(), room);
-	                	
-	                	if (room != null)
-							room.getRoomItemManager().loadRoomsFurnisFromDb();
-	                	roomId++;
-	                }
-	            }
+	    try (Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
+	         Statement statement = connection.createStatement();
+	         ResultSet set = statement.executeQuery("SELECT * FROM rooms")) {
+	        
+	        while (set.next()) {                
+	            int roomid = set.getInt("id");
+	            String roomName = set.getString("name");
+	            String roomOwner = set.getString("owner");
+	            String roomDesc = set.getString("description");
+	            String roomPass = set.getString("password");
+	            String roomModel = set.getString("modelId");
+	            String roomLockType = set.getString("lockType");
+	            int roomCapacity = set.getInt("capacity");
+	            LockType lockStyle = LockType.valueOf(roomLockType);
+	            
+	            if("Locked".equals(roomLockType))
+	                lockStyle = LockType.Locked;
+	            else if("Password".equals(roomLockType))
+	                lockStyle = LockType.Password;
+	            
+	            RoomData roomData = new RoomData(roomid, roomName, roomOwner, roomDesc, roomCapacity, roomPass, roomModel, lockStyle);
+	            Room room = new Room(roomData, getModel(roomData.getModelId()));		
+	            this.rooms.put(room.getRoomData().getId(), room);
+	            roomId++;
+	            
+	            if (room != null)
+	                room.getRoomItemManager().loadRoomsFurnisFromDb();
 	        }
 	    } catch (SQLException e) {
 	        throw e;
 	    }
 	    LOGGER.info("Rooms -> Loaded!");
 	}
-	
-	private void createDummyRoom() {
-		RoomData roomData = new RoomData(roomId++, "The deep forest", "Relevance", "a very cool room", 25, "", "model_h", LockType.Open);
-		Room room = new Room(roomData, getModel(roomData.getModelId()));		
-		this.rooms.put(room.getRoomData().getId(), room);
-		
-		roomData = new RoomData(roomId++, "dot dot dot", "Gravity", "a cool room", 25, "", "model_g", LockType.Open);
-		room = new Room(roomData, getModel(roomData.getModelId()));
-		this.rooms.put(room.getRoomData().getId(), room);
-	}
-	
+
 	public void onCycle() {
 		List<Room> cyclingRooms = new ArrayList<>(rooms.values());
 		for (Room room : cyclingRooms) {
@@ -121,21 +109,15 @@ public class RoomManager {
 	}
 	
 	public void prepareRoomForUser(User user, int roomId, String password) {
-		Room currentRoom = user.getCurrentRoom();
-		if (currentRoom != null) {
-			currentRoom.getRoomUserManager().removeUserFromRoom(user);
-		}
-		Room newRoom = null;
-		if (roomId == -1 && this.getLoadedRooms().size() > 0) {
-			newRoom = this.getLoadedRooms().get(0); //Home room
-		} else {
-			newRoom = this.getLoadedRoom(roomId);	
-		}
-		 
-		if (newRoom != null) {
-			user.setLoadingRoomId(newRoom.getRoomData().getId());
-			user.getClient().sendMessage(new RoomModelInfoComposer(newRoom.getRoomData().getModelId(), newRoom.getRoomData().getId()));
-		}
+	    Room currentRoom = user.getCurrentRoom();
+	    if (currentRoom != null) {
+	        currentRoom.getRoomUserManager().removeUserFromRoom(user);
+	    }
+	    Room newRoom = roomId == -1 ? this.getLoadedRooms().get(0) : this.getLoadedRoom(roomId);
+	    if (newRoom != null) {
+	        user.setLoadingRoomId(newRoom.getRoomData().getId());
+	        user.getClient().sendMessage(new RoomModelInfoComposer(newRoom.getRoomData().getModelId(), newRoom.getRoomData().getId()));
+	    }
 	}
 	
 	public void prepareHeightMapForUser(User user) {
@@ -148,16 +130,33 @@ public class RoomManager {
 	public void finishRoomLoadingForUser(User user) {
 		Room room = this.getLoadedRoom(user.getLoadingRoomId());
 		if (room != null) {
-			room.getRoomUserManager().addUserToRoom(user);
-			user.setLoadingRoomId(0);
-			user.getClient().sendMessage(new RoomDataComposer(room.getRoomData()));
+				room.getRoomUserManager().addUserToRoom(user);
+				user.setLoadingRoomId(0);
+				user.getClient().sendMessage(new RoomDataComposer(room.getRoomData()));
+				try (
+					Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
+				    Statement statement = connection.createStatement();
+				) {
+					String query = "UPDATE rooms SET user_counter = user_counter + 1 WHERE id = " + room.getRoomData().getId();
+				    statement.executeUpdate(query);
+				} catch (SQLException e) {
+					System.out.println("Error updating room user_counter: " + e);
+				}
+			}
 		}
-	}
 
 	public void handleUserLeaveRoom(User user) {
-		Room currentRoom = user.getCurrentRoom();
-		if (currentRoom != null) {
-			currentRoom.getRoomUserManager().removeUserFromRoom(user);
+		Room room = this.getLoadedRoom(user.getCurrentRoom().getRoomData().getId());
+		if (room != null) {
+			room.getRoomUserManager().removeUserFromRoom(user);
+			try (
+				Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
+				Statement statement = connection.createStatement();
+				) {
+					statement.execute("UPDATE rooms SET user_counter = user_counter - 1 WHERE id = " + room.getRoomData().getId());
+				} catch (SQLException e) {
+					System.out.println("Error updating user counter: " + e);
+				}
 		}
 	}
 	
@@ -166,27 +165,26 @@ public class RoomManager {
 	}
 
 	public void createRoom(User user, String roomName, String modelId) {
-		if (roomName.length() > 0) {
-			RoomModel model = getModel(modelId);
-			if (model != null) {
-				RoomData roomData = new RoomData(roomId++, roomName, user.getUsername(), "", 25, "", modelId, LockType.Open);
-				Room room = new Room(roomData, model);
-				
-				this.rooms.put(room.getRoomData().getId(), room);
-				
-				prepareRoomForUser(user, room.getRoomData().getId(), "");
-				try (Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection(); Statement statement = connection.createStatement()) {
+	    RoomModel model = getModel(modelId);
+	    if (roomName.length() > 0 && model != null) {
+	        RoomData roomData = new RoomData(roomId++, roomName, user.getUsername(), "", 25, "", modelId, LockType.Open);
+	        Room room = new Room(roomData, model);
+	        this.rooms.put(room.getRoomData().getId(), room);
+	        prepareRoomForUser(user, room.getRoomData().getId(), "");
 
-				    String query = "INSERT INTO rooms (name, owner, description, capacity, password, modelId, lockType) VALUES ('"+roomName+"', '"+user.getUsername()+"', '', 25, '', '"+modelId+"', '"+LockType.Open+"')";
-				    if (statement.execute(query)) {
-				    	try (ResultSet set = statement.getResultSet()) {
-
-				    	}
-					  }
-				  } catch (SQLException e) {
-					  System.out.println("Error creating new room: "+e);
-				  }
-			}
-		}
+	        try (Connection connection = BobbaEnvironment.getGame().getDatabase().getDataSource().getConnection();
+	             PreparedStatement statement = connection.prepareStatement("INSERT INTO rooms (name, owner, description, capacity, password, modelId, lockType) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+	            statement.setString(1, roomName);
+	            statement.setString(2, user.getUsername());
+	            statement.setString(3, "");
+	            statement.setInt(4, 25);
+	            statement.setString(5, "");
+	            statement.setString(6, modelId);
+	            statement.setString(7, LockType.Open.toString());
+	            statement.execute();
+	        } catch (SQLException e) {
+	            System.out.println("Error creating new room: " + e);
+	        }
+	    }
 	}
 }

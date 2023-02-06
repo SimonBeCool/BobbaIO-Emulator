@@ -16,10 +16,9 @@ public class GameClientManager implements IConnectionHandler {
     @Override
     public void handleNewConnection(ClientConnection newConnection) {
         int connectionId = newConnection.getId();
-        if (!clients.containsKey(connectionId)) {
-            clients.put(connectionId, new GameClient(connectionId, newConnection));
-            Logging.getInstance().writeLine("New gameclient created (" + connectionId + ")", LogLevel.Debug, getClass());
-        }
+        GameClient client = new GameClient(connectionId, newConnection);
+        clients.put(connectionId, client);
+        Logging.getInstance().writeLine("New gameclient created (" + connectionId + ")", LogLevel.Debug, getClass());
     }
 
     @Override
@@ -34,8 +33,7 @@ public class GameClientManager implements IConnectionHandler {
 
     @Override
     public void handleMessage(ClientConnection connection, String message) {
-        int connectionId = connection.getId();
-        GameClient client = clients.get(connectionId);
+        GameClient client = clients.get(connection.getId());
         if (client != null) {
             client.handleMessage(message);
         }

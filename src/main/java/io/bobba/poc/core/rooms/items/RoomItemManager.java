@@ -107,10 +107,10 @@ public class RoomItemManager {
 	
 	public void addFloorItemToRoom(int id, int x, int y, double z, int rot, int extraData, BaseItem baseItem) {
 		if (getItem(id) == null) {
-			floorItems.put(id, new RoomItem(id, x, y, z, rot, extraData, room, baseItem));
-			room.getGameMap().addItemToMap(floorItems.get(id));
-			room.sendMessage(new SerializeFloorItemComposer(floorItems.get(id)));
-			room.getRoomUserManager().updateUserStatusses();
+				floorItems.put(id, new RoomItem(id, x, y, z, rot, extraData, room, baseItem));
+				room.getGameMap().addItemToMap(floorItems.get(id));
+				room.sendMessage(new SerializeFloorItemComposer(floorItems.get(id)));
+				room.getRoomUserManager().updateUserStatusses();
 		}
 	}
 	
